@@ -16,6 +16,7 @@ $colors: (
   'button-bg-primary': #ff6b08,
   'button-bg-secondary': transparent,
   'input-placeholder': #ffffff,
+  'error-color': #ff001b,
 );
 
 @function getColor($key) {
