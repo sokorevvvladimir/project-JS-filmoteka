@@ -56,7 +56,7 @@
     display: inline-block;
     width: 24px;
     height: 24px;
-    stroke: getColor(text-fifth);
+    stroke: getColor(logo-icon-color);
   }
   &__text {
     display: none;
@@ -64,7 +64,7 @@
       display: block;
       font-weight: 500;
       @include font(30px, 35px);
-      color: getColor(text-third);
+      color: getColor(logo-title-color);
       margin-left: 10px;
     }
   }
@@ -95,7 +95,7 @@
     font-weight: 500;
     @include font(12px, 14px);
     text-transform: uppercase;
-    color: getColor(text-third);
+    color: getColor(link-text-color);
 
     &:hover,
     &:focus {
@@ -109,10 +109,10 @@
   height: 20px;
   font-weight: 400;
   @include font(14px, 16px);
-  color: getColor(text-third);
+  color: getColor(input-searchquery);
   background-color: transparent;
   border: none;
-  border-bottom: 0.5px solid getColor(text-third);
+  border-bottom: 0.5px solid getColor(input-border-color);
   padding: 0 15px 4px 1px;
   outline: none;
 
@@ -126,7 +126,7 @@
   &::placeholder {
     font-weight: 400;
     @include font(14px, 16px);
-    color: getColor(text-third);
+    color: getColor(input-placeholder-color);
   }
   &__wrapper {
     position: relative;
@@ -147,7 +147,7 @@
     right: 0;
     width: 12px;
     height: 12px;
-    stroke: getColor(text-third);
+    stroke: getColor(input-search-icon);
 
     @include respond-to(tablet) {
       right: (142px);
