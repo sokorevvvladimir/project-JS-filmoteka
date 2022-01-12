@@ -1,25 +1,18 @@
 .container {
   margin-left: auto;
   margin-right: auto;
-
-  @include _phone {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
+  padding-left: 15px;
+  padding-right: 15px;
 
   @include _phone_gap {
-    width: 320px;
+    width: 310px;
   }
 
   @include _tablet {
-    padding-left: 75px;
-    padding-right: 75px;
-    width: 768px;
+    width: 648px;
   }
 
   @include _desktop {
-    padding-left: 71px;
-    padding-right: 71px;
-    width: 1024px;
+    width: 912px;
   }
 }
