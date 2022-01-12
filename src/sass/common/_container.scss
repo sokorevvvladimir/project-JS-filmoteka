@@ -2,9 +2,12 @@
   margin-left: auto;
   margin-right: auto;
 
-  @include _phone_gap {
+  @include _phone {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  @include _phone_gap {
     width: 320px;
   }
 
