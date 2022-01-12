@@ -1,7 +1,11 @@
-/*
- * Главный файл стилей.
- * Все паршалы подключаются сюда.
- */
+@import './utils/reset';
+@import './utils/variables';
+@import './utils/mixins';
+@import './utils/visually-hidden';
 
-// Стили для файла с примером HTML-фрагмента
-@import './example';
+@import './utils/up';
+@import './common/base';
+@import './common/container';
+@import './sections/header';
+@import './sections/footer';
+@import './modals/film-description-modal';

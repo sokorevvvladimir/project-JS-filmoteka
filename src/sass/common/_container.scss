@@ -1,0 +1,22 @@
+.container {
+  margin-left: auto;
+  margin-right: auto;
+
+  @include _phone_gap {
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 320px;
+  }
+
+  @include _tablet {
+    padding-left: 75px;
+    padding-right: 75px;
+    width: 768px;
+  }
+
+  @include _desktop {
+    padding-left: 71px;
+    padding-right: 71px;
+    width: 1024px;
+  }
+}
