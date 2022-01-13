@@ -2,16 +2,17 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  padding: 46px 0 97px;
+  padding: 47px 0 97px;
 
   @include respond-to(from0) {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
     url('./../images/header-main/header320.jpg');
+    
   }
   @include respond-to(tablet) {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
     url('./../images/header-main/header768.jpg');
-    // padding: 41px 0 97px;
+    padding: 40px 0 97px;
   }
   @include respond-to(desktop) {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
@@ -24,22 +25,26 @@
   }
 }
 
-// .header.library {
-//   background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-//     url('./../images/header-library/library320.jpg');
-//   padding: 46px 0 65px;
+.header.library {
 
-//   @include respond-to(tablet) {
-//     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-//     url('./../images/header-library/library768.jpg');
-//     padding: 41px 0 65px;
-//   }
+  padding: 47px 0 65px;
 
-//   @include respond-to(desktop) {
-//     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-//     url('./../images/header-library/library1024@2x.jpg');
-//   }
-// }
+  @include respond-to(from0) {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url('./../images/header-library/library320.jpg');    
+  }
+
+  @include respond-to(tablet) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url('./../images/header-library/library768.jpg');
+    padding: 40px 0 65px;
+  }
+
+  @include respond-to(desktop) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url('./../images/header-library/library1024.jpg');
+  }
+}
 
 .logo {
   animation: lightSpeedInLeft;
@@ -191,10 +196,10 @@
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url('./../images/header-main/header320@2x.jpg');
   }
-  // .header.library {
-  //   background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-  //     url('./../images/header-library/library320@2x.jpg');
-  // }
+  .header.library {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('./../images/header-library/library320@2x.jpg');
+  }
 }
 
 @media screen and (min-device-pixel-ratio: 2) and (min-width: 768px),
@@ -204,10 +209,10 @@
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url('./../images/header-main/header768@2x.jpg');
   }
-  // .header.library {
-  //   background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-  //     url('./../images/header-library/library768@2x.jpg');
-  // }
+  .header.library {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('./../images/header-library/library768@2x.jpg');
+  }
 }
 
 @media screen and (min-device-pixel-ratio: 2) and (min-width: 1024px),
@@ -217,8 +222,52 @@
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url('./../images/header-main/header1024@2x.jpg');
   }
-  // .header.library {
-  //   background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-  //     url('./../images/header-library/library1024@2x.jpg');
-  // }
+  .header.library {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('./../images/header-library/library1024@2x.jpg');
+  }
 }
+
+// library
+.library-button {
+  font-weight: 500;
+  @include font(12px, 16px);
+  width: 130px;
+  height: 44px;
+  color: getColor(link-text-color);
+  background-color: transparent;
+  outline: none;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:not(:last-child) {
+    margin-right: 20px;
+  }
+  
+  &.is-active {
+    background-color: getColor(accent);
+    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+    border: none;
+  }
+
+  @include respond-to(tablet) {
+    width: 136px;
+    &:not(:last-child) {
+      margin-right: 15px;
+    }
+  }
+}
+
+.library-button__wrapper {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin-top: 46px;
+
+  &.page-inactive {
+    display: none;
+  }
+}
+
+
