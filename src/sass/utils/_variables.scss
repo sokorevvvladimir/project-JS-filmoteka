@@ -1,5 +1,20 @@
+$primary-font: 'Roboto', sans-serif;
+
 $colors: (
+
   'accent': #ff6b08,
+  //----- header --------------------------------
+  'logo-icon-color': #8c8c8c, // text-fifth
+  'logo-title-color': #ffffff, // text-third
+    
+  'link-text-color': #ffffff,  // text-third
+  
+  'input-border-color': #ffffff,  // text-third
+  'input-placeholder-color': #ffffff,  // text-third
+  'input-searchquery': #ffffff,  // text-third
+  'input-search-icon': #ffffff,  // text-third  
+
+  //--------------------------------------------
   'text-primary': #000000,
   'text-secondary': #ff6b08,
   'text-third': #ffffff,
@@ -16,6 +31,7 @@ $colors: (
   'button-bg-primary': #ff6b08,
   'button-bg-secondary': transparent,
   'input-placeholder': #ffffff,
+  'error-color': #ff001b,
 );
 
 @function getColor($key) {

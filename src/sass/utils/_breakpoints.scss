@@ -1,4 +1,7 @@
 $breakpoints: (
+  'from0': (
+    min-width: 0px,
+  ),
   'mobile': (
     min-width: 320px,
   ),
