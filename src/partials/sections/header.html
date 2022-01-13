@@ -3,7 +3,7 @@
     <div class="header__wrapper">
 
       <a class="logo header__logo" href="./index.html" aria-label="filmoteka logo">
-        <svg class="logo__icon">
+        <svg class="logo__icon" width="24px" height="24px">
           <use href="./images/sprite.svg#icon-film"></use>
         </svg>
         <span class="logo__text">Filmoteka</span>
@@ -21,13 +21,14 @@
       </nav>
     </div>
 
-    <div class="input__wrapper page-active" id="js-search">
+    <form class="input__wrapper page-active" id="js-search">
       <input class="input header__input" type="text" placeholder="Поиск фильмов" id="js-input" />
-      <svg class="input__search-icon">
+      <svg class="input__search-icon" width="12px" height="12px">
         <use href="./images/sprite.svg#icon-search"></use>
       </svg>
-      <p class="input__error" id="js-input-error"></p>
-    </div>
+    </form>
+
+    <p class="input__error" id="js-input-error"></p>
 
     <!-- <div class="library-button__wrapper page-inactive" id="js-buttons">
       <button class="library-button js-library-watched" type="button">
@@ -38,4 +39,5 @@
       </button>
     </div> -->
   </div>
+
 </header>

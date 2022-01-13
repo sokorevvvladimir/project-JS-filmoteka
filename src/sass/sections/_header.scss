@@ -10,7 +10,7 @@
   @include respond-to(tablet) {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
     url('./../images/header-main/header768.jpg');
-    padding: 41px 0 97px;
+    // padding: 41px 0 97px;
   }
 
   @include respond-to(desktop) {
@@ -54,8 +54,8 @@
 
   &__icon {
     display: inline-block;
-    width: 24px;
-    height: 24px;
+    // width: 24px;
+    // height: 24px;
     stroke: getColor(logo-icon-color);
   }
   &__text {
@@ -105,7 +105,7 @@
 }
 
 .input {
-  width: 280px;
+  width: 100%;
   height: 20px;
   font-weight: 400;
   @include font(14px, 16px);
@@ -136,7 +136,7 @@
     flex-direction: column;
     margin-top: 38px;
 
-    &.tab-inactive {
+    &.page-inactive {
       display: none;
     }
   }
@@ -145,8 +145,8 @@
     content: '';
     bottom: 6px;
     right: 0;
-    width: 12px;
-    height: 12px;
+    // width: 12px;
+    // height: 12px;
     stroke: getColor(input-search-icon);
 
     @include respond-to(tablet) {
