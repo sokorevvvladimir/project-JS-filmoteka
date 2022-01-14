@@ -10,7 +10,9 @@ const {API_KEY, IMG_URL} = settings;
 import noImg from '../../images/noImageAvailable.jpg';
 
 // -------------------------------------------------------------
-const getGenreArray = (genre_ids) => genre_ids.map(el => genreList[`${el}`]).join(', ');
+const getGenreArray = (genre_ids) =>
+  (genre_ids.length <= 3) ? genre_ids.map(el => genreList[`${el}`]).join(', ') :
+  [genreList[`${genre_ids[0]}`], genreList[`${genre_ids[1]}`], 'other...'].join(', ');
 
 const getImgPath = (imgPath) => (!imgPath) ?  `${noImg}` : `${IMG_URL}${imgPath}`;
 
