@@ -10,6 +10,6 @@ export const refs = {
   queueBtn: document.querySelector('.js-library-queue'),
 
   filmsList: document.querySelector('.films__container'),
-  
-
+   serchKeyword: document.querySelector('#js-search'),
+ gallery: document.querySelector('.gallery'),
 };
