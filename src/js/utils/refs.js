@@ -11,5 +11,5 @@ export const refs = {
 
   filmsList: document.querySelector('.films__container'),
    serchKeyword: document.querySelector('#js-search'),
- gallery: document.querySelector('.gallery'),
+  
 };

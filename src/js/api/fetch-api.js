@@ -3,7 +3,7 @@ const API_KEY = `eba0388c934688725105b53c98cf82ca`;
 
 const VIDEO_BY_SEARCH = `${BASE_URL}/search/movie?api_key=${API_KEY}&include_adult=false`;
 
-export default class NewsApiService{
+export default class MovieApiService{
  constructor() {
   this.searchQuery = '';
   this.page = 1;
