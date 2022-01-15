@@ -40,7 +40,7 @@ export function renderMoviesList(results) {
     // Обрезание колличества жанров
     temp.genre.length <= 3
       ? (temp.genre = temp.genre.join(', '))
-      : (temp.genre = [temp.genre[0], temp.genre[1], 'other...'].join(', '));
+      : (temp.genre = [temp.genre[0], temp.genre[1], 'Other'].join(', '));
     // Обрезание длины названия фильма
     if (temp.title.length > 37) temp.title = temp.title.slice(0, 37) + '...';
     return temp;
