@@ -21,6 +21,7 @@ async function onSearch(e) {
 
   const result = await fetchMoviesBySearch();
   console.log(result)
+   refs.filmsList.innerHTML = '';
   renderMoviesList(result);
 
   search.reset();
