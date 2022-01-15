@@ -9,6 +9,6 @@ export const refs = {
   watchedBtn: document.querySelector('.js-library-watched'),
   queueBtn: document.querySelector('.js-library-queue'),
 
-  filmsList: document.querySelector('.films__container'),  
-
+  filmsList: document.querySelector('.films__container'),
+  searchKeyword: document.querySelector('#js-search'),
 };
