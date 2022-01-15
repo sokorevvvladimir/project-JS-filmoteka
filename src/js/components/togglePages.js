@@ -1,10 +1,9 @@
-import {refs} from './refs';
+import {refs} from '../utils/refs';
 // Будет нужно добавить
 // Импорт класса или экземпляра 
 // Для "популярные фильмы" для Хоум
 // Для "лайбрари" для лайбрари пользователя
-
-console.log(refs); // потом удалить
+import {PopularMovies} from './createMoviesList'
 
 //---------------------------------------------------
 const onHomeButton = () => {
@@ -28,14 +27,16 @@ const onHomeButton = () => {
   // Сбросить счетчик страниц
   // Загрузить популярные фильмы
 
+  refs.filmsList.innerHTML = '';
+  PopularMovies(); // здесь потом указать метод из класса.
+
   //-- Обсудить и удалить
   // Это обратно пустые дивы возвращаю
-  let element = '';
-  for (let index = 0; index <= 12; index++) {
-    element += '<div class="films__card"><span class="films__label">Film</span></div>';    
-  }
-  refs.filmsList.innerHTML = `${element}`;
-  //-------------------------------
+  // let element = '';
+  // for (let index = 0; index <= 12; index++) {
+  //   element += '<div class="films__card"><span class="films__label">Film</span></div>';    
+  // }
+  // refs.filmsList.innerHTML = `${element}`;
 
   console.log('on home click'); //потом удалить
 
