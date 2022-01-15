@@ -34,7 +34,7 @@ export const normalizationMovieObj = ({
   about: overview,
   popularity: popularity,
   img: getImgPath(poster_path),
-  releaseDate: getDate(release_date),
+  releaseDate: release_date ? getDate(release_date) : '',
   vote: vote_average,
   votes: vote_count,
 });

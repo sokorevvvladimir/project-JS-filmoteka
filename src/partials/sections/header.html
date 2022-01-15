@@ -1,7 +1,6 @@
 <header class="header" id="home">
-  <div class="container ">
+  <div class="container">
     <div class="header__wrapper">
-
       <a class="logo header__logo" href="./index.html" aria-label="filmoteka logo">
         <svg class="logo__icon" width="24px" height="24px">
           <use href="./images/sprite.svg#icon-film"></use>
@@ -19,13 +18,18 @@
           </li>
         </ul>
       </nav>
-
     </div>
 
     <form class="input__wrapper page-active" id="js-search">
-      <input class="input header__input" type="text" placeholder="Поиск фильмов" id="js-input" />
+      <input
+        class="input header__input"
+        name="query"
+        type="text"
+        placeholder="Поиск фильмов"
+        id="js-input"
+      />
       <button class="input__search-btn" type="submit">
-        <svg  class="input__search-icon" width="12px" height="12px">
+        <svg class="input__search-icon" width="12px" height="12px">
           <use href="./images/sprite.svg#icon-search"></use>
         </svg>
       </button>
@@ -34,14 +38,8 @@
     <p class="input__error" id="js-input-error"></p>
 
     <div class="library-button__wrapper page-inactive" id="js-buttons">
-      <button class="library-button js-library-watched" type="button">
-        WATCHED
-      </button>
-      <button class="library-button js-library-queue" type="button">
-        QUEUE
-      </button>
+      <button class="library-button js-library-watched" type="button">WATCHED</button>
+      <button class="library-button js-library-queue" type="button">QUEUE</button>
     </div>
-    
   </div>
-
 </header>

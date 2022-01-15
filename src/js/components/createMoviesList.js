@@ -2,7 +2,7 @@
 // и здесь генерится разметка карточек фильмов
 
 import { refs } from '../utils/refs.js';
-import movieCard from '../timplates/movieCard.hbs';
+import movieCard from '../templates/movieCard.hbs';
 
 //-------------------------------------------
 // временный код. Вызывается первая страница списка популярных фильмов
@@ -21,11 +21,8 @@ export async function PopularMovies() {
   try {
     const moviesList = await fetchPopular();
     const { results } = moviesList;
-    console.log(moviesList);
     renderMoviesList(results);
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 }
 
 PopularMovies();
@@ -45,7 +42,6 @@ export function renderMoviesList(results) {
     if (temp.title.length > 37) temp.title = temp.title.slice(0, 37) + '...';
     return temp;
   });
-  console.log(normalObjs); // Потом удалить
 
   refs.filmsList.insertAdjacentHTML('beforeend', movieCard(normalObjs));
 }
