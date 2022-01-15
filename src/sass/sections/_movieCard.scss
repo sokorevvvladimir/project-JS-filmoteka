@@ -1,7 +1,19 @@
 .movies {
   &__item {
-    width: 274px;
-    transition: transform 250ms linear;
+    @include respond-to(from0) {
+      width: 280px;
+      transition: transform 250ms linear;
+      margin-bottom: 20px;
+    }
+    
+    @include respond-to(tablet) {
+      margin-bottom: 0;
+      width: 293px;
+    }
+
+    @include respond-to(desktop) {
+      width: 274px;
+    }
 
     &:hover,
     &:focus {
@@ -13,7 +25,17 @@
     background-color: getColor(bg-primary);
     border-radius: 5px;
     width: 100%;
-    height: 402px;
+
+    @include respond-to(from0) {
+      height: 402px;
+    }
+    @include respond-to(tablet) {
+      height: 398px;
+    }
+    @include respond-to(desktop) {
+      height: 398px;
+    }
+     
   }
   &__img {
     width: 100%;
@@ -25,27 +47,25 @@
   }
   &__title {
     font-weight: 500;
-    @include font(12px, 14px);
     color: getColor(text-primary);
     text-transform: uppercase;
+
+    @include respond-to(from0) {
+      @include font(12px, 14px);
+    }
+    @include respond-to(tablet) {
+      @include font(12px, 16px);
+    }
+    @include respond-to(desktop) {
+      @include font(12px, 16px);
+    }
+
   }
   &__genre {
     display: flex;
     align-items: center;
     font-weight: 500;
-    @include font(12px, 14px);
+    @include font(12px, 16px);
     color: getColor(accent);
-  }
-  &__rating {
-    font-weight: 500;
-    @include font(12px, 14px);
-    color: getColor(text-third);
-    background-color: getColor(accent);
-    text-align: center;
-    width: 36px;
-    height: 16px;
-    border-radius: 5px;
-    padding: 1px 6px;
-    margin-left: 10px;
   }
 }
