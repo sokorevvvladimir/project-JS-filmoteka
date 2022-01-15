@@ -10,8 +10,11 @@
   justify-content: center;
   align-items: flex-start;
 
+  transition: visibility 0.3s linear, opacity 0.3s linear;
+
   &--hidden {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
   }
 }
 
@@ -23,90 +26,176 @@
   display: flex;
   flex-direction: column;
 
-  
+  gap: 30px;
   background: #fff;
   position: relative;
   z-index: 1;
-  
 
-
-  @media screen and (min-width: 768px) {
+  @include _tablet_and_desktop {
     width: 618px;
     top: 230px;
     margin: 0;
     padding: 40px 29px;
     flex-direction: row;
     justify-content: space-between;
-    gap: 30px;
   }
-  
-  @media screen and (min-width: 1024px) {
+
+  @include _desktop {
     width: 882px;
     padding: 50px 30px;
   }
-  
 }
 
 .modal-close-btn {
   cursor: pointer;
   position: absolute;
-  border: none; 
-  background: none; 
-  padding: 0;   
+  border: none;
+  background: none;
+  padding: 0;
   top: 18px;
   right: 18px;
-  
 }
 
-.modal-one-film__text {
-  font-size: 12px;
-  line-height: 1.13;
-}
-
-.modal-one-film__img{
+.modal-one-film__img {
   border-radius: 5px;
   flex-basis: 240px;
-  box-shadow: 0 1px 4px black, -23px 0 20px -23px rgb(0 0 0 / 80%), 23px 0 20px -23px rgb(0 0 0 / 80%), 0 0 40px rgb(0 0 0 / 10%) inset;
-  
-  @media screen and(min-width: 768px) {
+  box-shadow: 0 1px 4px black, -23px 0 20px -23px rgb(0 0 0 / 80%),
+    23px 0 20px -23px rgb(0 0 0 / 80%), 0 0 40px rgb(0 0 0 / 10%) inset;
+
+  @include _tablet_and_desktop {
     flex-basis: 264px;
- }
-
- @media screen and(min-width: 1024px) {
-   flex-basis: 396px;
- }
-}
-
-.modal-one-film__info{
-  margin-bottom: 30px;
-  flex-basis: 240px;
-
-  @media screen and(min-width: 768px) {
-    flex-basis: 264px;
-    margin-bottom: 0;
   }
 
-  @media screen and(min-width: 1024px) {
+  @include _desktop {
     flex-basis: 396px;
   }
 }
 
-.modal-one-film__facts {
+.modal-one-film__info {
+  flex-basis: 240px;
 
+  @include _tablet_and_desktop {
+    flex-basis: 264px;
+  }
+
+  @include _desktop {
+    flex-basis: 396px;
+  }
+}
+
+.modal-one-film__title {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  color: #000000;
+  padding-bottom: 20px;
+}
+
+.modal-one-film__facts {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  color: #000000;
 }
 
 .modal-one-film__facts-label {
   display: inline-block;
-  width: 120px;
+  width: 108px;
+  padding-bottom: 10px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #8c8c8c;
+
+  @include _desktop {
+    width: 152px;
+  }
 }
 
-.modal-buttons{
-// width: 125px;
-// height: 44px;
+.modal-one-film__facts-vote{
+  display: inline-block;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  align-items: center;
+  text-align: center;
 
-// border: 1px solid #000000;
-// box-sizing: border-box;
-// border-radius: 5px;
+  width: 36px;
+  height: 16px; 
+  color: #FFFFFF;
+  background: #FF6B01;
+  border-radius: 5px;
+  padding: 1px 10px;
+}
 
-  
+.modal-one-film__facts-vot{
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #8C8C8C;
+}
+
+.modal-one-film__facts-votes{
+  display: inline-block;
+  width: 36px;
+  height: 16px;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+
+  background: #F7F7F7;
+  border-radius: 5px;
+
+}
+
+.modal-about {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-transform: uppercase;
+  color: #000000;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.modal-one-film__text {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+  color: #000000;
+}
+
+.modal-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 14.85px;
+  padding-top: 21px;
+
+  @include _tablet_and_desktop {
+    gap: 14.94px;
+  }
+
+  @include _desktop {
+    gap: 15px;
+  }
+}
+
+.modal-button__add {
+  width: 125px;
+  height: 44px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  background: #FFFFFF;
+
+  &:active {
+    border: none;
+    background: #FF6B01;
+    color: #FFFFFF;
+  }
 }

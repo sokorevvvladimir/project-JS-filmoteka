@@ -1,20 +1,22 @@
-<div class="modal-one-film">
+<div class="modal-one-film modal-one-film--hidden">
   <div class="modal-one-film__window">
+
     <button class="modal-close-btn">
       <svg width="14" height="14">
         <use href="./images/sprite.svg#modal-close-btn-full"></use>
       </svg>
     </button>
+
     <div class="modal-one-film__img">
       <img src="" alt="" />
     </div>
 
     <div class="modal-one-film__info">
-      <h3>LOREM IPSUM DOLOR SIT</h3>
+      <h3 class="modal-one-film__title">LOREM IPSUM DOLOR SIT</h3>
       <ul class="modal-one-film__facts">
         <li>
           <span class="modal-one-film__facts-label">Vote / Votes</span>
-          <span class="modal-one-film__facts-value">7.3 / 1260</span>
+          <span class="modal-one-film__facts-vot"><span class="modal-one-film__facts-vote">7.3</span> / <span class="modal-one-film__facts-votes">1260</span></span>
         </li>
         <li>
           <span class="modal-one-film__facts-label">Popularity</span>
@@ -29,15 +31,15 @@
           <span class="modal-one-film__facts-value">Western</span>
         </li>
       </ul>
-      <h5 class="modal-about">ABOUT</h5>
+      <h4 class="modal-about">ABOUT</h4>
       <p class="modal-one-film__text">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla aperiam molestiae voluptates
         optio nemo dicta est! Aliquam, rerum autem! Qui animi ex cum repellendus. Ab eos provident
         unde nobis amet!
       </p>
       <div class="modal-buttons">
-        <button>ADD TO WATCHED</button>
-        <button>ADD TO QUEUE</button>
+        <button class="modal-button__add">ADD TO WATCHED</button>
+        <button class="modal-button__add">ADD TO QUEUE</button>
       </div>
     </div>
   </div>
