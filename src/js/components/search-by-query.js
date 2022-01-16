@@ -1,9 +1,10 @@
 import MovieApiService from '../api/fetch-api.js';
 import { refs } from '../utils/refs.js';
 import Notiflix from 'notiflix';
-import { normalizationMovieObj } from '../utils/normalizationObj';
+// import { normalizationMovieObj } from '../utils/normalizationObj';
+import { renderMoviesList } from "./createMoviesList.js";
 
-const { search, filmsList } = refs;
+const { search } = refs;
 
 const movieApiService = new MovieApiService();
 search.addEventListener('submit', onSearch);
@@ -19,9 +20,9 @@ async function onSearch(e) {
   }
 
   const result = await fetchMoviesBySearch();
-  const movieData = normalizationMovieList(result);
-
-  appendHitsMarkup(movieData);
+  console.log(result)
+   refs.filmsList.innerHTML = '';
+  renderMoviesList(result);
 
   search.reset();
 }
@@ -41,11 +42,4 @@ async function fetchMoviesBySearch() {
   }
 }
 
-function normalizationMovieList(movies) {
-  return movies.map(item => normalizationMovieObj(item));
-}
 
-function appendHitsMarkup(object) {
-  console.log(object);
-  // filmsList.insertAdjacentHTML('beforeend', renderImages(object));
-}
