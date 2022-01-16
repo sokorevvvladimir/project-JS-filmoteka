@@ -1,0 +1,13 @@
+{{#each this}}
+<div class="movies__item">
+  <a class="movies__link" href="#" data-id="{{id}}">
+    <div class="movies__img-box">
+      <img class="movies__img" src="{{img}}" alt="{{title}} poster" />
+    </div>
+    <div class="movies__content">
+      <h2 class="movies__title">{{title}}</h2>
+      <p class="movies__genre">{{genre}} | {{releaseDate}}</p>
+    </div>
+  </a>
+</div>
+{{/each}}
