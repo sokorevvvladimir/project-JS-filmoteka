@@ -54,14 +54,14 @@ const onLibraryButton = () => {
 
   // Показать/спрятать пагинацию
 
-  refs.watchedBtn.classList.remove('is-active');
+  // refs.watchedBtn.classList.remove('is-active');
   refs.queueBtn.classList.remove('is-active');
 
   //-- Обсудить и удалить ----------------------------
   // Как вариант - ничего не загружать,
   // а предложить, пусть нажмет кнопочку и сам выберет
-  refs.filmsList.innerHTML =
-    '<p>Select at the top what you want to display: viewed or queued ☝🏻</p>';
+  // refs.filmsList.innerHTML =
+  //   '<p>Select at the top what you want to display: viewed or queued ☝🏻</p>';
   //--------------------------------------------------
 };
 
