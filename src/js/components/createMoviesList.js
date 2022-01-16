@@ -32,14 +32,11 @@ PopularMovies();
 // results - это объект на входе
 
 export function renderMoviesList(results) {
-  console.log(results)
   // нормализация объекта с учетом обрезания жанров до 2+other...
   const normalObjs = results.map(element => {
     let temp = normalizationMovieObj(element);
-    console.log(element)
     // Обрезание колличества жанров
     temp.genre.length <= 2
-      console.log( temp.genre)
       ? (temp.genre = temp.genre.join(', '))
       : (temp.genre = [temp.genre[0], temp.genre[1], 'Other'].join(', '));
     // Обрезание длины названия фильма
