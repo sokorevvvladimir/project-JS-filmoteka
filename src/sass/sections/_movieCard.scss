@@ -5,7 +5,7 @@
       transition: transform 250ms linear;
       margin-bottom: 20px;
     }
-    
+
     @include respond-to(tablet) {
       margin-bottom: 0;
       width: 293px;
@@ -35,7 +35,6 @@
     @include respond-to(desktop) {
       height: 398px;
     }
-     
   }
   &__img {
     width: 100%;
@@ -59,7 +58,6 @@
     @include respond-to(desktop) {
       @include font(12px, 16px);
     }
-
   }
   &__genre {
     display: flex;
@@ -67,5 +65,14 @@
     font-weight: 500;
     @include font(12px, 16px);
     color: getColor(accent);
+  }
+  &__rating {
+    background-color: #ff6b08;
+    color: #fff;
+    margin-left: 5px;
+    width: 36px;
+    height: 16px;
+    border-radius: 5px;
+    text-align: center;
   }
 }
