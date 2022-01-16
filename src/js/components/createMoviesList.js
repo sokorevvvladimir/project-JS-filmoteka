@@ -9,6 +9,7 @@ import MovieApiService from '../api/fetch-api.js';
 // что бы сделать разметку и цсс под карточку
 // потом его удалить
 import { normalizationMovieObj } from '../utils/normalizationObj';
+import Notiflix from 'notiflix';
 // import settings from '../utils/settings';
 // const { BASE_URL, API_KEY } = settings;
 
@@ -23,7 +24,14 @@ export async function PopularMovies() {
     const moviesList = await movieApiService.fetchPopular();
     const { results } = moviesList;
     renderMoviesList(results);
-  } catch (error) {}
+  } catch (error) {
+    Notiflix.Notify.failure('Error, something went wrong');
+
+
+
+
+    
+  }
 }
 
 PopularMovies();
