@@ -12,7 +12,8 @@ import { normalizationMovieObj } from '../utils/normalizationObj';
 import Notiflix from 'notiflix';
 // import settings from '../utils/settings';
 // const { BASE_URL, API_KEY } = settings;
-
+// import imgDefault from '../../images/header-main/header1024.jpg'
+import imgDefault from '../../images/503.jfif';
 // async function fetchPopular() {
 //   const urlPopular = `${BASE_URL}trending/movie/day?api_key=${API_KEY}&page=1`;
 //   return fetch(urlPopular).then(response => response.json());
@@ -25,12 +26,7 @@ export async function PopularMovies() {
     const { results } = moviesList;
     renderMoviesList(results);
   } catch (error) {
-    Notiflix.Notify.failure('Error, something went wrong');
-
-
-
-
-    
+    refs.filmsList.innerHTML = `<img src=${imgDefault} class="imageDefault"/>`
   }
 }
 

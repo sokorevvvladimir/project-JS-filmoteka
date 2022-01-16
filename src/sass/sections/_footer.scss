@@ -12,7 +12,18 @@
 }
 .footer__heart {
   margin: 0 10px;
-  content: 'scale(1.25)';
+  animation-name: heart;
+  animation-duration: 500ms;
+  animation-iteration-count: infinite;
+}
+
+@keyframes heart {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.25);
+  }
 }
 .footer__link {
   color: #545454;
@@ -129,4 +140,8 @@
 }
 .item {
   margin-bottom: 5px;
+}
+
+.imageDefault {
+  margin: 0 auto;
 }
