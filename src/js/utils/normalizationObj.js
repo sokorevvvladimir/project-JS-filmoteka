@@ -12,7 +12,7 @@ import noImg from '../../images/noImageAvailable.jpg';
 // -------------------------------------------------------------
 const getGenreArray = genre_ids => genre_ids.map(el => genreList[`${el}`]);
 
-const getImgPath = imgPath => (!imgPath ? `${noImg}` : `${IMG_URL}${imgPath}`);
+export const getImgPath = imgPath => (!imgPath ? `${noImg}` : `${IMG_URL}${imgPath}`);
 
 const getDate = date => (!date ? data : date.slice(0, 4));
 
