@@ -36,7 +36,12 @@ export function renderMoviesList(results) {
   const normalObjs = results.map(element => {
     let temp = normalizationMovieObj(element);
     // Обрезание колличества жанров
-    temp.genre.length <= 2
+    // Если жанров менше равно 3 - выводятся все жанры
+    // Если жанров больше 3 - выводится 1й, 2й и Other
+    // Здесь не нужно ставить <=2 поскольку если жанра три - то отобразится 1й, 2й и Other
+    // А нужно вывести три жанра.
+    //
+    temp.genre.length <= 3
       ? (temp.genre = temp.genre.join(', '))
       : (temp.genre = [temp.genre[0], temp.genre[1], 'Other'].join(', '));
     // Обрезание длины названия фильма
