@@ -39,14 +39,12 @@
     background-size: contain;
     background-image: url('./../images/header-main/header1024.jpg');
   }
-  animation: opacity $animation-duration $animation-cubic;
 
   &__wrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  transition: opacity 0.3s linear, background-image 0.3s linear;
 
   &.library {
     opacity: 1; 
@@ -70,8 +68,8 @@
       background-size: contain;
       background-image: url('./../images/header-library/library1024.jpg');
     }
-    animation: opacity $animation-duration $animation-cubic;
   }
+  transition: opacity 1000ms $animation-cubic, background-image 1000ms $animation-cubic;
 }
 
 .logo {
