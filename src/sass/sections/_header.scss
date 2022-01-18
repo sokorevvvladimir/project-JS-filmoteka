@@ -1,21 +1,44 @@
+.grey-bg {
+  position: absolute;
+  z-index: -1;
+  background-color: #b6b3b3;
+  height: 230px;
+  top:0;
+  left:50%;
+  transform:translate(-50%, 0);
+  @include respond-to(from0) {
+    width: 320px;
+  }
+  @include respond-to(tablet) {
+    width: 768px;
+  }
+  @include respond-to(desktop) {
+    width: 1024px;  
+  }
+}
+
 .header {
-  background-size: cover;
+  
   background-repeat: no-repeat;
   background-position: center;
   padding: 47px 0 97px;
 
   @include respond-to(from0) {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-    url('./../images/header-main/header320.jpg');
+    background-size: cover;
+    background-image: url('./../images/header-main/header320.jpg');
+  }
+  @include respond-to(mobile) {
+    background-size: contain;
+    background-image: url('./../images/header-main/header320.jpg');
   }
   @include respond-to(tablet) {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-    url('./../images/header-main/header768.jpg');
+    background-size: contain;
+    background-image: url('./../images/header-main/header768.jpg');
     padding: 40px 0 97px;
   }
   @include respond-to(desktop) {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-    url('./../images/header-main/header1024.jpg');
+    background-size: contain;
+    background-image: url('./../images/header-main/header1024.jpg');
   }
   animation: bg-home 0.5s cubic-bezier(.6,.46,.4,.9);
 
@@ -31,19 +54,22 @@
     padding: 47px 0 65px;
 
     @include respond-to(from0) {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url('./../images/header-library/library320.jpg');    
+      background-size: cover;
+      background-image: url('./../images/header-library/library320.jpg');    
     }
-  
+    @include respond-to(mobile) {
+      background-size: contain;
+      background-image: url('./../images/header-library/library320.jpg');
+    }
     @include respond-to(tablet) {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url('./../images/header-library/library768.jpg');
+      background-size: contain;
+      background-image: url('./../images/header-library/library768.jpg');
       padding: 40px 0 65px;
     }
   
     @include respond-to(desktop) {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url('./../images/header-library/library1024.jpg');
+      background-size: contain;
+      background-image: url('./../images/header-library/library1024.jpg');
     }
     animation: bg-library 0.5s cubic-bezier(.6,.46,.4,.9);
   }
