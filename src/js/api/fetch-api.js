@@ -19,9 +19,14 @@ export default class MovieApiService {
   }
 
   async fetchPopular() {
-  const urlPopular = `${BASE_URL}/trending/movie/day?api_key=${API_KEY}&page=${this.page}`;
-  return fetch(urlPopular).then(response => response.json());
-}
+    const urlPopular = `${BASE_URL}/trending/movie/day?api_key=${API_KEY}&page=${this.page}`;
+    return fetch(urlPopular).then(response => response.json());
+  }
+
+  async getMovieDetails(id) {
+    const url = `${BASE_URL}/movie/${id}?api_key=${API_KEY}`;
+    return fetch(url).then(res => res.json());
+  }
 
   incrementPage() {
     this.page += 1;
