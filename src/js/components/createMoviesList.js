@@ -26,7 +26,7 @@ export async function PopularMovies() {
     const { results } = moviesList;
     renderMoviesList(results);
   } catch (error) {
-    refs.filmsList.innerHTML = `<img src=${imgDefault} class="imageDefault"/>`
+    refs.filmsList.innerHTML = `<img src=${imgDefault} class="imageDefault"/>`;
   }
 }
 
