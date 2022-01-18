@@ -22,15 +22,17 @@
       </nav>
     </div>
 
-    <form class="input__wrapper page-active" id="js-search">
-      <input class="input header__input" name="query" type="text" placeholder="Поиск фильмов" id="js-input"
-        autocomplete="off" />
-      <button class="input__search-btn" type="submit">
-        <svg class="input__search-icon" width="12px" height="12px">
-          <use href="./images/sprite.svg#icon-search"></use>
-        </svg>
-      </button>
-    </form>
+    <div class="form-wrapper">
+      <form class="input__wrapper page-active" id="js-search">
+        <input class="input header__input" name="query" type="text" placeholder="Поиск фильмов" id="js-input"
+          autocomplete="off" />
+        <button class="input__search-btn" type="submit">
+          <svg class="input__search-icon" width="12px" height="12px">
+            <use href="./images/sprite.svg#icon-search"></use>
+          </svg>
+        </button>
+      </form>
+    </div>
 
     <p class="input__error" id="js-input-error"></p>
 

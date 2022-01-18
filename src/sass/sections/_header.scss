@@ -18,14 +18,15 @@
 }
 
 .header {
-  
+  // display: flex;
+  // justify-content: center;
   background-repeat: no-repeat;
   background-position: center;
-  padding: 47px 0 97px;
 
   @include respond-to(from0) {
     background-size: cover;
     background-image: url('./../images/header-main/header320.jpg');
+    padding: 47px 0 97px;
   }
   @include respond-to(mobile) {
     background-size: contain;
@@ -34,13 +35,13 @@
   @include respond-to(tablet) {
     background-size: contain;
     background-image: url('./../images/header-main/header768.jpg');
-    padding: 40px 0 97px;
+    padding: 40px 0 95px;
   }
   @include respond-to(desktop) {
     background-size: contain;
     background-image: url('./../images/header-main/header1024.jpg');
   }
-  animation: bg-home 0.5s cubic-bezier(.6,.46,.4,.9);
+  animation: opacity $animation-duration $animation-cubic;
 
   &__wrapper {
     display: flex;
@@ -51,11 +52,11 @@
 
   &.library {
     opacity: 1; 
-    padding: 47px 0 65px;
 
     @include respond-to(from0) {
       background-size: cover;
-      background-image: url('./../images/header-library/library320.jpg');    
+      background-image: url('./../images/header-library/library320.jpg'); 
+      padding: 47px 0 65px;   
     }
     @include respond-to(mobile) {
       background-size: contain;
@@ -71,12 +72,9 @@
       background-size: contain;
       background-image: url('./../images/header-library/library1024.jpg');
     }
-    animation: bg-library 0.5s cubic-bezier(.6,.46,.4,.9);
+    animation: opacity $animation-duration $animation-cubic;
   }
 }
-
-@keyframes bg-home {0% { opacity: 0.5; } 100% { opacity: 1; }}
-@keyframes bg-library {0% { opacity: 0.5; } 100% { opacity: 1; }}
 
 .logo {
   animation: lightSpeedInLeft;
