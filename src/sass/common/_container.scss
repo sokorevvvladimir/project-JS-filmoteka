@@ -4,12 +4,6 @@
   padding-left: 15px;
   padding-right: 15px;
   
-  @include respond-to(from0) {
-    padding-left: 5px;
-    padding-right: 5px;
-    width: calc(100vw - 10px);
-  } 
-
   @include _phone_gap {
     width: 310px;
   }
