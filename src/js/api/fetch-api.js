@@ -9,6 +9,7 @@ export default class MovieApiService {
     this.page = 1;
     this.language = 'ru-US';
     this.genres = '';
+    this.movieId = 0;
   }
 
   // ======== поиск фильмов ======== //
@@ -26,6 +27,42 @@ export default class MovieApiService {
   async getMovieDetails(id) {
     const url = `${BASE_URL}/movie/${id}?api_key=${API_KEY}`;
     return fetch(url).then(res => res.json());
+  }
+
+  async fetchById() {
+    try {
+      const response = await fetch(`${BASE_URL}/movie/${this.movieId}?api_key=${API_KEY}`);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  getMovieId(newId) {
+    this.movieId = newId;
+  }
+
+  getItemFromLS(key) {
+    return localStorage.getItem(key);
+  }
+
+  addMovie(movieObj, key) {
+    let existingEntries = JSON.parse(this.getItemFromLS(key));
+    if (existingEntries === null) existingEntries = [];
+
+    existingEntries.push(movieObj);
+
+    return localStorage.setItem(key, JSON.stringify(existingEntries));
+  }
+
+  deleteMovie(key) {
+    let existingEntries = JSON.parse(this.getItemFromLS(key));
+
+    const newEntries = existingEntries.filter(el => el.id !== Number(this.movieId));
+    existingEntries = newEntries;
+
+    return localStorage.setItem(key, JSON.stringify(existingEntries));
   }
 
   incrementPage() {
