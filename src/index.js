@@ -8,3 +8,4 @@ import './js/components/createMoviesList';
 
 import './js/components/modal-footer-friends';
 import './js/utils/pagination';
+import './js/components/queue'
