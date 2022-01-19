@@ -1,0 +1,19 @@
+div.tui-pagination {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+}
+
+strong.tui-page-btn.tui-is-selected {
+  border-color: #FF6B08;
+  background-color: #FF6B08;
+  background: #FF6B08;
+}
+
+strong.tui-page-btn.tui-is-selected:hover {
+  background-color: slateblue;
+  border-color: slateblue;
+}
