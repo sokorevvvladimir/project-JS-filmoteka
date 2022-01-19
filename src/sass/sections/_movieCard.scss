@@ -1,20 +1,23 @@
 .movies {
   &__item {
     @include respond-to(from0) {
+      max-width: 280px;
+      transition: transform 250ms linear;
+      margin: 0 auto;
+      margin-bottom: 20px;
+    }
+    @include respond-to(mobile) {
       width: 280px;
       transition: transform 250ms linear;
       margin-bottom: 20px;
     }
-
     @include respond-to(tablet) {
       margin-bottom: 0;
       width: 293px;
     }
-
     @include respond-to(desktop) {
       width: 274px;
     }
-
     &:hover,
     &:focus {
       transform: scale(1.05);
@@ -25,8 +28,10 @@
     background-color: getColor(bg-primary);
     border-radius: 5px;
     width: 100%;
-
     @include respond-to(from0) {
+      max-height: 402px;
+    }
+    @include respond-to(mobile) {
       height: 402px;
     }
     @include respond-to(tablet) {
@@ -40,6 +45,9 @@
     width: 100%;
     height: 100%;
     border-radius: 5px;
+    @include respond-to(from0) {
+      max-height: 402px;
+    }
   }
   &__content {
     margin-top: 10px;
