@@ -3,7 +3,7 @@ import { refs } from '../utils/refs';
 // Импорт класса или экземпляра
 // Для "популярные фильмы" для Хоум
 // Для "лайбрари" для лайбрари пользователя
-import { PopularMovies } from './createMoviesList';
+import { PopularMovies, createLibraryWath, createLibraryQueue} from './createMoviesList';
 
 //---------------------------------------------------
 const onHomeButton = () => {
@@ -28,6 +28,9 @@ const onHomeButton = () => {
   refs.filmsList.innerHTML = '';
   PopularMovies(); // здесь потом указать метод из класса.
 
+  refs.watchedBtn.removeEventListener('click', createLibraryWath);
+  refs.queueBtn.removeEventListener('click', createLibraryQueue);
+
 };
 
 //-----------------------------------------------------------
@@ -48,24 +51,21 @@ const onLibraryButton = () => {
 
   // Показать/спрятать пагинацию
 
-  // refs.watchedBtn.classList.remove('is-active');
+  refs.watchedBtn.classList.add('is-active');
   refs.queueBtn.classList.remove('is-active');
 
-  //-- Обсудить и удалить ----------------------------
-  // Как вариант - ничего не загружать,
-  // а предложить, пусть нажмет кнопочку и сам выберет
   refs.filmsList.innerHTML = '';
   createLibraryWath();
 
-  //   '<p>Select at the top what you want to display: viewed or queued ☝🏻</p>';
-  //--------------------------------------------------
+  toggleLibraryList();
+
 };
 
-//----------------------------------------------------------------------
+//-----Слушатели страниц ----------------------------
 refs.homeButton.addEventListener('click', onHomeButton);
 refs.libraryButton.addEventListener('click', onLibraryButton);
 
-//----------------------------------------------------------------------
+//---- Функции обработки переключения страниц --------------------
 const toggleHomeTab = () => {
   refs.search.classList.toggle('page-active');
   refs.search.classList.toggle('page-inactive');
@@ -83,3 +83,24 @@ const toggleActiveLink = () => {
   refs.activeLink.firstElementChild.classList.toggle('active');
   refs.activeLink.lastElementChild.classList.toggle('active');
 };
+
+//---- Переключение листов в библиотеке ------------------------------
+const toggleLibraryList = () => {
+  refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
+  refs.queueBtn.addEventListener('click', onQueueBtnClick);
+}
+
+const onWatchedBtnClick = () => {
+  refs.filmsList.innerHTML = '';
+  createLibraryWath();
+  refs.watchedBtn.classList.add('is-active');
+  refs.queueBtn.classList.remove('is-active');
+}
+
+const onQueueBtnClick = () => {
+  refs.filmsList.innerHTML = '';
+  createLibraryQueue();
+  refs.watchedBtn.classList.remove('is-active');
+  refs.queueBtn.classList.add('is-active');
+}
+

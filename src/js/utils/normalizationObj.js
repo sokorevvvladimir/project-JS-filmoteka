@@ -12,13 +12,16 @@ import noImg from '../../images/noImageAvailable.jpg';
 // -------------------------------------------------------------
 const getGenreArray = genre_ids => genre_ids.map(el => genreList[`${el}`]);
 
+const getGenreArrayLibrary = genres => genres.map(el => el.name);
+
 export const getImgPath = imgPath => (!imgPath ? `${noImg}` : `${IMG_URL}${imgPath}`);
 
 const getDate = date => (!date ? data : date.slice(0, 4));
 
 // -------------------------------------------------------------
 export const normalizationMovieObj = ({
-  genre_ids,
+  genres = null,
+  genre_ids = null,
   id,
   original_title,
   overview,
@@ -28,7 +31,7 @@ export const normalizationMovieObj = ({
   vote_average,
   vote_count,
 }) => ({
-  genre: getGenreArray(genre_ids),
+  genre: genre_ids ? getGenreArray(genre_ids) : getGenreArrayLibrary(genres),
   id: id,
   title: original_title,
   about: overview,
