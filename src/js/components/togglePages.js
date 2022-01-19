@@ -3,7 +3,7 @@ import { refs } from '../utils/refs';
 // Импорт класса или экземпляра
 // Для "популярные фильмы" для Хоум
 // Для "лайбрари" для лайбрари пользователя
-import { PopularMovies, createLibraryWath, createLibraryQueue} from './createMoviesList';
+import { PopularMovies, createLibraryWath, createLibraryQueue } from './createMoviesList';
 
 //---------------------------------------------------
 const onHomeButton = () => {
@@ -30,7 +30,6 @@ const onHomeButton = () => {
 
   refs.watchedBtn.removeEventListener('click', createLibraryWath);
   refs.queueBtn.removeEventListener('click', createLibraryQueue);
-
 };
 
 //-----------------------------------------------------------
@@ -58,7 +57,6 @@ const onLibraryButton = () => {
   createLibraryWath();
 
   toggleLibraryList();
-
 };
 
 //-----Слушатели страниц ----------------------------
@@ -88,19 +86,18 @@ const toggleActiveLink = () => {
 const toggleLibraryList = () => {
   refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
   refs.queueBtn.addEventListener('click', onQueueBtnClick);
-}
+};
 
 const onWatchedBtnClick = () => {
   refs.filmsList.innerHTML = '';
   createLibraryWath('watched');
   refs.watchedBtn.classList.add('is-active');
   refs.queueBtn.classList.remove('is-active');
-}
+};
 
 const onQueueBtnClick = () => {
   refs.filmsList.innerHTML = '';
   createLibraryQueue('queue');
   refs.watchedBtn.classList.remove('is-active');
   refs.queueBtn.classList.add('is-active');
-}
-
+};
