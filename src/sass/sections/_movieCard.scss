@@ -92,6 +92,7 @@
     @include respond-to(tablet) {
       @include font(12px, 16px);
     }
+    
     @include respond-to(desktop) {
       @include font(12px, 16px);
     }
