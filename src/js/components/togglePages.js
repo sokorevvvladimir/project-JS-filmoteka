@@ -3,7 +3,7 @@ import { refs } from '../utils/refs';
 // Импорт класса или экземпляра
 // Для "популярные фильмы" для Хоум
 // Для "лайбрари" для лайбрари пользователя
-import { PopularMovies, createLibraryWath, createLibraryQueue } from './createMoviesList';
+import { PopularMovies, createLibraryList } from './createMoviesList';
 
 //---------------------------------------------------
 const onHomeButton = () => {
@@ -28,8 +28,8 @@ const onHomeButton = () => {
   refs.filmsList.innerHTML = '';
   PopularMovies(); // здесь потом указать метод из класса.
 
-  refs.watchedBtn.removeEventListener('click', createLibraryWath);
-  refs.queueBtn.removeEventListener('click', createLibraryQueue);
+  // refs.watchedBtn.removeEventListener('click', onWatchedBtnClick);
+  // refs.queueBtn.removeEventListener('click', onQueueBtnClick);
 };
 
 //-----------------------------------------------------------
@@ -54,9 +54,9 @@ const onLibraryButton = () => {
   refs.queueBtn.classList.remove('is-active');
 
   refs.filmsList.innerHTML = '';
-  createLibraryWath();
+  createLibraryList('watched');
 
-  toggleLibraryList();
+  // toggleLibraryList();
 };
 
 //-----Слушатели страниц ----------------------------
@@ -82,22 +82,22 @@ const toggleActiveLink = () => {
   refs.activeLink.lastElementChild.classList.toggle('active');
 };
 
-//---- Переключение листов в библиотеке ------------------------------
-const toggleLibraryList = () => {
-  refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
-  refs.queueBtn.addEventListener('click', onQueueBtnClick);
-};
+// //---- Переключение листов в библиотеке ------------------------------
+// const toggleLibraryList = () => {
+//   refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
+//   refs.queueBtn.addEventListener('click', onQueueBtnClick);
+// };
 
-const onWatchedBtnClick = () => {
-  refs.filmsList.innerHTML = '';
-  createLibraryWath('watched');
-  refs.watchedBtn.classList.add('is-active');
-  refs.queueBtn.classList.remove('is-active');
-};
+// const onWatchedBtnClick = () => {
+//   refs.filmsList.innerHTML = '';
+//   createLibraryList('watched');
+//   refs.watchedBtn.classList.add('is-active');
+//   refs.queueBtn.classList.remove('is-active');
+// };
 
-const onQueueBtnClick = () => {
-  refs.filmsList.innerHTML = '';
-  createLibraryQueue('queue');
-  refs.watchedBtn.classList.remove('is-active');
-  refs.queueBtn.classList.add('is-active');
-};
+// const onQueueBtnClick = () => {
+//   refs.filmsList.innerHTML = '';
+//   createLibraryList('queue');
+//   refs.watchedBtn.classList.remove('is-active');
+//   refs.queueBtn.classList.add('is-active');
+// };

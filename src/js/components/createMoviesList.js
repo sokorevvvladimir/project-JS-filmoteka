@@ -58,6 +58,8 @@ export function renderMoviesList(results) {
 
 export function createLibraryList(key) {
   const ListLS = JSON.parse(movieApiService.getItemFromLS(`${key}`));
-  if (ListLS === null || ListLS.length === 0) {return}
-  renderMoviesList(ListLS);  
+  if (ListLS === null || ListLS.length === 0) {
+    return;
+  }
+  renderMoviesList(ListLS);
 }
