@@ -192,8 +192,15 @@
   text-align: center;
   text-transform: uppercase;
   background: #ffffff;
+  transition: background-color 250ms linear;
 
   &:active {
+    border: none;
+    background: #ff6b01;
+    color: #ffffff;
+  }
+
+  &:hover {
     border: none;
     background: #ff6b01;
     color: #ffffff;
