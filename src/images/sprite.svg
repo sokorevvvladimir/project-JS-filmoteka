@@ -13,6 +13,10 @@
   <path d="M8 8L22 22" stroke="black" stroke-width="2"/>
   <path d="M8 22L22 8" stroke="black" stroke-width="2"/>
 </symbol>
+<symbol id="modal-close-btn-full" width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 0L14 14" stroke="black" stroke-width="2"/>
+  <path d="M0 14L14 0" stroke="black" stroke-width="2"/>
+</symbol>
 <symbol id="icon-login" viewBox="0 0 32 32"><path d="M16 16a8 8 0 000-16 8 8 0 000 16zm0 4c-5.339 0-16 2.68-16 8v2c0 1.099.901 2 2 2h28c1.099 0 2-.901 2-2v-2c0-5.32-10.661-8-16-8z"/></symbol>
 <symbol id="icon-exit" viewBox="0 0 32 32">
   <path   d="M17.6 31.2h13.867v-30.933h-13.867v8z"></path>
@@ -30,6 +34,10 @@
 </symbol>
 <symbol id="seruce" viewBox="0 0 34 32">
 <path fill="#ff6b08" style="fill: var(--color1, #ff6b08)" d="M17.231 31.705l-2.412-2.412c-8.96-7.926-14.818-13.268-14.818-19.815 0-5.342 4.135-9.477 9.477-9.477 2.929 0 5.858 1.378 7.754 3.618 1.895-2.24 4.825-3.618 7.754-3.618 5.342 0 9.477 4.135 9.477 9.477 0 6.548-5.858 11.889-14.818 19.815l-2.412 2.412z"></path>
+</symbol>
+
+<symbol id="close" viewBox="0 0 32 32">
+<path d="M26.667 7.303l-1.97-1.97-7.808 7.808-7.808-7.808-1.97 1.97 7.808 7.808-7.808 7.808 1.97 1.97 7.808-7.808 7.808 7.808 1.97-1.97-7.808-7.808 7.808-7.808z"></path>
 </symbol>
 </defs>
 </svg>

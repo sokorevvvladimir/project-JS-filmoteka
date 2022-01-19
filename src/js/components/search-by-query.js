@@ -1,14 +1,15 @@
 import MovieApiService from '../api/fetch-api.js';
 import { refs } from '../utils/refs.js';
 import Notiflix from 'notiflix';
-import { normalizationMovieObj } from '../utils/normalizationObj';
+// import { normalizationMovieObj } from '../utils/normalizationObj';
+import { renderMoviesList } from './createMoviesList.js';
 
-const { search, filmsList } = refs;
+const { search } = refs;
 
 const movieApiService = new MovieApiService();
 search.addEventListener('submit', onSearch);
 
-async function onSearch(e) {
+function onSearch(e) {
   e.preventDefault();
   let searchQuery = e.target.elements.query.value; //e.currentTarget.elements.searchQuery.value.trim();
   movieApiService.query = searchQuery;
@@ -18,10 +19,7 @@ async function onSearch(e) {
     return;
   }
 
-  const result = await fetchMoviesBySearch();
-  const movieData = normalizationMovieList(result);
-
-  appendHitsMarkup(movieData);
+  fetchMoviesBySearch();
 
   search.reset();
 }
@@ -34,18 +32,11 @@ async function fetchMoviesBySearch() {
     if (!result.length) {
       throw new Error('Sorry, there are no video matching your search query. Please try again.');
     }
-    return result;
+
+    refs.filmsList.innerHTML = '';
+    renderMoviesList(result);
   } catch (error) {
     Notiflix.Notify.failure(error.message);
     return;
   }
-}
-
-function normalizationMovieList(movies) {
-  return movies.map(item => normalizationMovieObj(item));
-}
-
-function appendHitsMarkup(object) {
-  console.log(object);
-  // filmsList.insertAdjacentHTML('beforeend', renderImages(object));
 }

@@ -1,0 +1,34 @@
+<div >
+  <img class="modal-one-film__img" src="{{img}}" alt="{{title}} poster" />
+</div>
+<div class="modal-one-film__info">
+  <h3 class="modal-one-film__title">{{title}}</h3>
+  <ul class="modal-one-film__facts">
+    <li class="modal-one-film__fact">
+      <span class="modal-one-film__fact-label">Vote / Votes</span>
+      <span class="modal-one-film__fact-value modal-one-film__fact-vot">
+        <span class="modal-one-film__fact-vote">{{vote_average}}</span>
+        /
+        <span class="modal-one-film__fact-votes">{{vote_count}}</span>
+      </span>
+    </li>
+    <li class="modal-one-film__fact">
+      <span class="modal-one-film__fact-label">Popularity</span>
+      <span class="modal-one-film__fact-value">{{popularity}}</span>
+    </li>
+    <li class="modal-one-film__fact">
+      <span class="modal-one-film__fact-label">Original Title</span>
+      <span class="modal-one-film__fact-value">{{original_title}}</span>
+    </li>
+    <li class="modal-one-film__fact">
+      <span class="modal-one-film__fact-label">Genre</span>
+      <span class="modal-one-film__fact-value">{{genre}}</span>
+    </li>
+  </ul>
+  <h4 class="modal-about">ABOUT</h4>
+  <p class="modal-one-film__text">{{overview}}</p>
+  <div class="modal-buttons">
+    <button class="modal-button__add add-to-watched" data-id="{{id}}" data-add="add" data-watch="watched">ADD TO WATCHED</button>
+    <button class="modal-button__add add-to-queue" data-id="{{id}}" data-add="add" data-queue="queue">ADD TO QUEUE</button>
+  </div>
+</div>
