@@ -56,6 +56,7 @@
   right: 18px;
 }
 
+
 .modal-one-film__content{
   display: flex;
   flex-direction: column;
@@ -70,19 +71,23 @@
 
 .modal-one-film__img {
   width: 240px;
-  border-radius: 5px;
   flex-basis: 240px;
+  border-radius: 5px;
+  object-fit: cover;
+  
+  
   box-shadow: 0 1px 4px black, -23px 0 20px -23px rgb(0 0 0 / 80%),
     23px 0 20px -23px rgb(0 0 0 / 80%), 0 0 40px rgb(0 0 0 / 10%) inset;
 
   @include _tablet_and_desktop {
-    width: 264px;
-    flex-basis: 264px;
+     width: 264px;
+     flex-basis: 264px;
   }
 
   @include _desktop {
-    flex-basis: 396px;
+     flex-basis: 396px;
     width: 396px;
+    height: 480px;
   }
 }
 
@@ -182,7 +187,7 @@
   display: flex;
   flex-direction: row;
   gap: 15px;
-  padding-top: 21px;
+  padding-top: 21px; 
 }
 
 .modal-button__add {
@@ -190,14 +195,20 @@
   height: 44px;
   border: 1px solid #000000;
   border-radius: 5px;
+
   align-items: center;
   text-align: center;
   text-transform: uppercase;
+  color: #000000;
   background: #FFFFFF;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
 
-  &:active {
+  &:active, &:hover{
     border: none;
     background: #FF6B01;
     color: #FFFFFF;
   }
+
 }
