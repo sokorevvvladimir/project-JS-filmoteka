@@ -9,7 +9,8 @@
     @include respond-to(mobile) {
       width: 280px;
       transition: transform 250ms linear;
-      margin-bottom: 20px;
+      margin: 0;
+      margin-bottom: 20px;  
     }
     @include respond-to(tablet) {
       margin-bottom: 0;
