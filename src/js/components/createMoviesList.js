@@ -56,14 +56,8 @@ export function renderMoviesList(results) {
   refs.filmsList.insertAdjacentHTML('beforeend', movieCard(normalObjs));
 }
 
-export function createLibraryWath() {
-  const watchedListLS = JSON.parse(movieApiService.getItemFromLS('watched'));
-  if (watchedListLS === null || watchedListLS.length === 0) {return}
-  renderMoviesList(watchedListLS);  
-}
-
-export function createLibraryQueue() {
-  const queueListLS = JSON.parse(movieApiService.getItemFromLS('queue'));
-  if (queueListLS === null || queueListLS.length === 0) {return}
-  renderMoviesList(queueListLS);  
+export function createLibraryList(key) {
+  const ListLS = JSON.parse(movieApiService.getItemFromLS(`${key}`));
+  if (ListLS === null || ListLS.length === 0) {return}
+  renderMoviesList(ListLS);  
 }

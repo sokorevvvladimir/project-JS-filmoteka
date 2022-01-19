@@ -92,14 +92,14 @@ const toggleLibraryList = () => {
 
 const onWatchedBtnClick = () => {
   refs.filmsList.innerHTML = '';
-  createLibraryWath();
+  createLibraryWath('watched');
   refs.watchedBtn.classList.add('is-active');
   refs.queueBtn.classList.remove('is-active');
 }
 
 const onQueueBtnClick = () => {
   refs.filmsList.innerHTML = '';
-  createLibraryQueue();
+  createLibraryQueue('queue');
   refs.watchedBtn.classList.remove('is-active');
   refs.queueBtn.classList.add('is-active');
 }
