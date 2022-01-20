@@ -1,6 +1,6 @@
 import { loadFromLocalStorage } from "../utils/utils"
 import { renderMoviesList } from './createMoviesList.js';
-
+import { refs } from "../utils/refs"
 const watchedBtn = document.querySelector(".js-library-watched")
 
 function markupAdapter(itemListFromLocalStorage){
@@ -18,6 +18,7 @@ function markup(items){
   if(!items){
     return
   }
+  refs.filmsList.innerHTML="";
   renderMoviesList(markupAdapter(items))
 }
 
