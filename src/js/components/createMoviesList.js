@@ -55,3 +55,11 @@ export function renderMoviesList(results) {
 
   refs.filmsList.insertAdjacentHTML('beforeend', movieCard(normalObjs));
 }
+
+export function createLibraryList(key) {
+  const ListLS = JSON.parse(movieApiService.getItemFromLS(`${key}`));
+  if (ListLS === null || ListLS.length === 0) {
+    return;
+  }
+  renderMoviesList(ListLS);
+}
