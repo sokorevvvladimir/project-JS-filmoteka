@@ -9,7 +9,7 @@
   overflow: auto;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   z-index: 99;
 
   transition: visibility 0.3s linear, opacity 0.3s linear;
@@ -17,6 +17,10 @@
   &--hidden {
     visibility: hidden;
     opacity: 0;
+  }
+
+  @include _tablet_and_desktop {
+    align-items: center;
   }
 }
 
