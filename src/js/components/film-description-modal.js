@@ -9,14 +9,10 @@ const body = document.querySelector('.body');
 const modalContent = document.querySelector('.modal-one-film__content');
 const closeButton = document.querySelector('.modal-close-btn');
 
-function toggleModal() {
-    modalDialog.classList.toggle('modal-one-film--hidden');
-    body.classList.toggle('blocked');
-};
-
 function openModal() {
     modalDialog.classList.remove('modal-one-film--hidden');
     body.classList.add('blocked');
+    console.log(body.scroll)
 }
 
 function closeModal() {
