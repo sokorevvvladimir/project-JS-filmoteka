@@ -53,6 +53,7 @@ document.querySelector('.films__container').addEventListener('click', event => {
     // если среди классов есть карточка фильма, показываем модалку
     const link = item.querySelector('.movies__link');
     const id = link.dataset.id;
+    movieApiService.getMovieId(id);
 
     movieApiService.getMovieDetails(id).then(res => {
       // ставим данные в модалку
@@ -66,7 +67,6 @@ document.querySelector('.films__container').addEventListener('click', event => {
 
       // при появлении модалки появляются кнопки, получаю ссылки на них ниже//
       const refs = refsFunction();
-
       // ниже запуск двух функций на проверку локал сторедж на наличие фильма в свойстве просмотренные и в очереди //
       checkWatchedLS(id);
       checkQueueLS(id);
