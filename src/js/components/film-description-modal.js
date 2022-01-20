@@ -3,6 +3,9 @@
 import movieModal from '../templates/film-description-modal.hbs';
 import MovieApiService from '../api/fetch-api';
 import { getImgPath } from '../utils/normalizationObj';
+import { refsFunction } from './local-store-btns-refs';
+import Notiflix from 'notiflix';
+import 'notiflix/dist/notiflix-3.2.2.min.css';
 
 const modalDialog = document.querySelector('.modal-one-film');
 const modalContent = document.querySelector('.modal-one-film__content');
@@ -37,18 +40,12 @@ document.querySelector('.films__container').addEventListener('click', event => {
         };
 
         modalContent.innerHTML = movieModal(data);
-
         modalDialog.classList.toggle('modal-one-film--hidden');
 
         // при появлении модалки появляются кнопки, получаю ссылки на них ниже//
-
-        const refs = {
-          watchedBtn: document.querySelector('.add-to-watched'),
-          queueBtn: document.querySelector('.add-to-queue'),
-        };
+        const refs = refsFunction();
 
         // ниже запуск двух функций на проверку локал сторедж на наличие фильма в свойстве просмотренные и в очереди //
-
         checkWatchedLS(id);
         checkQueueLS(id);
 
@@ -124,26 +121,29 @@ document.querySelector('.films__container').addEventListener('click', event => {
           const movie = await movieApiService.fetchById().then(data => data);
 
           if (movie.success === false) {
+            Notiflix.Notify.failure('Sorry, an error occurred. Please try again.');
             return;
           }
 
           if (e.target.dataset.watch) {
             if (e.target.dataset.add) {
               switchWatchAddAttr();
+              Notiflix.Notify.success(`Successfully added to the "Watched" list!`);
               return movieApiService.addMovie(movie, e.target.dataset.watch);
             }
-            if (e.target.dataset.remove) {
-              switchWatchRemoveAttr();
-              return movieApiService.deleteMovie(e.target.dataset.watch);
-            }
+            switchWatchRemoveAttr();
+            Notiflix.Notify.info(`Removed from "Watched" list!`);
+            return movieApiService.deleteMovie(e.target.dataset.watch);
           }
 
           if (e.target.dataset.queue) {
             if (e.target.dataset.add) {
               switchQueueAddAttr();
+              Notiflix.Notify.success(`Successfully added to the "Queue" list!`);
               return movieApiService.addMovie(movie, e.target.dataset.queue);
             }
             switchQueueRemoveAttr();
+            Notiflix.Notify.info(`Removed from "Queue" list!`);
             return movieApiService.deleteMovie(e.target.dataset.queue);
           }
         };

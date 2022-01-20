@@ -30,13 +30,9 @@ export default class MovieApiService {
   }
 
   async fetchById() {
-    try {
-      const response = await fetch(`${BASE_URL}/movie/${this.movieId}?api_key=${API_KEY}`);
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      // console.log(error.message);
-    }
+    const response = await fetch(`${BASE_URL}/movie/${this.movieId}?api_key=${API_KEY}`);
+    const data = await response.json();
+    return data;
   }
 
   getMovieId(newId) {
