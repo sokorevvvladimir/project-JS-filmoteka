@@ -65,8 +65,6 @@ document.querySelector('.films__container').addEventListener('click', event => {
           }
 
           LSwatchedItems.map(item => {
-            console.log(item.id);
-            console.log(id);
             if (item.id === Number(id)) {
               switchWatchAddAttr();
               return;
