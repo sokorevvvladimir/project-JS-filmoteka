@@ -15,6 +15,7 @@ const onAutorizationClick = (e) => {
 const onExitClick = (e) => {
 
   signIn = false;
+  document.location.href = document.getElementById('home');
   toggleSign(signIn);
 
 }; 
@@ -33,6 +34,7 @@ function toggleSign (key) {
     refs.libraryButton.hidden = true;
     refs.signInUp.hidden = false;
     refs.logOut.style.visibility = "hidden";
+    
   }
 }
 
