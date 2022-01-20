@@ -36,7 +36,6 @@
 
   @include _tablet_and_desktop {
     width: 618px;
-    // top: 230px;
     margin: 0;
     padding: 40px 29px;
   }
@@ -73,7 +72,6 @@
   width: 240px;
   flex-basis: 240px;
   border-radius: 5px;
-  object-fit: cover;
 
   box-shadow: 0 1px 4px black, -23px 0 20px -23px rgb(0 0 0 / 80%),
     23px 0 20px -23px rgb(0 0 0 / 80%), 0 0 40px rgb(0 0 0 / 10%) inset;
@@ -86,7 +84,6 @@
   @include _desktop {
     flex-basis: 396px;
     width: 396px;
-    height: 480px;
   }
 }
 
