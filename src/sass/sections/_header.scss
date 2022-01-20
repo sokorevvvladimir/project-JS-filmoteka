@@ -105,10 +105,11 @@
   &__list {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
+    width: 143px;
   }
-  &__item:nth-child(2) {
-    margin-left: 40px;
+  &__item:nth-child(1) {
+    margin-right: 40px;
   }
   &__item.active {
     position: relative;
@@ -125,6 +126,7 @@
     @keyframes active-link {0% {width: 0%; left: 50%} 100% {width: 100%; left: 0%}};
   }
   &__link {
+
     font-weight: 500;
     @include font(12px, 14px);
     text-transform: uppercase;
