@@ -1,30 +1,41 @@
 import { refs } from "../utils/refs";
 
-refs.libraryButton.hidden = true;
 export let signIn = false;
 
-console.log(refs.addButtons);
-// refs.addButtons.style.visibility = 'hidden';
-
+toggleSign(signIn);
 
 
 const onAutorizationClick = (e) => {
-  
-  signIn = true;
-  toggleSignLibrary(signIn);
+
+  signIn = !signIn;
+  toggleSign(signIn);
 
 }
 
-refs.signInUp.addEventListener('click', onAutorizationClick);
+const onExitClick = (e) => {
 
-const toggleSignLibrary = (key) => {
+  signIn = !signIn;
+  toggleSign(signIn);
+
+}; 
+
+refs.signInUp.addEventListener('click', onAutorizationClick);
+refs.logOut.addEventListener('click', onExitClick);
+
+function toggleSign (key) {
   if (key) {
     refs.libraryButton.hidden = false;
-    refs.signInUp.hidden = true;    
+    refs.signInUp.hidden = true; 
+    refs.logOut.hidden = false;
+    refs.logIcon.hidden = false;
+    refs.logOut.style.visibility = "visible";
   }
   else {
     refs.libraryButton.hidden = true;
     refs.signInUp.hidden = false;
+    refs.logOut.hidden = true;
+    refs.logIcon.hidden = true;
+    refs.logOut.style.visibility = "hidden";
   }
-};
+}
 

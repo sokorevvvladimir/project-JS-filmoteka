@@ -101,6 +101,20 @@
   }
 }
 
+.logout {
+  background-color: transparent;
+  border: none;
+  fill: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: fill $animation-duration $animation-cubic;
+  &:hover,
+  &:focus {
+    fill: getColor(accent);
+  }
+}
+
 .nav {
   &__list {
     display: flex;

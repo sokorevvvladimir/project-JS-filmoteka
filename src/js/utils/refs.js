@@ -1,7 +1,10 @@
 export const refs = {
   homeButton: document.querySelector('[data-page="home"]'),
   libraryButton: document.querySelector('[data-page="library"]'),
+
   signInUp: document.querySelector('[data-page="signinup"]'),
+  logOut: document.querySelector('.logout'),
+  
   header: document.querySelector('.header'),
   activeLink: document.querySelector('.nav__list'),
   inputValue: document.querySelector('#js-input'),
