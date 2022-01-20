@@ -20,21 +20,20 @@
   }
 }
 
- .modal-one-film__window {
-   width: 280px;
-   max-width: 100%;
-   padding: 45px 20px;
-   margin: 20px;
+.modal-one-film__window {
+  width: 280px;
+  max-width: 100%;
+  padding: 45px 20px;
+  margin: 20px;
 
-   font-weight: 500;
-   font-size: 12px;
-   line-height: 16px;
-   
-   margin-bottom: 30px;
-   background: #fff;
-   position: relative;
-  
- 
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+
+  margin-bottom: 30px;
+  background: #fff;
+  position: relative;
+
   @include _tablet_and_desktop {
     width: 618px;
     // top: 230px;
@@ -46,7 +45,7 @@
     width: 882px;
     padding: 50px 30px;
   }
- }
+}
 
 .modal-close-btn {
   cursor: pointer;
@@ -58,36 +57,34 @@
   right: 18px;
 }
 
-
-.modal-one-film__content{
+.modal-one-film__content {
   display: flex;
   flex-direction: column;
   gap: 30px;
   z-index: 1;
 
   @include _tablet_and_desktop {
-     flex-direction: row;
-     justify-content: space-between;
-   }
- }
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
 
 .modal-one-film__img {
   width: 240px;
   flex-basis: 240px;
   border-radius: 5px;
   object-fit: cover;
-  
-  
+
   box-shadow: 0 1px 4px black, -23px 0 20px -23px rgb(0 0 0 / 80%),
     23px 0 20px -23px rgb(0 0 0 / 80%), 0 0 40px rgb(0 0 0 / 10%) inset;
 
   @include _tablet_and_desktop {
-     width: 264px;
-     flex-basis: 264px;
+    width: 264px;
+    flex-basis: 264px;
   }
 
   @include _desktop {
-     flex-basis: 396px;
+    flex-basis: 396px;
     width: 396px;
     height: 480px;
   }
@@ -138,28 +135,27 @@
 .modal-one-film__fact-value {
   align-items: left;
   text-align: left;
-  
 }
 
-.modal-one-film__fact-vote{
+.modal-one-film__fact-vote {
   display: inline-block;
   line-height: 14px;
   align-items: center;
   text-align: center;
 
   width: 36px;
-  height: 16px; 
-  color: #FFFFFF;
-  background: #FF6B01;
+  height: 16px;
+  color: #ffffff;
+  background: #ff6b01;
   border-radius: 5px;
   padding: 1px 10px;
 }
 
-.modal-one-film__fact-vot{
-  color: #8C8C8C;
+.modal-one-film__fact-vot {
+  color: #8c8c8c;
 }
 
-.modal-one-film__fact-votes{
+.modal-one-film__fact-votes {
   display: inline-block;
   width: 36px;
   height: 16px;
@@ -167,9 +163,8 @@
   text-align: center;
   color: #000000;
 
-  background: #F7F7F7;
+  background: #f7f7f7;
   border-radius: 5px;
-
 }
 
 .modal-about {
@@ -189,7 +184,7 @@
   display: flex;
   flex-direction: row;
   gap: 15px;
-  padding-top: 21px; 
+  padding-top: 21px;
 }
 
 .modal-button__add {
@@ -202,15 +197,21 @@
   text-align: center;
   text-transform: uppercase;
   color: #000000;
-  background: #FFFFFF;
+  background: #ffffff;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
 
-  &:active, &:hover{
+  &:active,
+  &:hover {
     border: none;
-    background: #FF6B01;
-    color: #FFFFFF;
+    background: #ff6b01;
+    color: #ffffff;
   }
+}
 
+.modal-button__add.pressed {
+  border: none;
+  background: #ff6b01;
+  color: #ffffff;
 }

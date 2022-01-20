@@ -9,9 +9,11 @@ import MovieApiService from '../api/fetch-api.js';
 // что бы сделать разметку и цсс под карточку
 // потом его удалить
 import { normalizationMovieObj } from '../utils/normalizationObj';
+import Notiflix from 'notiflix';
 // import settings from '../utils/settings';
 // const { BASE_URL, API_KEY } = settings;
-
+// import imgDefault from '../../images/header-main/header1024.jpg'
+import imgDefault from '../../images/503.jfif';
 // async function fetchPopular() {
 //   const urlPopular = `${BASE_URL}trending/movie/day?api_key=${API_KEY}&page=1`;
 //   return fetch(urlPopular).then(response => response.json());
@@ -23,7 +25,9 @@ export async function PopularMovies() {
     const moviesList = await movieApiService.fetchPopular();
     const { results } = moviesList;
     renderMoviesList(results);
-  } catch (error) {}
+  } catch (error) {
+    refs.filmsList.innerHTML = `<img src=${imgDefault} class="imageDefault"/>`;
+  }
 }
 
 PopularMovies();
@@ -50,4 +54,12 @@ export function renderMoviesList(results) {
   });
 
   refs.filmsList.insertAdjacentHTML('beforeend', movieCard(normalObjs));
+}
+
+export function createLibraryList(key) {
+  const ListLS = JSON.parse(movieApiService.getItemFromLS(`${key}`));
+  if (ListLS === null || ListLS.length === 0) {
+    return;
+  }
+  renderMoviesList(ListLS);
 }
