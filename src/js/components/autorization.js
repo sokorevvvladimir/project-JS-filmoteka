@@ -23,7 +23,7 @@ refs.signInUp.addEventListener('click', onAutorizationClick);
 refs.logOut.addEventListener('click', onExitClick);
 
 function toggleSign (key) {
-  console.log("aaaaaaaaaa");
+
   if (key) {
     refs.libraryButton.hidden = false;
     refs.signInUp.hidden = true; 
