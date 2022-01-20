@@ -27,6 +27,5 @@ const options = {
   },
 };
 const pagination = new Pagination('#tui-pagination-container', options);
-console.dir(pagination);
 
 const page = pagination.getCurrentPage();

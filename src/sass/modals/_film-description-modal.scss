@@ -198,8 +198,15 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
+  transition: background-color 250ms linear;
 
   &:active,
+  &:hover {
+    border: none;
+    background: #ff6b01;
+    color: #ffffff;
+  }
+
   &:hover {
     border: none;
     background: #ff6b01;
