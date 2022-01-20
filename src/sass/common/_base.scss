@@ -8,10 +8,6 @@ body {
   overflow-x: hidden;
   background-color: getColor('bg-primary');
   font-family: 'Roboto', sans-serif;
-
-  &.blocked {
-    overflow: hidden;
-  }
 }
 
 .disable-scroll {

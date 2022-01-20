@@ -5,19 +5,27 @@ import MovieApiService from '../api/fetch-api';
 import { getImgPath } from '../utils/normalizationObj';
 
 const modalDialog = document.querySelector('.modal-one-film');
-const body = document.querySelector('.body');
+const html = document.querySelector('html');
 const modalContent = document.querySelector('.modal-one-film__content');
 const closeButton = document.querySelector('.modal-close-btn');
 
+const closeOnEsc = (e) => {
+    console.log('keydown', e.key)
+    if (e.key === 'Escape' || e.key === 'Esc') {
+        closeModal();
+    }
+};
+
 function openModal() {
+    document.addEventListener('keydown', closeOnEsc);
     modalDialog.classList.remove('modal-one-film--hidden');
-    body.classList.add('blocked');
-    console.log(body.scroll)
+    html.classList.add('disable-scroll');
 }
 
 function closeModal() {
+    document.removeEventListener('keydown', closeOnEsc);
     modalDialog.classList.add('modal-one-film--hidden');
-    body.classList.remove('blocked');
+    html.classList.remove('disable-scroll');
 }
 
 closeButton.addEventListener('click', (e) => {
@@ -32,27 +40,22 @@ modalDialog.addEventListener('click', (e) => {
     closeModal();
 });
 
-document.addEventListener('keydown', (e) => {
-    if (e.keyCode !== 27) {
-        return;
-    }
-    closeModal();
-});
 
 const movieApiService = new MovieApiService();
 
 document.querySelector('.films__container').addEventListener('click', event => {
     event.preventDefault(); // чтобы не скролил вверх до начала контейнера
-    for (let el of event.path) {
-        // идем наверх по иерархии элементов, так как может быть, что кликнули на внутренний span
-        if (el.classList?.contains('movies__item')) {
-            // если среди классов есть карточка фильма, показываем модалку
-            const link = el.querySelector('.movies__link')
-            const id = link.dataset.id;
 
-            movieApiService.getMovieDetails(id).then(res => {
+    const item = event.target.closest('.movies__item');
+    if (item) {
+        // если среди классов есть карточка фильма, показываем модалку
+        const link = item.querySelector('.movies__link')
+        const id = link.dataset.id;
 
-                const data = {// ставим данные в модалку
+        movieApiService.getMovieDetails(id)
+            .then(res => {
+                // ставим данные в модалку
+                const data = {
                     ...res,
                     genre: res.genres.map(g => g.name).join(', '),
                     img: getImgPath(res.poster_path)
@@ -60,9 +63,6 @@ document.querySelector('.films__container').addEventListener('click', event => {
                 modalContent.innerHTML = movieModal(data);
                 openModal();
             });
-
-            return;
-        }
     }
 });
 
