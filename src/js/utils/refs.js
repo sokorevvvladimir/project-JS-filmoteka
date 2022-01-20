@@ -4,7 +4,7 @@ export const refs = {
 
   signInUp: document.querySelector('[data-page="signinup"]'),
   logOut: document.querySelector('.logout'),
-  
+
   header: document.querySelector('.header'),
   activeLink: document.querySelector('.nav__list'),
   inputValue: document.querySelector('#js-input'),
