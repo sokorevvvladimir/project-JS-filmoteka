@@ -42,3 +42,9 @@
     width: calc((100% - 60px) / 3);
   }
 }
+
+.img-placeholder {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
