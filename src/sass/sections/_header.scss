@@ -42,6 +42,7 @@
 
   &__wrapper {
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: space-between;
   }
@@ -102,6 +103,7 @@
 }
 
 .logout {
+
   background-color: transparent;
   border: none;
   fill: white;
@@ -113,7 +115,16 @@
   &:focus {
     fill: getColor(accent);
   }
+
+  animation: logOut 3s linear;
+  @keyframes  logOut {
+    0% {position: relative;
+        left: -20vw;} 
+    100%{position: relative;
+        left: 0vw;}
+  }
 }
+
 
 .nav {
   &__list {
@@ -140,7 +151,7 @@
     @keyframes active-link {0% {width: 0%; left: 50%} 100% {width: 100%; left: 0%}};
   }
   &__link {
-
+    opacity: 1;
     font-weight: 500;
     @include font(12px, 14px);
     text-transform: uppercase;
@@ -151,6 +162,10 @@
     &:focus {
       color: getColor(accent);
     }
+
+    animation: linksHeader $animation-duration $animation-cubic;
+    @keyframes  linksHeader {0% {opacity:0;} 100%{opacity:1;}};
+
   }
 }
 

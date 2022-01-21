@@ -10,10 +10,6 @@ const closeButton = document.querySelector('.modal-close-btn');
 
 // Eugen-Ko----
 import {signIn} from '../components/autorization';
-const hide = () => {
-    document.querySelector('.add-to-watched').hidden = true;
-    document.querySelector('.add-to-queue').hidden = true;
-}
 // ------------
 
 closeButton.addEventListener('click', () => {
@@ -48,7 +44,7 @@ document.querySelector('.films__container').addEventListener('click', event => {
 
         // Eugen-Ko-----------
         // Прячем кнопки добавления, если без регистрации
-        if (!signIn) hide();
+        if (!signIn) document.querySelector('.modal-buttons').style.visibility = 'hidden';
         // -------------
 
         modalDialog.classList.toggle('modal-one-film--hidden');
