@@ -1,7 +1,8 @@
 import MovieApiService from '../api/fetch-api.js';
 import { refs } from '../utils/refs.js';
 import Notiflix from 'notiflix';
-// import { normalizationMovieObj } from '../utils/normalizationObj';
+import {pagination,popularVideo} from '../utils/pagination.js'
+import Pagination from 'tui-pagination';
 import { renderMoviesList } from './createMoviesList.js';
 
 const { search } = refs;
@@ -9,8 +10,10 @@ const { search } = refs;
 const movieApiService = new MovieApiService();
 search.addEventListener('submit', onSearch);
 
-function onSearch(e) {
+export function onSearch(e) {
   e.preventDefault();
+  
+ 
   let searchQuery = e.target.elements.query.value; //e.currentTarget.elements.searchQuery.value.trim();
   movieApiService.query = searchQuery;
 
@@ -24,7 +27,7 @@ function onSearch(e) {
   search.reset();
 }
 
-async function fetchMoviesBySearch() {
+export async function fetchMoviesBySearch() {
   try {
     const response = await movieApiService.fetchMoviesBySearch();
     const result = response?.results;
