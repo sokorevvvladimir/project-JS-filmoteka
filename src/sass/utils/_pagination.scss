@@ -1,34 +1,64 @@
-div.tui-pagination .tui-page-btn {
+#tui-pagination-container {
   display: flex;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  color: #000000;
+  justify-content: center;
+}
 
+span.tui-page-btn.tui-prev,
+a.tui-page-btn.tui-prev {
+  margin: 0;
+  order: -1;
+  background-color: #f7f7f7;
+  color: #000000;
   border: none;
   border-radius: 5px;
 }
-strong.tui-page-btn{
-border: none;
-border-radius: 5px; 
+
+a.tui-page-btn.tui-next,
+span.tui-page-btn.tui-next {
+  margin: 0;
+  order: +1;
+  background-color: #f7f7f7;
+  border: none;
+  border-radius: 5px;
 }
 
-strong.tui-page-btn.tui-prev {
-  order: -1;
-}
-strong.tui-page-btn.tui-next {
-  order: 1;
+a.tui-page-btn.tui-first,
+span.tui-page-btn.tui-first,
+a.tui-page-btn.tui-last,
+span.tui-page-btn.tui-last,
+.tui-pagination a.tui-page-btn {
+  border: none;
 }
 
 strong.tui-page-btn.tui-is-selected {
-  border-color: #FF6B08;
   background-color: #FF6B08;
-  background: #FF6B08;
-  color: #fff;
+  border-radius: 5px;
+  border-color: #FF6B08;
 }
 
-strong.tui-first-child .tui-last-child {
-  text-align: center;
+strong.tui-page-btn.tui-is-selected:hover{
+  background-color: #818181;
+  border-color: #818181;
+}
+
+#tui-pagination-container .tui-ico-next {
+  width: 15px;
+  height: 15px;
+  background: none;
+  background-image: url('../../src/images/pagination/arrow-right.svg');
+  background-size: cover;
+}
+
+#tui-pagination-container .tui-ico-prev {
+  width: 15px;
+  height: 15px;
+  background: none;
+  background-image: url('../../src/images/pagination/arrow-left.svg');
+  background-size: cover;
+}
+
+#tui-pagination-container .tui-first-child.tui-is-selected,
+#tui-pagination-container .tui-last-child.tui-is-selected {
+  border-right:#FF6B08;
+  border-left: #FF6B08;
 }
