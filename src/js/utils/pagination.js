@@ -1,9 +1,10 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 import { renderMoviesList } from '../components/createMoviesList.js';
+
 import { refs } from './refs.js';
 
-const { search } = refs;
+// const { search } = refs;
 
 // import MovieApiService from '../api/fetch-api.js';
 // const movieApiService = new MovieApiService();
@@ -36,7 +37,7 @@ const options = {
   },
 };
 const paginationPopular = new Pagination('#tui-pagination-container', options);
-console.dir(paginationPopular);
+// console.dir(paginationPopular);
 
 const page = paginationPopular.getCurrentPage();
 
@@ -55,7 +56,7 @@ function fetchPopularVideo(page) {
 function renderPopularVideo(video) {
   refs.filmsList.innerHTML = '';
   renderMoviesList(video);
-  console.log(video)
+  // console.log(video)
   console.log("render")
 }
  const popularVideo = event => {
@@ -64,31 +65,20 @@ function renderPopularVideo(video) {
       renderPopularVideo(video)
     })
 }
-paginationPopular.on('afterMove', popularVideo);
 
-
-// search.addEventListener('submit', event => {
-//   event.preventDefault();
-
-//   paginationPopular.off('afterMove', popularVideo);
-//   paginationPopular.on('afterMove', videoBySearch);
-
-//   const query = event.target.elements.query.value;
-//   fetchMoviesBySearch(page, query).then(({ video}) => { renderVideoBySearch(video) });
-// })
 
 // =======================================================================================
 const paginationBySearch = new Pagination('#tui-pagination-container', options);
-console.dir(paginationBySearch);
-
+// console.dir(paginationBySearch);
 const pageSearch = paginationBySearch.getCurrentPage();
 
+paginationPopular.on('afterMove', popularVideo);
 
-search.addEventListener('submit', event => {
+refs.search.addEventListener('submit', event => {
   event.preventDefault();
+
   paginationPopular.off('afterMove', popularVideo);
   paginationBySearch.on('afterMove', videoBySearch);
-  // paginationBySearch.on('afterMove', popularVideo);
 
   const query = event.target.elements.query.value;
   fetchMoviesBySearch(pageSearch, query)
@@ -97,24 +87,22 @@ search.addEventListener('submit', event => {
       renderVideoBySearch(video)
     });
 })
-
- 
-const videoBySearch = event => {
+function fetchMoviesBySearch(pageSearch, query) {
+  return fetch(`https://api.themoviedb.org/3/search/movie?api_key=eba0388c934688725105b53c98cf82ca&query=${query}&language=ru-US&page=${pageSearch}`)
+    .then(res => res.json())
+    .then(data => ({ video: data.results, total_results: data.total_results }))
+}
+ const videoBySearch = event => {
   fetchMoviesBySearch(event.page)
     .then(({ video }) => {
      renderVideoBySearch(video)
     })
-  //  paginationBySearch.on('afterMove', videoBySearch);
+  
 }
-
-function fetchMoviesBySearch(pageSearch, query) {
-  return fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=eba0388c934688725105b53c98cf82ca&query=${query}&language=ru-US&page=${pageSearch}`)
-    .then(res => res.json())
-    .then(data => ({ video: data.results, total_results: data.total_results }))
-}
- function renderVideoBySearch(video) {
+function renderVideoBySearch(video) {
   refs.filmsList.innerHTML = '';
   renderMoviesList(video);
   console.log(video)
   console.log("renderBySearch")
 }
+ paginationBySearch.on('afterMove', videoBySearch);
