@@ -41,20 +41,12 @@ strong.tui-page-btn.tui-is-selected:hover{
   border-color: #818181;
 }
 
-#tui-pagination-container .tui-ico-next {
-  width: 15px;
-  height: 15px;
-  background: none;
-  background-image: url('../../src/images/pagination/arrow-right.svg');
-  background-size: cover;
+#tui-pagination-container .tui-page-btn.tui-last {
+  margin-left: 20px;
 }
 
-#tui-pagination-container .tui-ico-prev {
-  width: 15px;
-  height: 15px;
-  background: none;
-  background-image: url('../../src/images/pagination/arrow-left.svg');
-  background-size: cover;
+#tui-pagination-container .tui-page-btn.tui-first {
+  margin-right: 20px;
 }
 
 #tui-pagination-container .tui-first-child.tui-is-selected,

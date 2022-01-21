@@ -100,3 +100,25 @@ const pagination = new Pagination('#tui-pagination-container', options);
 console.dir(pagination);
 
 const page = pagination.getCurrentPage();
+pagination.on('afterMove', event => {
+  const currentPage = event.page;
+  const firstPage = document.querySelector('.tui-page-btn.tui-first');
+  const lastPage = document.querySelector('.tui-page-btn.tui-last');
+  const lastPageNum = options.totalItems / options.itemsPerPage;
+
+  if (currentPage === 2 || currentPage === 3) {
+    firstPage.classList.add('tui-is-disabled');
+  }
+
+  if (currentPage === 4) {
+    firstPage.classList.remove('tui-is-disabled');
+  }
+
+  if (currentPage === lastPageNum - 2 || currentPage === lastPageNum - 1) {
+    lastPage.classList.add('tui-is-disabled');
+  }
+
+  if (currentPage === lastPageNum - 3) {
+    lastPage.classList.remove('tui-is-disabled');
+  }
+});
