@@ -6,7 +6,7 @@ const VIDEO_BY_SEARCH = `${BASE_URL}/search/movie?api_key=${API_KEY}&include_adu
 export default class MovieApiService {
   constructor() {
     this.searchQuery = '';
-    this.page = 1;
+    this.currentPage = 1;
     this.language = 'ru-US';
     this.genres = '';
     this.movieId = 0;
@@ -76,5 +76,13 @@ export default class MovieApiService {
   }
   set query(newQuery) {
     this.searchQuery = newQuery;
+  }
+
+  get page(){
+    return this.currentPage;
+  }
+
+  set page(page) {
+    this.currentPage = page;
   }
 }

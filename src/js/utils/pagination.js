@@ -70,14 +70,15 @@ function renderPopularVideo(video) {
 // =======================================================================================
 const paginationBySearch = new Pagination('#tui-pagination-container', options);
 // console.dir(paginationBySearch);
-const pageSearch = paginationBySearch.getCurrentPage();
+// const pageSearch = paginationBySearch.getCurrentPage();
 
 paginationPopular.on('afterMove', popularVideo);
 
-refs.search.addEventListener('submit', onSearch)
+// refs.search.addEventListener('submit', onSearch)
 
 //  paginationPopular.off('afterMove', popularVideo);
   // paginationBySearch.on('afterMove', videoBySearch);
+
 // function fetchMoviesBySearch(pageSearch, query) {
 //   return fetch(`https://api.themoviedb.org/3/search/movie?api_key=eba0388c934688725105b53c98cf82ca&query=${query}&language=ru-US&page=${pageSearch}`)
 //     .then(res => res.json())
