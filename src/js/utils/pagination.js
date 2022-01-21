@@ -6,9 +6,9 @@ import { refs } from './refs.js';
 
 // const { search } = refs;
 
-// import MovieApiService from '../api/fetch-api.js';
-// const movieApiService = new MovieApiService();
-// import { onSearch } from '../components/search-by-query.js';
+import MovieApiService from '../api/fetch-api.js';
+const movieApiService = new MovieApiService();
+import { onSearch } from '../components/search-by-query.js';
 
 // console.log(movieApiService)
 const options = {
@@ -74,35 +74,28 @@ const pageSearch = paginationBySearch.getCurrentPage();
 
 paginationPopular.on('afterMove', popularVideo);
 
-refs.search.addEventListener('submit', event => {
-  event.preventDefault();
+refs.search.addEventListener('submit', onSearch)
 
-  paginationPopular.off('afterMove', popularVideo);
-  paginationBySearch.on('afterMove', videoBySearch);
+//  paginationPopular.off('afterMove', popularVideo);
+  // paginationBySearch.on('afterMove', videoBySearch);
+// function fetchMoviesBySearch(pageSearch, query) {
+//   return fetch(`https://api.themoviedb.org/3/search/movie?api_key=eba0388c934688725105b53c98cf82ca&query=${query}&language=ru-US&page=${pageSearch}`)
+//     .then(res => res.json())
+//     .then(data => ({ video: data.results, total_results: data.total_results }))
+// }
 
-  const query = event.target.elements.query.value;
-  fetchMoviesBySearch(pageSearch, query)
-    .then(({ video, total }) => {
-      paginationBySearch.reset(total);
-      renderVideoBySearch(video)
-    });
-})
-function fetchMoviesBySearch(pageSearch, query) {
-  return fetch(`https://api.themoviedb.org/3/search/movie?api_key=eba0388c934688725105b53c98cf82ca&query=${query}&language=ru-US&page=${pageSearch}`)
-    .then(res => res.json())
-    .then(data => ({ video: data.results, total_results: data.total_results }))
-}
- const videoBySearch = event => {
+
+ export const videoBySearch = event => {
   fetchMoviesBySearch(event.page)
     .then(({ video }) => {
-     renderVideoBySearch(video)
+     renderMoviesList(video)
     })
   
 }
-function renderVideoBySearch(video) {
-  refs.filmsList.innerHTML = '';
-  renderMoviesList(video);
-  console.log(video)
-  console.log("renderBySearch")
-}
+// function renderVideoBySearch(video) {
+//   refs.filmsList.innerHTML = '';
+//   renderMoviesList(video);
+//   console.log(video)
+//   console.log("renderBySearch")
+// }
  paginationBySearch.on('afterMove', videoBySearch);
