@@ -20,15 +20,15 @@ const options = {
       const lastPage = options.totalItems / options.itemsPerPage;
       switch (type) {
         case 'first':
-          template = `<a href = "#"class = "tui-page-btn tui-${type}" >` +
-            `<span class = "tui-ico-${type}">${firstPage}</span>` + `</a>`;
+          template = `<a href="#" class="tui-page-btn tui-${type}">` +
+            `<span class="tui-ico-${type}">${firstPage}</span>` + `</a>`;
           break;
         case 'last':
-          template =`<a href = "#"class = "tui-page-btn tui-${type}" >` +
-            `<span class = "tui-ico-${type}">${lastPage}</span>` + `</a>`;
+          template =`<a href="#" class="tui-page-btn tui-${type}">` +
+            `<span class="tui-ico-${type}">${lastPage}</span>` + `</a>`;
           break;
         case 'next':
-          template = `<a href = "#"class = "tui-page-btn tui-${type}" >` +
+          template = `<a href="#" class="tui-page-btn tui-${type}">` +
             `<span class="tui-ico-${type}">
                 <svg class="tui-pagination-svg" width="16" height="16">
                   <use href="/sprite.5ec50489.svg#arrow-right"></use>
@@ -37,7 +37,7 @@ const options = {
             `</a>`;
           break;
         case 'prev':
-          template = `<a href = "#"class = "tui-page-btn tui-${type}" >` +
+          template = `<a href="#" class="tui-page-btn tui-${type}">` +
             `<span class="tui-ico-${type}">
               <svg class="tui-pagination-svg" width="16" height="16">
                 <use href="/sprite.5ec50489.svg#arrow-left"></use>
@@ -59,15 +59,15 @@ const options = {
 
       switch (type) {
         case 'first':
-          template = `<a href = "#' class = "tui-page-btn tui-is-disabled tui-${type}">` +
-            `<span class = "tui-ico-${type}">${firstPage}</span>` + `</a>`;
+          template = `<a href = "#" class="tui-page-btn tui-is-disabled tui-${type}">` +
+            `<span class="tui-ico-${type}">${firstPage}</span>` + `</a>`;
           break;
         case 'last':
-          template = `<a href = "#"class = "tui-page-btn tui-is-disabled tui-${type}" >` +
-            `<span class = "tui-ico-${type}">${lastPage}</span>` + `</a>`;
+          template = `<a href="#" class="tui-page-btn tui-is-disabled tui-${type}">` +
+            `<span class="tui-ico-${type}">${lastPage}</span>` + `</a>`;
           break;
         case 'next':
-          template = `<a href = "#"class = "tui-page-btn tui-is-disabled tui-${type}" >` +
+          template = `<a href="#" class="tui-page-btn tui-is-disabled tui-${type}">` +
             `<span class="tui-ico-${type}">
                 <svg class="tui-pagination-svg" width="16" height="16">
                   <use href="/sprite.5ec50489.svg#arrow-right"></use>
@@ -76,7 +76,7 @@ const options = {
             `</a>`;
           break;
         case 'prev':
-          template = `<a href = "#"class = "tui-page-btn tui-is-disabled tui-${type}">` +
+          template = `<a href="#" class="tui-page-btn tui-is-disabled tui-${type}">` +
             `<span class="tui-ico-${type}">
               <svg class="tui-pagination-svg" width="16" height="16">
                 <use href="/sprite.5ec50489.svg#arrow-left"></use>
