@@ -3,158 +3,175 @@
 import movieModal from '../templates/film-description-modal.hbs';
 import MovieApiService from '../api/fetch-api';
 import { getImgPath } from '../utils/normalizationObj';
+import { refsFunction } from './local-store-btns-refs';
+import Notiflix from 'notiflix';
+import 'notiflix/dist/notiflix-3.2.2.min.css';
 
 const modalDialog = document.querySelector('.modal-one-film');
+const html = document.querySelector('html');
 const modalContent = document.querySelector('.modal-one-film__content');
 const closeButton = document.querySelector('.modal-close-btn');
 
-closeButton.addEventListener('click', () => {
-  modalDialog.classList.toggle('modal-one-film--hidden');
+const closeOnEsc = e => {
+  console.log('keydown', e.key);
+  if (e.key === 'Escape' || e.key === 'Esc') {
+    closeModal();
+  }
+};
+
+function openModal() {
+  document.addEventListener('keydown', closeOnEsc);
+  modalDialog.classList.remove('modal-one-film--hidden');
+  html.classList.add('disable-scroll');
+}
+
+function closeModal() {
+  document.removeEventListener('keydown', closeOnEsc);
+  modalDialog.classList.add('modal-one-film--hidden');
+  html.classList.remove('disable-scroll');
+}
+
+closeButton.addEventListener('click', e => {
+  e.preventDefault();
+  closeModal();
+});
+
+modalDialog.addEventListener('click', e => {
+  if (e.target !== modalDialog) {
+    return;
+  }
+  closeModal();
 });
 
 const movieApiService = new MovieApiService();
 
 document.querySelector('.films__container').addEventListener('click', event => {
   event.preventDefault(); // чтобы не скролил вверх до начала контейнера
-  for (let el of event.path) {
-    // идем наверх по иерархии элементов, так как может быть, что кликнули на внутренний span
-    if (el.classList?.contains('movies__item')) {
-      // если среди классов есть карточка фильма, показываем модалку
-      const link = el.querySelector('.movies__link');
-      const id = link.dataset.id;
-      movieApiService.getMovieId(id);
 
-      movieApiService.getMovieDetails(id).then(res => {
-        // normalizationMovieObj(res) не подходит, из АПИ прилетает другая структура:
-        // - жанры сразу с названиями
-        // - два названия фильма (переведённое и оригинальное)
+  const item = event.target.closest('.movies__item');
+  if (item) {
+    // если среди классов есть карточка фильма, показываем модалку
+    const link = item.querySelector('.movies__link');
+    const id = link.dataset.id;
+    movieApiService.getMovieId(id);
 
-        const data = {
-          // ставим данные в модалку
-          ...res,
-          genre: res.genres.map(g => g.name).join(', '),
-          img: getImgPath(res.poster_path),
-        };
+    movieApiService.getMovieDetails(id).then(res => {
+      // ставим данные в модалку
+      const data = {
+        ...res,
+        genre: res.genres.map(g => g.name).join(', '),
+        img: getImgPath(res.poster_path),
+      };
+      modalContent.innerHTML = movieModal(data);
+      openModal();
 
-        modalContent.innerHTML = movieModal(data);
+      // при появлении модалки появляются кнопки, получаю ссылки на них ниже//
+      const refs = refsFunction();
+      // ниже запуск двух функций на проверку локал сторедж на наличие фильма в свойстве просмотренные и в очереди //
+      checkWatchedLS(id);
+      checkQueueLS(id);
 
-        modalDialog.classList.toggle('modal-one-film--hidden');
+      //тело этих самых двух функций вызывающихся выше //
 
-        // при появлении модалки появляются кнопки, получаю ссылки на них ниже//
+      function checkWatchedLS(id) {
+        const LSwatchedItems = JSON.parse(movieApiService.getItemFromLS('watched'));
 
-        const refs = {
-          watchedBtn: document.querySelector('.add-to-watched'),
-          queueBtn: document.querySelector('.add-to-queue'),
-        };
+        if (LSwatchedItems === null) {
+          return;
+        }
+        if (LSwatchedItems.length === 0) {
+          return;
+        }
 
-        // ниже запуск двух функций на проверку локал сторедж на наличие фильма в свойстве просмотренные и в очереди //
-
-        checkWatchedLS(id);
-        checkQueueLS(id);
-
-        //тело этих самых двух функций вызывающихся выше //
-
-        function checkWatchedLS(id) {
-          const LSwatchedItems = JSON.parse(movieApiService.getItemFromLS('watched'));
-
-          if (LSwatchedItems === null) {
+        LSwatchedItems.map(item => {
+          if (item.id === Number(id)) {
+            switchWatchAddAttr();
             return;
           }
-          if (LSwatchedItems.length === 0) {
+        });
+      }
+
+      function checkQueueLS(id) {
+        const LSQueueItems = JSON.parse(movieApiService.getItemFromLS('queue'));
+        if (LSQueueItems === null) {
+          return;
+        }
+        if (LSQueueItems.length === 0) {
+          return;
+        }
+        LSQueueItems.map(item => {
+          if (item.id === Number(id)) {
+            switchQueueAddAttr();
             return;
           }
+        });
+      }
 
-          LSwatchedItems.map(item => {
-            console.log(item.id);
-            console.log(id);
-            if (item.id === Number(id)) {
-              switchWatchAddAttr();
-              return;
-            }
-          });
+      // ниже четыре функции замены дата-атрибутов кнопок после проверки на наличие фильмов в локал сторедж //
+
+      function switchWatchAddAttr() {
+        refs.watchedBtn.removeAttribute('data-add');
+        refs.watchedBtn.setAttribute('data-remove', 'remove');
+        refs.watchedBtn.classList.add('pressed');
+        refs.watchedBtn.textContent = 'DELETE FROM WATCHED';
+      }
+
+      function switchWatchRemoveAttr() {
+        refs.watchedBtn.removeAttribute('data-remove');
+        refs.watchedBtn.setAttribute('data-add', 'add');
+        refs.watchedBtn.textContent = 'ADD TO WATCHED';
+        refs.watchedBtn.classList.remove('pressed');
+      }
+
+      function switchQueueAddAttr() {
+        refs.queueBtn.removeAttribute('data-add');
+        refs.queueBtn.setAttribute('data-remove', 'remove');
+        refs.queueBtn.classList.add('pressed');
+        refs.queueBtn.textContent = 'DELETE FROM QUEUE';
+      }
+
+      function switchQueueRemoveAttr() {
+        refs.queueBtn.removeAttribute('data-remove');
+        refs.queueBtn.setAttribute('data-add', 'add');
+        refs.queueBtn.textContent = 'ADD TO QUEUE';
+        refs.queueBtn.classList.remove('pressed');
+      }
+
+      // ниже основная функция по управлению кликом по двум кнопкам //
+
+      const onBtnClickHandle = async e => {
+        const movie = await movieApiService.fetchById().then(data => data);
+
+        if (movie.success === false) {
+          Notiflix.Notify.failure('Sorry, an error occurred. Please try again.');
+          return;
         }
 
-        function checkQueueLS(id) {
-          const LSQueueItems = JSON.parse(movieApiService.getItemFromLS('queue'));
-          if (LSQueueItems === null) {
-            return;
+        if (e.target.dataset.watch) {
+          if (e.target.dataset.add) {
+            switchWatchAddAttr();
+            Notiflix.Notify.success(`Successfully added to the "Watched" list!`);
+            return movieApiService.addMovie(movie, e.target.dataset.watch);
           }
-          if (LSQueueItems.length === 0) {
-            return;
+          switchWatchRemoveAttr();
+          Notiflix.Notify.info(`Removed from "Watched" list!`);
+          return movieApiService.deleteMovie(e.target.dataset.watch);
+        }
+
+        if (e.target.dataset.queue) {
+          if (e.target.dataset.add) {
+            switchQueueAddAttr();
+            Notiflix.Notify.success(`Successfully added to the "Queue" list!`);
+            return movieApiService.addMovie(movie, e.target.dataset.queue);
           }
-          LSQueueItems.map(item => {
-            if (item.id === Number(id)) {
-              switchQueueAddAttr();
-              return;
-            }
-          });
+          switchQueueRemoveAttr();
+          Notiflix.Notify.info(`Removed from "Queue" list!`);
+          return movieApiService.deleteMovie(e.target.dataset.queue);
         }
+      };
+      refs.watchedBtn.addEventListener('click', onBtnClickHandle);
 
-        // ниже четыре функции замены дата-атрибутов кнопок после проверки на наличие фильмов в локал сторедж //
-
-        function switchWatchAddAttr() {
-          refs.watchedBtn.removeAttribute('data-add');
-          refs.watchedBtn.setAttribute('data-remove', 'remove');
-          refs.watchedBtn.classList.add('pressed');
-          refs.watchedBtn.textContent = 'DELETE FROM WATCHED';
-        }
-
-        function switchWatchRemoveAttr() {
-          refs.watchedBtn.removeAttribute('data-remove');
-          refs.watchedBtn.setAttribute('data-add', 'add');
-          refs.watchedBtn.textContent = 'ADD TO WATCHED';
-          refs.watchedBtn.classList.remove('pressed');
-        }
-
-        function switchQueueAddAttr() {
-          refs.queueBtn.removeAttribute('data-add');
-          refs.queueBtn.setAttribute('data-remove', 'remove');
-          refs.queueBtn.classList.add('pressed');
-          refs.queueBtn.textContent = 'DELETE FROM QUEUE';
-        }
-
-        function switchQueueRemoveAttr() {
-          refs.queueBtn.removeAttribute('data-remove');
-          refs.queueBtn.setAttribute('data-add', 'add');
-          refs.queueBtn.textContent = 'ADD TO QUEUE';
-          refs.queueBtn.classList.remove('pressed');
-        }
-
-        // ниже основная функция по управлению кликом по двум кнопкам //
-
-        const onBtnClickHandle = async e => {
-          const movie = await movieApiService.fetchById().then(data => data);
-
-          if (movie.success === false) {
-            return;
-          }
-
-          if (e.target.dataset.watch) {
-            if (e.target.dataset.add) {
-              switchWatchAddAttr();
-              return movieApiService.addMovie(movie, e.target.dataset.watch);
-            }
-            if (e.target.dataset.remove) {
-              switchWatchRemoveAttr();
-              return movieApiService.deleteMovie(e.target.dataset.watch);
-            }
-          }
-
-          if (e.target.dataset.queue) {
-            if (e.target.dataset.add) {
-              switchQueueAddAttr();
-              return movieApiService.addMovie(movie, e.target.dataset.queue);
-            }
-            switchQueueRemoveAttr();
-            return movieApiService.deleteMovie(e.target.dataset.queue);
-          }
-        };
-        refs.watchedBtn.addEventListener('click', onBtnClickHandle);
-
-        refs.queueBtn.addEventListener('click', onBtnClickHandle);
-      });
-
-      return;
-    }
+      refs.queueBtn.addEventListener('click', onBtnClickHandle);
+    });
   }
 });

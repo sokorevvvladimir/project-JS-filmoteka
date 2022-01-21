@@ -36,36 +36,36 @@ const options = {
       '</a>',
   },
 };
+
 const paginationPopular = new Pagination('#tui-pagination-container', options);
 // console.dir(paginationPopular);
 
 const page = paginationPopular.getCurrentPage();
 
-fetchPopularVideo(page)
-  .then(({ video, total }) => {
-    paginationPopular.reset(total);
-    renderPopularVideo(video)
-  });
+fetchPopularVideo(page).then(({ video, total }) => {
+  paginationPopular.reset(total);
+  renderPopularVideo(video);
+});
 
 function fetchPopularVideo(page) {
-  return fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=eba0388c934688725105b53c98cf82ca&page=${page}`)
+  return fetch(
+    `https://api.themoviedb.org/3/trending/movie/day?api_key=eba0388c934688725105b53c98cf82ca&page=${page}`,
+  )
     .then(res => res.json())
-    .then(data => ({ video: data.results, total_results: data.total_results }))
+    .then(data => ({ video: data.results, total_results: data.total_results }));
 }
 
 function renderPopularVideo(video) {
   refs.filmsList.innerHTML = '';
   renderMoviesList(video);
   // console.log(video)
-  console.log("render")
+  console.log('render');
 }
- const popularVideo = event => {
-  fetchPopularVideo(event.page)
-    .then(({ video }) => {
-      renderPopularVideo(video)
-    })
-}
-
+const popularVideo = event => {
+  fetchPopularVideo(event.page).then(({ video }) => {
+    renderPopularVideo(video);
+  });
+};
 
 // =======================================================================================
 const paginationBySearch = new Pagination('#tui-pagination-container', options);
@@ -77,7 +77,7 @@ paginationPopular.on('afterMove', popularVideo);
 // refs.search.addEventListener('submit', onSearch)
 
 //  paginationPopular.off('afterMove', popularVideo);
-  // paginationBySearch.on('afterMove', videoBySearch);
+// paginationBySearch.on('afterMove', videoBySearch);
 
 // function fetchMoviesBySearch(pageSearch, query) {
 //   return fetch(`https://api.themoviedb.org/3/search/movie?api_key=eba0388c934688725105b53c98cf82ca&query=${query}&language=ru-US&page=${pageSearch}`)
@@ -85,18 +85,15 @@ paginationPopular.on('afterMove', popularVideo);
 //     .then(data => ({ video: data.results, total_results: data.total_results }))
 // }
 
-
- export const videoBySearch = event => {
-  fetchMoviesBySearch(event.page)
-    .then(({ video }) => {
-     renderMoviesList(video)
-    })
-  
-}
+export const videoBySearch = event => {
+  fetchMoviesBySearch(event.page).then(({ video }) => {
+    renderMoviesList(video);
+  });
+};
 // function renderVideoBySearch(video) {
 //   refs.filmsList.innerHTML = '';
 //   renderMoviesList(video);
 //   console.log(video)
 //   console.log("renderBySearch")
 // }
- paginationBySearch.on('afterMove', videoBySearch);
+paginationBySearch.on('afterMove', videoBySearch);
