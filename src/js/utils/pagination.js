@@ -12,20 +12,90 @@ const options = {
   template: {
     page: '<a href="#" class="tui-page-btn">{{page}}</a>',
     currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-    moveButton:
-      '<a href="#" class="tui-page-btn tui-{{type}}">' +
-      '<span class="tui-ico-{{type}}">{1}</span>' +
-      '</a>',
-    disabledMoveButton:
-      '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-      '<span class="tui-ico-{{type}}">{{type}}</span>' +
-      '</span>',
-    moreButton:
-      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+    moveButton: ({
+      type
+    }) => {
+      let template = '';
+      const firstPage = 1;
+      const lastPage = options.totalItems / options.itemsPerPage;
+      switch (type) {
+        case 'first':
+          template = `<a href = "#"class = "tui-page-btn tui-${type}" >` +
+            `<span class = "tui-ico-${type}">${firstPage}</span>` + `</a>`;
+          break;
+        case 'last':
+          template =`<a href = "#"class = "tui-page-btn tui-${type}" >` +
+            `<span class = "tui-ico-${type}">${lastPage}</span>` + `</a>`;
+          break;
+        case 'next':
+          template = `<a href = "#"class = "tui-page-btn tui-${type}" >` +
+            `<span class="tui-ico-${type}">
+                <svg class="tui-pagination-svg" width="16" height="16">
+                  <use href="/sprite.5ec50489.svg#arrow-right"></use>
+                </svg>
+              </span>` +
+            `</a>`;
+          break;
+        case 'prev':
+          template = `<a href = "#"class = "tui-page-btn tui-${type}" >` +
+            `<span class="tui-ico-${type}">
+              <svg class="tui-pagination-svg" width="16" height="16">
+                <use href="/sprite.5ec50489.svg#arrow-left"></use>
+              </svg>
+            </span>` +
+            `</a>`;
+          break;
+        default: break;
+      }
+
+      return template;
+    },
+    disabledMoveButton: ({
+      type
+    }) => {
+      let template = '';
+      const firstPage = 1;
+      const lastPage = options.totalItems / options.itemsPerPage;
+
+      switch (type) {
+        case 'first':
+          template = `<a href = "#' class = "tui-page-btn tui-is-disabled tui-${type}">` +
+            `<span class = "tui-ico-${type}">${firstPage}</span>` + `</a>`;
+          break;
+        case 'last':
+          template = `<a href = "#"class = "tui-page-btn tui-is-disabled tui-${type}" >` +
+            `<span class = "tui-ico-${type}">${lastPage}</span>` + `</a>`;
+          break;
+        case 'next':
+          template = `<a href = "#"class = "tui-page-btn tui-is-disabled tui-${type}" >` +
+            `<span class="tui-ico-${type}">
+                <svg class="tui-pagination-svg" width="16" height="16">
+                  <use href="/sprite.5ec50489.svg#arrow-right"></use>
+                </svg>
+              </span>` +
+            `</a>`;
+          break;
+        case 'prev':
+          template = `<a href = "#"class = "tui-page-btn tui-is-disabled tui-${type}">` +
+            `<span class="tui-ico-${type}">
+              <svg class="tui-pagination-svg" width="16" height="16">
+                <use href="/sprite.5ec50489.svg#arrow-left"></use>
+              </svg>
+            </span>` + `</a>`;
+          break;
+
+        default:
+          break;
+      }
+
+      return template;
+    },
+    moreButton: '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
       '<span class="tui-ico-ellip">...</span>' +
       '</a>',
   },
 };
+
 const pagination = new Pagination('#tui-pagination-container', options);
 console.dir(pagination);
 
