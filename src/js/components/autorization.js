@@ -45,9 +45,7 @@ function toggleLogSign(e) {
 }
 
 function onCloseBtnClick(e) {
-  refs.libraryButton.hidden = false;
-  refs.signInUp.hidden = true;
-  refs.logOut.style.visibility = 'visible';
+  signLogin();
   refs.modalAuth.classList.add('is-hidden');
   refs.closeBtn.removeEventListener('click', onCloseBtnClick);
 }
@@ -59,4 +57,10 @@ function onCloseEsc(e) {
 
 function onCloseBackdrop(e) {
   if (e.target === e.currentTarget) onCloseBtnClick(e);
+}
+
+function signLogin() {
+  refs.libraryButton.hidden = false;
+  refs.signInUp.hidden = true;
+  refs.logOut.style.visibility = 'visible';
 }
