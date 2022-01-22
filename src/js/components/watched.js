@@ -1,6 +1,8 @@
 import { loadFromLocalStorage } from '../utils/utils';
 import { renderMoviesList } from '../utils/createMoviesList';
 import { refs } from '../utils/refs';
+import { placeholderSetter } from './films-container';
+
 const watchedBtn = document.querySelector('.js-library-watched');
 
 function markupAdapter(itemListFromLocalStorage) {
@@ -18,6 +20,11 @@ function markupAdapter(itemListFromLocalStorage) {
 
 function markup(items) {
   if (!items) {
+    return;
+  }
+
+  if (items.length === 0) {
+    placeholderSetter();
     return;
   }
   refs.filmsList.innerHTML = '';
