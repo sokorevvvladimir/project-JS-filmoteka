@@ -1,14 +1,20 @@
 .movies {
   &__item {
+    animation-name: slideUp;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+
+    padding-bottom: 5px;
+
     @include respond-to(from0) {
       max-width: 100%;
-      transition: transform 250ms linear;
+      transition: all 250ms $animation-cubic;
       margin-bottom: 20px;
     }
 
     @include respond-to(mobile) {
       width: 280px;
-      transition: transform 250ms linear;
+      transition: all 250ms $animation-cubic;
       margin-bottom: 20px;
     }
 
@@ -25,6 +31,20 @@
     &:hover,
     &:focus {
       transform: scale(1.05);
+      background: getColor(accent);
+      box-shadow: 0 0 5px getColor(accent), 0 0 5px getColor(accent), 0 0 25px getColor(accent),
+        0 0 100px getColor(accent);
+    }
+
+    &:hover .movies__rating,
+    &:focus .movies__rating {
+      background-color: getColor(bg-primary);
+      color: getColor(accent);
+    }
+
+    &:hover .movies__genre,
+    &:focus .movies__genre {
+      color: getColor(text-third);
     }
   }
 
@@ -32,6 +52,7 @@
     background-color: getColor(bg-primary);
     border-radius: 5px;
     width: 100%;
+    overflow: hidden;
     @include respond-to(from0) {
       max-height: 402px;
     }
@@ -49,8 +70,13 @@
     width: 100%;
     height: 100%;
     border-radius: 5px;
+    transition: transform 250ms linear;
     @include respond-to(from0) {
       max-height: 402px;
+    }
+    &:hover,
+    &:focus {
+      transform: scale(1.1) rotate(-3deg);
     }
   }
   &__content {
@@ -100,5 +126,14 @@
     @include respond-to(desktop) {
       @include font(12px, 16px);
     }
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(10%);
+  }
+  100% {
+    transform: translateY(0%);
   }
 }
