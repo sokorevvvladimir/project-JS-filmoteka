@@ -51,10 +51,6 @@ const movieApiService = new MovieApiService();
 
 document.querySelector('.films__container').addEventListener('click', event => {
   event.preventDefault(); // чтобы не скролил вверх до начала контейнера
-  // Eugen-Ko-----------
-  // Прячем кнопки добавления, если без регистрации
-  if (!signIn) document.querySelector('.modal-buttons').style.visibility = 'hidden';
-  // -------------
 
   const item = event.target.closest('.movies__item');
 
@@ -72,6 +68,12 @@ document.querySelector('.films__container').addEventListener('click', event => {
         img: getImgPath(res.poster_path),
       };
       modalContent.innerHTML = movieModal(data);
+
+      // Eugen-Ko-----------
+      // Прячем кнопки добавления, если без регистрации
+      if (!signIn) document.querySelector('.modal-buttons').style.visibility = 'hidden';
+      // -------------
+
       openModal();
 
       // при появлении модалки появляются кнопки, получаю ссылки на них ниже//
