@@ -1,5 +1,5 @@
 import { loadFromLocalStorage } from '../utils/utils';
-import { renderMoviesList } from './createMoviesList.js';
+import { renderMoviesList } from '../utils/createMoviesList';
 import { refs } from '../utils/refs';
 import { placeholderSetter } from './films-container';
 

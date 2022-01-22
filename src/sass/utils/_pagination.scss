@@ -28,7 +28,8 @@ a.tui-page-btn.tui-first,
 span.tui-page-btn.tui-first,
 a.tui-page-btn.tui-last,
 span.tui-page-btn.tui-last,
-.tui-pagination a.tui-page-btn {
+.tui-pagination a.tui-page-btn,
+#tui-pagination-container .tui-page-btn.tui-next-is-ellip {
   border: none;
   font-size: 12px;
   line-height: 1.33;
@@ -42,6 +43,8 @@ span.tui-page-btn.tui-last,
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  padding: 8px 0 6px;
+  align-self: center;
 }
 
 strong.tui-page-btn.tui-is-selected {

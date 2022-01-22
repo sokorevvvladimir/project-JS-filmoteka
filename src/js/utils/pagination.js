@@ -1,164 +1,207 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
-import { renderMoviesList } from '../components/createMoviesList.js';
-
+import MovieApiService from '../api/fetch-api.js';
+import { renderMoviesList } from './createMoviesList.js';
 import { refs } from './refs.js';
 
-const options = {
-  totalItems: 1000,
-  itemsPerPage: 20,
-  visiblePages: 5,
-  page: 1,
-  centerAlign: true,
-  firstItemClassName: 'tui-first-child',
-  lastItemClassName: 'tui-last-child',
-  template: {
-    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-    currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-    moveButton: ({ type }) => {
-      let template = '';
-      const firstPage = 1;
-      const lastPage = options.totalItems / options.itemsPerPage;
-      switch (type) {
-        case 'first':
-          template =
-            `<a href="#" class="tui-page-btn tui-${type}">` +
-            `<span class="tui-ico-${type}">${firstPage}</span>` +
-            `</a>`;
-          break;
-        case 'last':
-          template =
-            `<a href="#" class="tui-page-btn tui-${type}">` +
-            `<span class="tui-ico-${type}">${lastPage}</span>` +
-            `</a>`;
-          break;
-        case 'next':
-          template =
-            `<a href="#" class="tui-page-btn tui-${type}">` +
-            `<span class="tui-ico-${type}">
+export default class MoviePagination {
+  options = {
+    totalItems: 1000,
+    itemsPerPage: 0,
+    visiblePages: 5,
+    page: 1,
+    centerAlign: true,
+    firstItemClassName: 'tui-first-child',
+    lastItemClassName: 'tui-last-child',
+    template: {
+      page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+      currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+      moveButton: ({ type }) => {
+        let template = '';
+        const firstPage = 1;
+        const lastPage = Math.round(this.options.totalItems / this.options.itemsPerPage);
+        switch (type) {
+          case 'first':
+            template =
+              `<a href="#" class="tui-page-btn tui-${type}">` +
+              `<span class="tui-ico-${type}">${firstPage}</span>` +
+              `</a>`;
+            break;
+          case 'last':
+            template =
+              `<a href="#" class="tui-page-btn tui-${type}">` +
+              `<span class="tui-ico-${type}">${lastPage}</span>` +
+              `</a>`;
+            break;
+          case 'next':
+            template =
+              `<a href="#" class="tui-page-btn tui-${type}">` +
+              `<span class="tui-ico-${type}">
                 <svg class="tui-pagination-svg" width="16" height="16">
                   <use href="/sprite.5ec50489.svg#arrow-right"></use>
                 </svg>
               </span>` +
-            `</a>`;
-          break;
-        case 'prev':
-          template =
-            `<a href="#" class="tui-page-btn tui-${type}">` +
-            `<span class="tui-ico-${type}">
+              `</a>`;
+            break;
+          case 'prev':
+            template =
+              `<a href="#" class="tui-page-btn tui-${type}">` +
+              `<span class="tui-ico-${type}">
               <svg class="tui-pagination-svg" width="16" height="16">
                 <use href="/sprite.5ec50489.svg#arrow-left"></use>
               </svg>
             </span>` +
-            `</a>`;
-          break;
-        default:
-          break;
-      }
+              `</a>`;
+            break;
+          default:
+            break;
+        }
 
-      return template;
-    },
-    disabledMoveButton: ({ type }) => {
-      let template = '';
-      const firstPage = 1;
-      const lastPage = options.totalItems / options.itemsPerPage;
+        return template;
+      },
+      disabledMoveButton: ({ type }) => {
+        let template = '';
+        const firstPage = 1;
+        const lastPage = Math.round(this.options.totalItems / this.options.itemsPerPage);
 
-      switch (type) {
-        case 'first':
-          template =
-            `<a href = "#" class="tui-page-btn tui-is-disabled tui-${type}">` +
-            `<span class="tui-ico-${type}">${firstPage}</span>` +
-            `</a>`;
-          break;
-        case 'last':
-          template =
-            `<a href="#" class="tui-page-btn tui-is-disabled tui-${type}">` +
-            `<span class="tui-ico-${type}">${lastPage}</span>` +
-            `</a>`;
-          break;
-        case 'next':
-          template =
-            `<a href="#" class="tui-page-btn tui-is-disabled tui-${type}">` +
-            `<span class="tui-ico-${type}">
+        switch (type) {
+          case 'first':
+            template =
+              `<a href = "#" class="tui-page-btn tui-is-disabled tui-${type}">` +
+              `<span class="tui-ico-${type}">${firstPage}</span>` +
+              `</a>`;
+            break;
+          case 'last':
+            template =
+              `<a href="#" class="tui-page-btn tui-is-disabled tui-${type}">` +
+              `<span class="tui-ico-${type}">${lastPage}</span>` +
+              `</a>`;
+            break;
+          case 'next':
+            template =
+              `<a href="#" class="tui-page-btn tui-is-disabled tui-${type}">` +
+              `<span class="tui-ico-${type}">
                 <svg class="tui-pagination-svg" width="16" height="16">
                   <use href="/sprite.5ec50489.svg#arrow-right"></use>
                 </svg>
               </span>` +
-            `</a>`;
-          break;
-        case 'prev':
-          template =
-            `<a href="#" class="tui-page-btn tui-is-disabled tui-${type}">` +
-            `<span class="tui-ico-${type}">
+              `</a>`;
+            break;
+          case 'prev':
+            template =
+              `<a href="#" class="tui-page-btn tui-is-disabled tui-${type}">` +
+              `<span class="tui-ico-${type}">
               <svg class="tui-pagination-svg" width="16" height="16">
                 <use href="/sprite.5ec50489.svg#arrow-left"></use>
               </svg>
             </span>` +
-            `</a>`;
-          break;
+              `</a>`;
+            break;
 
-        default:
-          break;
-      }
+          default:
+            break;
+        }
 
-      return template;
+        return template;
+      },
+      moreButton:
+        '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+        '<span class="tui-ico-ellip">...</span>' +
+        '</a>',
     },
-    moreButton:
-      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-      '<span class="tui-ico-ellip">...</span>' +
-      '</a>',
-  },
-};
+  };
 
-const paginationPopular = new Pagination('#tui-pagination-container', options);
+  #paginationEL = document.getElementById('tui-pagination-container');
 
-const page = paginationPopular.getCurrentPage();
+  #pagination = null;
 
-fetchPopularVideo(page).then(({ video, total }) => {
-  paginationPopular.reset(total);
-  renderPopularVideo(video);
-});
-
-function fetchPopularVideo(page) {
-  return fetch(
-    `https://api.themoviedb.org/3/trending/movie/day?api_key=eba0388c934688725105b53c98cf82ca&page=${page}`,
-  )
-    .then(res => res.json())
-    .then(data => ({ video: data.results, total_results: data.total_results }));
-}
-
-function renderPopularVideo(video) {
-  refs.filmsList.innerHTML = '';
-  renderMoviesList(video);
-}
-
-const popularVideo = event => {
-  fetchPopularVideo(event.page).then(({ video }) => {
-    renderPopularVideo(video);
-  });
-};
-
-paginationPopular.on('afterMove', event => {
-  popularVideo(event);
-
-  const currentPage = event.page;
-  const firstPage = document.querySelector('.tui-page-btn.tui-first');
-  const lastPage = document.querySelector('.tui-page-btn.tui-last');
-  const lastPageNum = options.totalItems / options.itemsPerPage;
-
-  if (currentPage === 1 || currentPage === 2 || currentPage === 3) {
-    firstPage.classList.add('tui-is-disabled');
-  } else {
-    firstPage.classList.remove('tui-is-disabled');
+  constructor(type = 'popular', itemsPerPage = 20, totalItems = 1000, searchQuery = '') {
+    this.type = type;
+    this.searchQuery = searchQuery;
+    this.options.totalItems = totalItems < 1980 ? totalItems : 1980;
+    this.options.itemsPerPage = itemsPerPage;
+    this.movieApiService = new MovieApiService();
+    this.#pagination = new Pagination(this.#paginationEL, this.options);
+    this.createPagination();
   }
 
-  if (
-    currentPage === lastPageNum - 2 ||
-    currentPage === lastPageNum - 1 ||
-    currentPage === lastPageNum
-  ) {
-    lastPage.classList.add('tui-is-disabled');
-  } else {
-    lastPage.classList.remove('tui-is-disabled');
+  async createPagination() {
+    const page = this.#pagination.getCurrentPage();
+    const result = await this.getMovies(page);
+
+    if (!result) return;
+
+    const { results: movies } = result;
+
+    this.#pagination.reset(this.options.totalItems);
+
+    refs.filmsList.innerHTML = '';
+    renderMoviesList(movies);
+
+    this.#pagination.on('afterMove', this.onPagination.bind(this));
   }
-});
+
+  async onPagination(event) {
+    this.paginationSettings(event);
+
+    const result = await this.getMovies(event.page);
+
+    if (!result) return;
+
+    const { results: movies } = result;
+
+    refs.filmsList.innerHTML = '';
+    renderMoviesList(movies);
+  }
+
+  async getMovies(page) {
+    this.movieApiService.page = page;
+
+    let response = null;
+
+    switch (this.type) {
+      case 'popular':
+        response = await this.movieApiService.fetchPopular();
+        break;
+
+      case 'by-search':
+        this.movieApiService.searchQuery = this.searchQuery;
+        response = await this.movieApiService.fetchMoviesBySearch();
+        break;
+
+      case 'watched':
+        break;
+
+      case 'queue':
+        break;
+
+      default:
+        break;
+    }
+
+    return response;
+  }
+
+  paginationSettings(event) {
+    const currentPage = event.page;
+    const firstPage = document.querySelector('.tui-page-btn.tui-first');
+    const lastPage = document.querySelector('.tui-page-btn.tui-last');
+    const lastPageNum = Math.round(this.options.totalItems / this.options.itemsPerPage);
+
+    if (currentPage === 1 || currentPage === 2 || currentPage === 3) {
+      firstPage.classList.add('tui-is-disabled');
+    } else {
+      firstPage.classList.remove('tui-is-disabled');
+    }
+
+    if (
+      currentPage === lastPageNum - 2 ||
+      currentPage === lastPageNum - 1 ||
+      currentPage === lastPageNum
+    ) {
+      lastPage.classList.add('tui-is-disabled');
+    } else {
+      lastPage.classList.remove('tui-is-disabled');
+    }
+  }
+}

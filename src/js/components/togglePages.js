@@ -1,9 +1,13 @@
 import { refs } from '../utils/refs';
+import MovieApiService from '../api/fetch-api.js';
+import { renderMoviesList } from '../utils/createMoviesList';
 // Будет нужно добавить
 // Импорт класса или экземпляра
 // Для "популярные фильмы" для Хоум
 // Для "лайбрари" для лайбрари пользователя
-import { PopularMovies, createLibraryList } from './createMoviesList';
+import MoviePagination from '../utils/pagination';
+
+const movieApiService = new MovieApiService();
 
 //---------------------------------------------------
 const onHomeButton = () => {
@@ -26,7 +30,7 @@ const onHomeButton = () => {
   // Загрузить популярные фильмы
 
   refs.filmsList.innerHTML = '';
-  PopularMovies(); // здесь потом указать метод из класса.
+  new MoviePagination('popular', 20); // здесь потом указать метод из класса.
 
   // refs.watchedBtn.removeEventListener('click', onWatchedBtnClick);
   // refs.queueBtn.removeEventListener('click', onQueueBtnClick);
@@ -81,6 +85,14 @@ const toggleActiveLink = () => {
   refs.activeLink.firstElementChild.classList.toggle('active');
   refs.activeLink.lastElementChild.classList.toggle('active');
 };
+
+function createLibraryList(key) {
+  const ListLS = JSON.parse(movieApiService.getItemFromLS(`${key}`));
+  if (ListLS === null || ListLS.length === 0) {
+    return;
+  }
+  renderMoviesList(ListLS);
+}
 
 // //---- Переключение листов в библиотеке ------------------------------
 // const toggleLibraryList = () => {
