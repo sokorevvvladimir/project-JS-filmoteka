@@ -41,9 +41,6 @@ function onExitClick(e) {
 
 function toggleSign(key) {
   if (key) {
-    refs.libraryButton.hidden = false;
-    refs.signInUp.hidden = true;
-    refs.logOut.style.visibility = 'visible';
     refs.modalAuth.classList.remove('is-hidden');
   } else {
     refs.libraryButton.hidden = true;
@@ -59,6 +56,9 @@ function toggleLogSign(e) {
 }
 
 function onCloseBtnClick(e) {
+  refs.libraryButton.hidden = false;
+  refs.signInUp.hidden = true;
+  refs.logOut.style.visibility = 'visible';
   refs.modalAuth.classList.add('is-hidden');
   refs.closeBtn.removeEventListener('click', onCloseBtnClick);
 }
