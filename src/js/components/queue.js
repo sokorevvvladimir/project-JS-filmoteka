@@ -1,10 +1,6 @@
 import { renderMoviesList } from './createMoviesList.js';
 import { refs } from '../utils/refs.js';
 refs.queueBtn.addEventListener('click', onQueue);
-<<<<<<< Updated upstream
-hideQueue();
-=======
->>>>>>> Stashed changes
 refs.watchedBtn.addEventListener('click', onWatched);
 
 function onQueue() {
@@ -31,5 +27,6 @@ function showQueue() {
 }
 
 function hideQueue() {
+    refs.watchedBtn.classList.remove('is-active');
     refs.watchedBtn.classList.remove('is-active');
 }
