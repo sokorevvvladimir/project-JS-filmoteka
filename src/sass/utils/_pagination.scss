@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 60px;
+  padding-bottom: 50px;
 }
 
 span.tui-page-btn.tui-prev,
@@ -34,6 +34,7 @@ span.tui-page-btn.tui-last,
   font-size: 12px;
   line-height: 1.33;
   font-weight: 500;
+  transition: 250ms $animation-cubic;
 }
 
 #tui-pagination-container .tui-page-btn.tui-first,
@@ -58,13 +59,13 @@ strong.tui-page-btn.tui-is-selected:hover {
   border-color: #818181;
 }
 
-#tui-pagination-container .tui-page-btn.tui-last {
-  margin-left: 20px;
-}
+// #tui-pagination-container .tui-page-btn.tui-last {
+//   margin-left: 20px;
+// }
 
-#tui-pagination-container .tui-page-btn.tui-first {
-  margin-right: 20px;
-}
+// #tui-pagination-container .tui-page-btn.tui-first {
+//   margin-right: 20px;
+// }
 
 #tui-pagination-container .tui-first-child.tui-is-selected,
 #tui-pagination-container .tui-last-child.tui-is-selected {

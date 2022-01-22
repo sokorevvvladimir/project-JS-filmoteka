@@ -14,6 +14,5 @@ export const refs = {
   queueBtn: document.querySelector('.js-library-queue'),
 
   filmsList: document.querySelector('.films__container'),
-
-  // searchKeyword: document.querySelector('#js-search'),
+  pagination: document.querySelector('#tui-pagination-container'),
 };
