@@ -1,6 +1,7 @@
 import { refs } from '../utils/refs';
 import MovieApiService from '../api/fetch-api.js';
 import { renderMoviesList } from '../utils/createMoviesList';
+import { placeholderSetter } from './films-container';
 // Будет нужно добавить
 // Импорт класса или экземпляра
 // Для "популярные фильмы" для Хоум
@@ -90,6 +91,7 @@ const toggleActiveLink = () => {
 function createLibraryList(key) {
   const ListLS = JSON.parse(movieApiService.getItemFromLS(`${key}`));
   if (ListLS === null || ListLS.length === 0) {
+    placeholderSetter();
     return;
   }
   renderMoviesList(ListLS);

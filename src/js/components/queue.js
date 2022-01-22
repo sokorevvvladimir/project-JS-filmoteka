@@ -1,5 +1,6 @@
 import { renderMoviesList } from '../utils/createMoviesList.js';
 import { refs } from '../utils/refs.js';
+import { placeholderSetter } from './films-container';
 refs.queueBtn.addEventListener('click', onQueue);
 refs.watchedBtn.addEventListener('click', onWatched);
 
@@ -11,10 +12,17 @@ function onQueue() {
   // парсим в JSON
   const parseData = JSON.parse(saveData);
 
-  if (parseData) {
-    refs.filmsList.innerHTML = '';
-    renderMoviesList(parseData);
+  if (parseData.length === 0) {
+    placeholderSetter();
+    return;
   }
+
+  if (!parseData) {
+    return;
+  }
+
+  refs.filmsList.innerHTML = '';
+  renderMoviesList(parseData);
 }
 
 function onWatched() {
