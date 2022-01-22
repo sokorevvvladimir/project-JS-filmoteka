@@ -12,6 +12,10 @@ const html = document.querySelector('html');
 const modalContent = document.querySelector('.modal-one-film__content');
 const closeButton = document.querySelector('.modal-close-btn');
 
+// Eugen-Ko----
+import { signIn } from '../components/autorization';
+// ------------
+
 const closeOnEsc = e => {
   console.log('keydown', e.key);
   if (e.key === 'Escape' || e.key === 'Esc') {
@@ -49,6 +53,7 @@ document.querySelector('.films__container').addEventListener('click', event => {
   event.preventDefault(); // чтобы не скролил вверх до начала контейнера
 
   const item = event.target.closest('.movies__item');
+
   if (item) {
     // если среди классов есть карточка фильма, показываем модалку
     const link = item.querySelector('.movies__link');
@@ -63,6 +68,12 @@ document.querySelector('.films__container').addEventListener('click', event => {
         img: getImgPath(res.poster_path),
       };
       modalContent.innerHTML = movieModal(data);
+
+      // Eugen-Ko-----------
+      // Прячем кнопки добавления, если без регистрации
+      if (!signIn) document.querySelector('.modal-buttons').style.visibility = 'hidden';
+      // -------------
+
       openModal();
 
       // при появлении модалки появляются кнопки, получаю ссылки на них ниже//

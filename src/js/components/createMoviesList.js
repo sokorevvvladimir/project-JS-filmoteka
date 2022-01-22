@@ -10,14 +10,18 @@ import MovieApiService from '../api/fetch-api.js';
 // потом его удалить
 import { normalizationMovieObj } from '../utils/normalizationObj';
 import Notiflix from 'notiflix';
+
 // import settings from '../utils/settings';
 // const { BASE_URL, API_KEY } = settings;
 // import imgDefault from '../../images/header-main/header1024.jpg'
+
 import imgDefault from '../../images/503.jfif';
+
 // async function fetchPopular() {
 //   const urlPopular = `${BASE_URL}trending/movie/day?api_key=${API_KEY}&page=1`;
 //   return fetch(urlPopular).then(response => response.json());
 // }
+
 const movieApiService = new MovieApiService();
 
 export async function PopularMovies() {
