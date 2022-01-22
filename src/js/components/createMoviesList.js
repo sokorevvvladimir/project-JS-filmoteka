@@ -4,6 +4,7 @@
 import { refs } from '../utils/refs.js';
 import movieCard from '../templates/movieCard.hbs';
 import MovieApiService from '../api/fetch-api.js';
+
 //-------------------------------------------
 // временный код. Вызывается первая страница списка популярных фильмов
 // что бы сделать разметку и цсс под карточку
@@ -21,6 +22,7 @@ import imgDefault from '../../images/503.jfif';
 //   const urlPopular = `${BASE_URL}trending/movie/day?api_key=${API_KEY}&page=1`;
 //   return fetch(urlPopular).then(response => response.json());
 // }
+import { placeholderSetter } from './films-container';
 
 const movieApiService = new MovieApiService();
 
@@ -35,6 +37,7 @@ export async function PopularMovies() {
 }
 
 PopularMovies();
+
 // --------------------------------------------------------------
 
 // results - это объект на входе
@@ -62,7 +65,9 @@ export function renderMoviesList(results) {
 
 export function createLibraryList(key) {
   const ListLS = JSON.parse(movieApiService.getItemFromLS(`${key}`));
+
   if (ListLS === null || ListLS.length === 0) {
+    placeholderSetter();
     return;
   }
   renderMoviesList(ListLS);

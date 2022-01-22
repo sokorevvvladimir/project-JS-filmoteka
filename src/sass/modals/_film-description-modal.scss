@@ -202,7 +202,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
-  transition: background-color 250ms linear;
+  transition: background-color 250ms linear, border 250ms linear;
 
   &:active,
   &:hover {
