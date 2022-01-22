@@ -12,19 +12,8 @@ function onAutorizationClick(e) {
 
   // --- Отработка закрытия окна по Esc и клику по дропу ----
   refs.closeBtn.addEventListener('click', onCloseBtnClick);
-  window.addEventListener('keydown', e => {
-    if (e.key !== 'Escape') return;
-    onCloseBtnClick(e);
-  });
-
-  console.log(refs);
-
-  refs.onDrop.addEventListener('click', e => {
-    console.log(e);
-    if (e.target === e.currentTarget) {
-      onCloseBtnClick(e);
-    }
-  });
+  window.addEventListener('keydown', onCloseEsc);
+  refs.onDrop.addEventListener('click', onCloseBackdrop);
   // --------------------------------------------------------
 
   refs.createNewUser.addEventListener('click', toggleLogSign);
@@ -61,4 +50,13 @@ function onCloseBtnClick(e) {
   refs.logOut.style.visibility = 'visible';
   refs.modalAuth.classList.add('is-hidden');
   refs.closeBtn.removeEventListener('click', onCloseBtnClick);
+}
+
+function onCloseEsc(e) {
+  if (e.key !== 'Escape') return;
+  onCloseBtnClick(e);
+}
+
+function onCloseBackdrop(e) {
+  if (e.target === e.currentTarget) onCloseBtnClick(e);
 }
