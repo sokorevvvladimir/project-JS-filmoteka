@@ -12,3 +12,4 @@ import './js/components/createMoviesList';
 import './js/components/modal-footer-friends';
 import './js/components/watched';
 import './js/utils/pagination';
+import './js/components/queue'
