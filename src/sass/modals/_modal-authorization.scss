@@ -1,0 +1,121 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 1;
+  transition: opacity $animation-duration $animation-cubic;
+  z-index: 100;
+  overflow-y: scroll;
+  &.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+    & .modal-auth {
+      transform: translate(-50%, -50%) scale(0.5);
+      opacity: 0;
+    }
+  }
+}
+.modal-auth {
+  width: 300px;
+  height: 420px;
+  border-radius: 5px;
+  padding: 20px 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  background-color: getColor(bg-primary);
+  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+  opacity: 1;
+  transition: transform $animation-duration $animation-cubic, opacity $animation-duration $animation-cubic;
+}
+.close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 40px;
+  width: 40px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  &:hover svg {
+    fill: getColor(accent);
+  }
+}
+.form-login {
+  display: none;
+  &.active {
+    display: block;
+  }
+}
+.form-sign {
+  display: none;
+  &.active {
+    display: block;
+  }
+}
+.form__title {
+  margin-bottom: 10px;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  color: getColor(text-primary);
+  @media screen and (max-width: 350px) {
+    font-size: 16px;
+  }
+}
+.form__btn {
+  margin: 30px 0 0 0;
+}
+.form__label {
+  display:block;
+  margin: 15px 0 0 0;
+  font-size: 14px;
+  line-height: 16px;
+  color: getColor(text-primary);
+}
+.form__input {
+  margin: 5px 0 0 0;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+.btn__submit {
+  display: block;
+  margin: 0 auto;
+  width: 136px;
+  height: 44px;
+  border: none;
+  outline: none;
+  font-size: 12px;
+  background-color: getColor(accent);
+  color: getColor(text-third);
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+  }
+}
+.form__link a{
+  display: block;
+  margin: 30px 0 0 0;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  color: blue;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
