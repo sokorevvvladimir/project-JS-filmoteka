@@ -1,6 +1,10 @@
 export const refs = {
   homeButton: document.querySelector('[data-page="home"]'),
   libraryButton: document.querySelector('[data-page="library"]'),
+
+  signInUp: document.querySelector('[data-page="signinup"]'),
+  logOut: document.querySelector('.logout'),
+
   header: document.querySelector('.header'),
   activeLink: document.querySelector('.nav__list'),
   inputValue: document.querySelector('#js-input'),
@@ -10,5 +14,6 @@ export const refs = {
   queueBtn: document.querySelector('.js-library-queue'),
 
   filmsList: document.querySelector('.films__container'),
-  searchKeyword: document.querySelector('#js-search'),
+
+  // searchKeyword: document.querySelector('#js-search'),
 };

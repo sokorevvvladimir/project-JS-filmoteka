@@ -6,7 +6,7 @@ const VIDEO_BY_SEARCH = `${BASE_URL}/search/movie?api_key=${API_KEY}&include_adu
 export default class MovieApiService {
   constructor() {
     this.searchQuery = '';
-    this.page = 1;
+    this.currentPage = 1;
     this.language = 'ru-US';
     this.genres = '';
     this.movieId = 0;
@@ -30,13 +30,9 @@ export default class MovieApiService {
   }
 
   async fetchById() {
-    try {
-      const response = await fetch(`${BASE_URL}/movie/${this.movieId}?api_key=${API_KEY}`);
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.log(error.message);
-    }
+    const response = await fetch(`${BASE_URL}/movie/${this.movieId}?api_key=${API_KEY}`);
+    const data = await response.json();
+    return data;
   }
 
   getMovieId(newId) {
@@ -76,5 +72,13 @@ export default class MovieApiService {
   }
   set query(newQuery) {
     this.searchQuery = newQuery;
+  }
+
+  get page(){
+    return this.currentPage;
+  }
+
+  set page(page) {
+    this.currentPage = page;
   }
 }
