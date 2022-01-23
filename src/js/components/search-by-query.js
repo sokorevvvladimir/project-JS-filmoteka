@@ -5,10 +5,9 @@ import { refs } from '../utils/refs.js';
 import { spinner } from '../utils/spinner';
 
 const { search } = refs;
-
 const PER_PAGE = 20;
-
 const movieApiService = new MovieApiService();
+Notiflix.Notify.init({ position: 'center-top' });
 
 search.addEventListener('submit', onSearch);
 

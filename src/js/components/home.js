@@ -7,6 +7,7 @@ import { spinner } from '../utils/spinner';
 
 const PER_PAGE = 20;
 const movieApiService = new MovieApiService();
+Notiflix.Notify.init({ position: 'center-top' });
 
 renderPopularMovies();
 
