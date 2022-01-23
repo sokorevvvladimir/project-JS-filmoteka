@@ -6,6 +6,9 @@ import { getImgPath } from '../utils/normalizationObj';
 import { refsFunction } from './local-store-btns-refs';
 import Notiflix from 'notiflix';
 import 'notiflix/dist/notiflix-3.2.2.min.css';
+import { onQueue } from './queue';
+import { markup as onWatched } from './watched';
+import { loadFromLocalStorage } from '../utils/utils';
 
 const modalDialog = document.querySelector('.modal-one-film');
 const html = document.querySelector('html');
@@ -16,8 +19,9 @@ const closeButton = document.querySelector('.modal-close-btn');
 import { signIn } from '../components/autorization';
 // ------------
 
+Notiflix.Notify.init({ position: 'center-top' });
+
 const closeOnEsc = e => {
-  console.log('keydown', e.key);
   if (e.key === 'Escape' || e.key === 'Esc') {
     closeModal();
   }
@@ -152,6 +156,8 @@ document.querySelector('.films__container').addEventListener('click', event => {
 
       const onBtnClickHandle = async e => {
         const movie = await movieApiService.fetchById().then(data => data);
+        const watchedBtnHeader = document.querySelector('.js-library-watched');
+        const queueBtnHeader = document.querySelector('.js-library-queue');
 
         if (movie.success === false) {
           Notiflix.Notify.failure('Sorry, an error occurred. Please try again.');
@@ -162,22 +168,46 @@ document.querySelector('.films__container').addEventListener('click', event => {
           if (e.target.dataset.add) {
             switchWatchAddAttr();
             Notiflix.Notify.success(`Successfully added to the "Watched" list!`);
-            return movieApiService.addMovie(movie, e.target.dataset.watch);
+            movieApiService.addMovie(movie, e.target.dataset.watch);
+
+            if (watchedBtnHeader.classList.contains('is-active')) {
+              onWatched(loadFromLocalStorage('watched'));
+            }
+
+            return;
           }
           switchWatchRemoveAttr();
           Notiflix.Notify.info(`Removed from "Watched" list!`);
-          return movieApiService.deleteMovie(e.target.dataset.watch);
+          movieApiService.deleteMovie(e.target.dataset.watch);
+
+          if (watchedBtnHeader.classList.contains('is-active')) {
+            onWatched(loadFromLocalStorage('watched'));
+          }
+
+          return;
         }
 
         if (e.target.dataset.queue) {
           if (e.target.dataset.add) {
             switchQueueAddAttr();
             Notiflix.Notify.success(`Successfully added to the "Queue" list!`);
-            return movieApiService.addMovie(movie, e.target.dataset.queue);
+            movieApiService.addMovie(movie, e.target.dataset.queue);
+
+            if (queueBtnHeader.classList.contains('is-active')) {
+              onQueue();
+            }
+
+            return;
           }
           switchQueueRemoveAttr();
           Notiflix.Notify.info(`Removed from "Queue" list!`);
-          return movieApiService.deleteMovie(e.target.dataset.queue);
+          movieApiService.deleteMovie(e.target.dataset.queue);
+
+          if (queueBtnHeader.classList.contains('is-active')) {
+            onQueue();
+          }
+
+          return;
         }
       };
       refs.watchedBtn.addEventListener('click', onBtnClickHandle);

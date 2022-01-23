@@ -2,15 +2,16 @@ import { refs } from '../utils/refs';
 import MovieApiService from '../api/fetch-api.js';
 import { renderMoviesList } from '../utils/createMoviesList';
 import { placeholderSetter } from './films-container';
+import MoviePagination from '../utils/pagination';
+import { spinner } from '../utils/spinner';
 // Будет нужно добавить
 // Импорт класса или экземпляра
 // Для "популярные фильмы" для Хоум
 // Для "лайбрари" для лайбрари пользователя
-import MoviePagination from '../utils/pagination';
 import { renderPopularMovies } from './home';
 
 const movieApiService = new MovieApiService();
-const PER_PAGE = 20;
+const PER_PAGE = 9;
 
 //---------------------------------------------------
 const onHomeButton = () => {
@@ -27,6 +28,9 @@ const onHomeButton = () => {
   toggleLibraryBg();
   toggleLibraryTab();
   toggleHomeTab();
+
+  refs.watchedBtn.classList.remove('is-active');
+  refs.queueBtn.classList.remove('is-active');
 
   // Какие-то действия с блоком пагинации
   // Сбросить счетчик страниц
@@ -88,13 +92,16 @@ const toggleActiveLink = () => {
   refs.activeLink.lastElementChild.classList.toggle('active');
 };
 
-function createLibraryList(key) {
+export function createLibraryList(key) {
   const ListLS = JSON.parse(movieApiService.getItemFromLS(`${key}`));
-  if (ListLS === null || ListLS.length === 0) {
+  const totalItems = ListLS.length;
+  if (ListLS === null || totalItems === 0) {
+    refs.pagination.innerHTML = '';
     placeholderSetter();
     return;
   }
-  renderMoviesList(ListLS);
+  new MoviePagination('watched', PER_PAGE, totalItems);
+  spinner.off();
 }
 
 // //---- Переключение листов в библиотеке ------------------------------

@@ -131,10 +131,18 @@ export default class MoviePagination {
   async createPagination() {
     const page = this.#pagination.getCurrentPage();
     spinner.on();
+
     const result = await this.getMovies(page);
 
     if (!result) {
       spinner.off();
+      return;
+    }
+
+    if (this.type === 'watched' || this.type === 'queue') {
+      const arrPerFirstPage = result.slice(0, 9);
+      renderMoviesList(arrPerFirstPage);
+      this.#pagination.on('afterMove', this.onPagination.bind(this));
       return;
     }
 
@@ -144,6 +152,7 @@ export default class MoviePagination {
 
     refs.filmsList.innerHTML = '';
     spinner.off();
+
     renderMoviesList(movies);
 
     this.#pagination.on('afterMove', this.onPagination.bind(this));
@@ -159,10 +168,23 @@ export default class MoviePagination {
       return;
     }
 
+    if (this.type === 'watched' || this.type === 'queue') {
+      const startItem = (event.page - 1) * 9;
+      const arrPerPage = result.slice(startItem, startItem + 9);
+
+      startSmoothScroll();
+      refs.filmsList.innerHTML = '';
+      spinner.off();
+
+      renderMoviesList(arrPerPage);
+      return;
+    }
+
     const { results: movies } = result;
     startSmoothScroll();
     refs.filmsList.innerHTML = '';
     spinner.off();
+    // TODO ++++++++++++++++++++++++++++++++++++++++++++++++
     renderMoviesList(movies);
   }
 
@@ -182,9 +204,11 @@ export default class MoviePagination {
         break;
 
       case 'watched':
+        response = JSON.parse(this.movieApiService.getItemFromLS(`watched`));
         break;
 
       case 'queue':
+        response = JSON.parse(this.movieApiService.getItemFromLS(`queue`));
         break;
 
       default:
