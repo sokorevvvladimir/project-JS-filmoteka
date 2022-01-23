@@ -39,21 +39,13 @@ export default class MoviePagination {
           case 'next':
             template =
               `<a href="#" class="tui-page-btn tui-${type} ${hiddenClass}">` +
-              `<span class="tui-ico-${type}">
-                <svg class="tui-pagination-svg" width="16" height="16">
-                  <use href="/sprite.5ec50489.svg#arrow-right"></use>
-                </svg>
-              </span>` +
+              `<span class="tui-ico-${type}"></span>` +
               `</a>`;
             break;
           case 'prev':
             template =
               `<a href="#" class="tui-page-btn tui-${type} visually-hidden">` +
-              `<span class="tui-ico-${type}">
-              <svg class="tui-pagination-svg" width="16" height="16">
-                <use href="/sprite.5ec50489.svg#arrow-left"></use>
-              </svg>
-            </span>` +
+              `<span class="tui-ico-${type}"></span>` +
               `</a>`;
             break;
           default:
@@ -83,21 +75,13 @@ export default class MoviePagination {
           case 'next':
             template =
               `<a href="#" class="tui-page-btn tui-is-disabled tui-${type} ${hiddenClass}">` +
-              `<span class="tui-ico-${type}">
-                <svg class="tui-pagination-svg" width="16" height="16">
-                  <use href="/sprite.5ec50489.svg#arrow-right"></use>
-                </svg>
-              </span>` +
+              `<span class="tui-ico-${type}"></span>` +
               `</a>`;
             break;
           case 'prev':
             template =
               `<a href="#" class="tui-page-btn tui-is-disabled tui-${type} visually-hidden">` +
-              `<span class="tui-ico-${type}">
-              <svg class="tui-pagination-svg" width="16" height="16">
-                <use href="/sprite.5ec50489.svg#arrow-left"></use>
-              </svg>
-            </span>` +
+              `<span class="tui-ico-${type}"></span>` +
               `</a>`;
             break;
 
