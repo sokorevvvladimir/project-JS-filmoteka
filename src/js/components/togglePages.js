@@ -1,13 +1,8 @@
 import { refs } from '../utils/refs';
 import MovieApiService from '../api/fetch-api.js';
-import { renderMoviesList } from '../utils/createMoviesList';
 import { placeholderSetter } from './films-container';
 import MoviePagination from '../utils/pagination';
 import { spinner } from '../utils/spinner';
-// Будет нужно добавить
-// Импорт класса или экземпляра
-// Для "популярные фильмы" для Хоум
-// Для "лайбрари" для лайбрари пользователя
 import { renderPopularMovies } from './home';
 
 const movieApiService = new MovieApiService();
@@ -17,8 +12,6 @@ const PER_PAGE = 9;
 const onHomeButton = () => {
   if (refs.header.id === 'home') {
     refs.inputValue.value = '';
-    // Сбросить счетчик страниц
-    // Загрузить популярные фильми
     return;
   }
 
@@ -32,11 +25,7 @@ const onHomeButton = () => {
   refs.watchedBtn.classList.remove('is-active');
   refs.queueBtn.classList.remove('is-active');
 
-  // Какие-то действия с блоком пагинации
-  // Сбросить счетчик страниц
-  // Загрузить популярные фильмы
-
-  renderPopularMovies(); // здесь потом указать метод из класса.
+  renderPopularMovies();
 
   // refs.watchedBtn.removeEventListener('click', onWatchedBtnClick);
   // refs.queueBtn.removeEventListener('click', onQueueBtnClick);
