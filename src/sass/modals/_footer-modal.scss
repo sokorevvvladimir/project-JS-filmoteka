@@ -13,25 +13,27 @@
   margin-left: auto;
   margin-right: auto;
   z-index: 10;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 
   @include _phone {
+    position: fixed;
     width: 100vw;
     height: 100vh;
     overflow: auto;
   }
 
   @include _phone_gap {
-    @include сenteringXY();
     width: 100vw;
   }
 
   @include _tablet {
-    @include сenteringXY();
     width: 548px;
   }
 
   @include _desktop {
-    @include сenteringXY();
     width: 812px;
   }
   background-color: #fff;

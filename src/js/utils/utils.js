@@ -6,3 +6,10 @@ export const loadFromLocalStorage = key => {
     // console.error("Get state error: ", error.message);
   }
 };
+
+export function startSmoothScroll() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+}
