@@ -2,10 +2,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 // TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: 'AIzaSyCNe8So_8snBJMxBI4J-YlfvgcCeLwK0Ls',
   authDomain: 'team-project-filmoteka-9.firebaseapp.com',
@@ -19,3 +16,10 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+// ------------------------------------------------------
+import { refs } from '../utils/refs';
+
+export function firebaseAuth() {
+  console.log('i`m hire');
+  console.log(refs);
+}

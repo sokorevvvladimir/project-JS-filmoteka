@@ -1,4 +1,5 @@
 import { refs } from '../utils/refs';
+import { firebaseAuth } from './firebase';
 
 export let signIn = false;
 
@@ -9,6 +10,8 @@ refs.logOut.addEventListener('click', onExitClick);
 function onAutorizationClick(e) {
   signIn = true;
   toggleSign(signIn);
+  // Убрали скрол
+  document.querySelector('html').classList.add('disable-scroll');
 
   // --- Отработка закрытия окна по Esc и клику по дропу ----
   refs.closeBtn.addEventListener('click', onCloseBtnClick);
@@ -18,7 +21,8 @@ function onAutorizationClick(e) {
 
   refs.createNewUser.addEventListener('click', toggleLogSign);
   refs.logUser.addEventListener('click', toggleLogSign);
-  refs.signInUp.removeEventListener('click', onAutorizationClick);
+
+  firebaseAuth();
 }
 
 function onExitClick(e) {
@@ -48,6 +52,7 @@ function onCloseBtnClick(e) {
   signLogin();
   refs.modalAuth.classList.add('is-hidden');
   refs.closeBtn.removeEventListener('click', onCloseBtnClick);
+  document.querySelector('html').classList.remove('disable-scroll');
 }
 
 function onCloseEsc(e) {
