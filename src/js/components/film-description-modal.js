@@ -78,8 +78,6 @@ async function onCardClick(event) {
 
       modalContent.innerHTML = movieModal(data);
 
-      const youtubeId = getTrailer(id);
-
       // Eugen-Ko-----------
       // Прячем кнопки добавления, если без регистрации
       if (!signIn) document.querySelector('.modal-buttons').style.visibility = 'hidden';

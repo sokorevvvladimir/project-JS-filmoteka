@@ -26,4 +26,10 @@ export const refs = {
 
   createNewUser: document.querySelector('.new-user'),
   logUser: document.querySelector('.log-user'),
+
+  //Trailer Modal
+  trailerBtn: document.querySelector('.trailer-button'),
+  html: document.querySelector('html'),
+  closeButton: document.querySelector('.trailer__close-btn'),
+  trailerBackdrop: document.querySelector('.trailer__backdrop'),
 };

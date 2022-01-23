@@ -1,0 +1,59 @@
+.trailer__backdrop {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+
+  transition: visibility 0.3s linear, opacity 0.3s linear;
+
+  &--hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+.trailer__window {
+  width: 280px;
+  max-width: 100%;
+  padding: 45px 20px;
+  margin: 20px;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+
+  margin-bottom: 30px;
+  background: #fff;
+  position: relative;
+
+  @include _tablet_and_desktop {
+    width: 618px;
+    margin: 0;
+    padding: 40px 29px;
+  }
+
+  @include _desktop {
+    width: 882px;
+    padding: 50px 30px;
+  }
+}
+
+.trailer__close-btn {
+  cursor: pointer;
+  position: absolute;
+  border: none;
+  background: none;
+  padding: 0;
+  top: 18px;
+  right: 18px;
+}
+
+.trailer__player {
+}

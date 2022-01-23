@@ -1,21 +1,43 @@
+.movies__card {
+  position: relative;
+  animation-name: slideUp;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  padding-bottom: 5px;
+
+  transition: all 250ms $animation-cubic;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+    background: getColor(accent);
+    box-shadow: 0 0 5px getColor(accent), 0 0 5px getColor(accent), 0 0 25px getColor(accent),
+      0 0 100px getColor(accent);
+  }
+
+  &:hover .movies__rating,
+  &:focus .movies__rating {
+    background-color: getColor(bg-primary);
+    color: getColor(accent);
+  }
+
+  &:hover .movies__genre,
+  &:focus .movies__genre {
+    color: getColor(text-third);
+  }
+}
+
 .movies {
   &__item {
     position: relative;
-    animation-name: slideUp;
-    animation-duration: 1s;
-    animation-timing-function: ease;
-
-    padding-bottom: 5px;
 
     @include respond-to(from0) {
       max-width: 100%;
-      transition: all 250ms $animation-cubic;
       margin-bottom: 20px;
     }
 
     @include respond-to(mobile) {
       width: 280px;
-      transition: all 250ms $animation-cubic;
       margin-bottom: 20px;
     }
 
@@ -27,25 +49,6 @@
     @include respond-to(desktop) {
       width: 274px;
       margin-bottom: 0px;
-    }
-
-    &:hover,
-    &:focus {
-      transform: scale(1.05);
-      background: getColor(accent);
-      box-shadow: 0 0 5px getColor(accent), 0 0 5px getColor(accent), 0 0 25px getColor(accent),
-        0 0 100px getColor(accent);
-    }
-
-    &:hover .movies__rating,
-    &:focus .movies__rating {
-      background-color: getColor(bg-primary);
-      color: getColor(accent);
-    }
-
-    &:hover .movies__genre,
-    &:focus .movies__genre {
-      color: getColor(text-third);
     }
   }
 
@@ -143,35 +146,100 @@
   position: absolute;
   top: -20px;
   right: -20px;
-  width: 80px;
-  height: 80px;
-  border: none;
-  margin: 0;
-  padding: 0;
+  z-index: 99;
+}
+
+.trailer-button .video-play-btn {
+  display: inline-block;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
   background-color: transparent;
   background-image: url(../../src/images/trailer.png);
   background-size: contain;
   background-repeat: no-repeat;
-  transition: transform 250ms $animation-cubic;
-
-  &:hover,
-  &:focus {
-    transform: scale(1.1);
-  }
-
-  animation-name: trailer;
-  animation-duration: 700ms;
-  animation-iteration-count: infinite;
+}
+.trailer-button .video-play-btn i {
+  padding-left: 5px;
+}
+.trailer-button .video-play-btn:focus,
+.trailer-button .video-play-btn:hover {
+  box-shadow: none;
+  background-color: getColor(accent);
 }
 
-@keyframes trailer {
+.trailer-button .video-play-btn {
+  -webkit-transform: scale(0.93);
+  -ms-transform: scale(0.93);
+  transform: scale(0.93);
+}
+.trailer-button .video-play-btn:after {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  content: '';
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  top: 0;
+  left: 0;
+  padding: 0;
+  z-index: -1;
+  box-shadow: 0 0 0 2px getColor(accent);
+  opacity: 1;
+  -webkit-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  transform: scale(0.9);
+  -webkit-animation: sonarEffect 1.3s ease-out 75ms infinite;
+  animation: sonarEffect 1.3s ease-out 75ms infinite;
+}
+
+@-webkit-keyframes sonarEffect {
   0% {
-    transform: rotate(3deg);
+    opacity: 0.3;
   }
-  50% {
-    transform: rotate(0deg);
+  40% {
+    opacity: 0.5;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px getColor(accent),
+      0 0 0 10px rgba(255, 255, 255, 0.5);
   }
   100% {
-    transform: rotate(-3deg);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px getColor(accent),
+      0 0 0 10px rgba(255, 255, 255, 0.5);
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+@-moz-keyframes sonarEffect {
+  0% {
+    opacity: 0.3;
+  }
+  40% {
+    opacity: 0.5;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px getColor(accent),
+      0 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px getColor(accent),
+      0 0 0 10px rgba(255, 255, 255, 0.5);
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+@keyframes sonarEffect {
+  0% {
+    opacity: 0.3;
+  }
+  40% {
+    opacity: 0.5;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px getColor(accent),
+      0 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px getColor(accent),
+      0 0 0 10px rgba(255, 255, 255, 0.5);
+    transform: scale(1.5);
+    opacity: 0;
   }
 }
