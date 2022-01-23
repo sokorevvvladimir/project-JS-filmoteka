@@ -15,18 +15,19 @@ export function onQueue() {
   const saveData = localStorage.getItem('queue');
   // парсим в JSON
   const parseData = JSON.parse(saveData);
-  const totalItems = parseData.length;
-
-  if (totalItems === 0) {
-    refs.pagination.innerHTML = '';
-    placeholderSetter();
-    return;
-  }
 
   if (!parseData) {
     refs.pagination.innerHTML = '';
     return;
   }
+
+  if (parseData.length === 0) {
+    refs.pagination.innerHTML = '';
+    placeholderSetter();
+    return;
+  }
+
+  const totalItems = parseData.length;
 
   refs.filmsList.innerHTML = '';
   new MoviePagination('queue', PER_PAGE, totalItems);

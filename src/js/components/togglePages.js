@@ -94,12 +94,15 @@ const toggleActiveLink = () => {
 
 export function createLibraryList(key) {
   const ListLS = JSON.parse(movieApiService.getItemFromLS(`${key}`));
-  const totalItems = ListLS.length;
-  if (ListLS === null || totalItems === 0) {
+
+  if (ListLS === null || ListLS.length === 0) {
     refs.pagination.innerHTML = '';
     placeholderSetter();
     return;
   }
+
+  const totalItems = ListLS.length;
+
   new MoviePagination('watched', PER_PAGE, totalItems);
   spinner.off();
 }

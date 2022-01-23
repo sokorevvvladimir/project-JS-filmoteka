@@ -21,7 +21,6 @@ function markupAdapter(itemListFromLocalStorage) {
 }
 
 export function markup(items) {
-  const totalItems = items.length;
   if (!items) {
     refs.pagination.innerHTML = '';
     return;
@@ -32,7 +31,10 @@ export function markup(items) {
     placeholderSetter();
     return;
   }
+
+  const totalItems = items.length;
   refs.filmsList.innerHTML = '';
+
   new MoviePagination('watched', PER_PAGE, totalItems);
   spinner.off();
 }
