@@ -1,4 +1,4 @@
-const spinners = document.querySelectorAll('.loader-ellips');
+const spinners = document.querySelectorAll('.spinner');
 
 export const spinner = {
   on: function () {

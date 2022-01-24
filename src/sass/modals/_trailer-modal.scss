@@ -19,33 +19,6 @@
   }
 }
 
-.trailer__window {
-  width: 280px;
-  height: 50vh;
-  max-width: 100%;
-  padding: 45px 20px;
-  margin: 20px;
-
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-
-  margin-bottom: 30px;
-  background: #fff;
-  position: relative;
-
-  @include _tablet_and_desktop {
-    width: 618px;
-    margin: 0;
-    padding: 40px 29px;
-  }
-
-  @include _desktop {
-    width: 882px;
-    padding: 50px 30px;
-  }
-}
-
 .trailer__close-btn {
   cursor: pointer;
   position: absolute;
@@ -54,7 +27,16 @@
   padding: 0;
   top: 18px;
   right: 18px;
+  z-index: 100;
+  color: getColor(accent);
 }
 
 .trailer__player {
+  z-index: 100;
+}
+
+.spinner-modal {
+  position: absolute;
+  @include centeringXY();
+  z-index: 100;
 }

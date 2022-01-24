@@ -3,6 +3,7 @@ import MovieApiService from '../api/fetch-api.js';
 import { refs } from '../utils/refs.js';
 
 const movieApiService = new MovieApiService();
+const spinnerModal = document.querySelector('.spinner-modal');
 
 let player = null;
 
@@ -19,23 +20,24 @@ async function onTrailerBtnClick(event) {
 
   const trailerId = await getTrailer(id);
 
-  createPlayer(trailerId);
+  // createPlayer(trailerId);
 
-  openModal();
+  openModal(trailerId);
 }
 
-const closeOnEsc = e => {
-  if (e.key === 'Escape' || e.key === 'Esc') {
-    closeModal();
-  }
-};
+function openModal(id) {
+  refs.trailerWindow.innerHTML = `<iframe
+    id="player"
+    width="640"
+    height="360"
+    src="https://www.youtube.com/embed/${id}"
+    frameborder="0"
+    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+    autoplay="1"
+    allowfullscreen
+  ></iframe>`;
 
-function openModal() {
-  document.addEventListener('keydown', closeOnEsc);
-  refs.closeButton.addEventListener('click', e => {
-    e.preventDefault();
-    closeModal();
-  });
+  const player = document.querySelector('#player');
 
   refs.trailerBackdrop.addEventListener('click', e => {
     if (e.target !== refs.trailerBackdrop) {
@@ -44,14 +46,18 @@ function openModal() {
     closeModal();
   });
   refs.trailerBackdrop.classList.remove('trailer__backdrop--hidden');
+
+  spinnerModal.classList.toggle('is-hidden');
+
   refs.html.classList.add('disable-scroll');
+
+  player.addEventListener('load', () => {
+    spinnerModal.classList.toggle('is-hidden');
+  });
 }
 
 function closeModal() {
-  console.log(player);
-  player?.stopVideo();
-  player = null;
-  document.removeEventListener('keydown', closeOnEsc);
+  refs.trailerWindow.innerHTML = '';
   refs.trailerBackdrop.classList.add('trailer__backdrop--hidden');
   refs.html.classList.remove('disable-scroll');
 }
@@ -60,16 +66,4 @@ async function getTrailer(id) {
   const response = await movieApiService.fetchTrailer(id);
   const videoId = response.results[0].key;
   return videoId;
-}
-
-function createPlayer(id) {
-  const playerContainer = document.getElementById('player');
-
-  player = YouTubePlayer(playerContainer, {
-    videoId: id,
-  });
-
-  player.playVideo();
-
-  return player;
 }

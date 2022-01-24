@@ -1,18 +1,14 @@
 <div class="trailer__backdrop trailer__backdrop--hidden">
-  <div class="trailer__window">
-    <button class="trailer__close-btn">
-      <svg width="14" height="14">
-        <use href="./images/sprite.svg#modal-close-btn-full"></use>
-      </svg>
-    </button>
-    <div id="player">
-      <iframe
-        type="text/html"
-        width="640"
-        height="360"
-        src="http://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1&origin=http://example.com"
-        frameborder="0"
-      ></iframe>
-    </div>
+  <div class="trailer__window"></div>
+  <button class="trailer__close-btn">
+    <svg width="24" height="24">
+      <use href="./images/sprite.svg#modal-close-btn-full"></use>
+    </svg>
+  </button>
+  <div class="loader-ellips spinner-modal is-hidden">
+    <span class="loader-ellips__dot"></span>
+    <span class="loader-ellips__dot"></span>
+    <span class="loader-ellips__dot"></span>
+    <span class="loader-ellips__dot"></span>
   </div>
 </div>
