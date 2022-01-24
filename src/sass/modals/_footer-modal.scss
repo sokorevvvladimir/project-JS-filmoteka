@@ -8,6 +8,10 @@
   transition: opacity var(--animation) var(--cubic);
   z-index: 5;
 }
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
 .modal {
   position: relative;
   left: 50%;

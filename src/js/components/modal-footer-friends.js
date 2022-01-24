@@ -1,10 +1,9 @@
 import confetti from 'canvas-confetti';
-// import { refs } from '../utils/refs.js';
-import { refs } from '../utils/refs';
 
 const open = document.querySelector('.footer__link');
 const close = document.querySelector('.modal__button');
 const modal = document.querySelector('.backdrop');
+const html = document.querySelector('html')
 
 //  open.addEventListener('click', toggleModal);
 // close.addEventListener('click', toggleModal);
@@ -22,12 +21,12 @@ close.addEventListener('click', onClosesModal);
 function onOpenModal() {
   modal.classList.remove('is-hidden');
   showConfetti();
-  refs.html.classList.add('disable-scroll');
+  html.classList.add('stop-scrolling');
 }
 
 function onClosesModal() { 
   modal.classList.add('is-hidden')
-  refs.html.classList.remove('disable-scroll');
+ html.classList.remove('stop-scrolling');
 }
 
 function onCloseModal(e) { 
