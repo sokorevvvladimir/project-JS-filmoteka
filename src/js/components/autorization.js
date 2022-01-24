@@ -27,7 +27,7 @@ function onAutorizationClick(e) {
 
 function onExitClick(e) {
   signIn = false;
-  document.location.href = document.getElementById('home');
+  document.location.href = '../index.html';
   toggleSign(signIn);
   // refs.logOut.removeEventListener('click', onExitClick);
 }
