@@ -7,7 +7,7 @@
   background-color: rgba(0, 0, 0, 0.4);
   opacity: 1;
   transition: opacity $animation-duration $animation-cubic;
-  z-index: 100;
+  z-index: 115;
   overflow: auto;
   &.is-hidden {
     opacity: 0;
