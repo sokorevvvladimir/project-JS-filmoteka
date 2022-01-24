@@ -214,8 +214,13 @@
 .icon {
   fill: #fff;
   margin-right: 15px;
+  transform: scale(1);
 }
-
+.icon:hover {
+  transform: scale(1.25);
+  transition-duration: 200ms;
+  transition-timing-function: linear;
+}
 /* go on then, styles go here.. knock yourself out! */
 
 /* go on then, styles go here.. knock yourself out! */
@@ -335,6 +340,7 @@ aside:hover .profile-bio {
   list-style-type: none;
   opacity: 0;
   transition: all ease 0.5s;
+  transform: scale(1);
 }
 
 aside:hover .profile-social-links {
