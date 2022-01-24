@@ -1,5 +1,5 @@
 import { refs } from '../utils/refs';
-import { firebaseAuth } from './firebase';
+// import { firebaseAuth } from './firebase';
 
 export let signIn = false;
 
@@ -22,7 +22,7 @@ function onAutorizationClick(e) {
   refs.createNewUser.addEventListener('click', toggleLogSign);
   refs.logUser.addEventListener('click', toggleLogSign);
 
-  firebaseAuth();
+  // firebaseAuth();
 }
 
 function onExitClick(e) {
