@@ -4,6 +4,7 @@ import MovieApiService from '../api/fetch-api.js';
 import Notiflix from 'notiflix';
 import { refs } from '../utils/refs.js';
 import { spinner } from '../utils/spinner';
+import { onTrailerBtnClick } from './trailer';
 
 const PER_PAGE = 20;
 const movieApiService = new MovieApiService();
