@@ -9,8 +9,10 @@
   z-index: 5;
 }
 .modal {
-  margin-left: auto;
-  margin-right: auto;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   z-index: 10;
   background-image: url('./../images/backgroung-img-modal/phone.jpg');
 
@@ -21,26 +23,23 @@
   }
 
   @include _phone_gap {
-    @include сenteringXY();
     width: 100vw;
   }
 
   @include _tablet {
-    @include сenteringXY();
-    width: 560px;
+    width: 580px;
     height: 800px;
     background-image: url('./../images/backgroung-img-modal/tablet.jpg');
   }
 
   @include _desktop {
-    @include сenteringXY();
-    width: 812px;
+    width: 840px;
     height: 600px;
     background-image: url('./../images/backgroung-img-modal/desktop.jpg');
   }
   background-color: #fff;
   padding: 15px;
-  transition: transform var(--animation) var(--cubic);
+  transition: transform 200ms linear;
   padding: 30px;
   border-radius: 20px;
   // border: 5px solid green;
