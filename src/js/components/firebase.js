@@ -19,7 +19,4 @@ const analytics = getAnalytics(app);
 // ------------------------------------------------------
 import { refs } from '../utils/refs';
 
-export function firebaseAuth() {
-  console.log('i`m hire');
-  console.log(refs);
-}
+export function firebaseAuth() {}

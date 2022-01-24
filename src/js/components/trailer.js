@@ -1,11 +1,11 @@
-import YouTubePlayer from 'youtube-player';
+import Notiflix from 'notiflix';
 import MovieApiService from '../api/fetch-api.js';
 import { refs } from '../utils/refs.js';
 
 const movieApiService = new MovieApiService();
 const spinnerModal = document.querySelector('.spinner-modal');
 
-let player = null;
+Notiflix.Notify.init({ position: 'center-top' });
 
 refs.filmsList.addEventListener('click', onTrailerBtnClick);
 
@@ -22,12 +22,12 @@ async function onTrailerBtnClick(event) {
   const cardContainer = event.target.closest('.movies__card');
   const link = cardContainer.querySelector('.movies__link');
   const id = link.dataset.id;
-
-  const trailerId = await getTrailer(id);
-
-  // createPlayer(trailerId);
-
-  openModal(trailerId);
+  try {
+    const trailerId = await getTrailer(id);
+    openModal(trailerId);
+  } catch (error) {
+    Notiflix.Notify.failure('Sorry, trailer not found 😢');
+  }
 }
 
 function openModal(id) {
@@ -35,10 +35,9 @@ function openModal(id) {
     id="player"
     width="640"
     height="360"
-    src="https://www.youtube.com/embed/${id}"
+    src="https://www.youtube.com/embed/${id}?autoplay=1"
     frameborder="0"
-    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-    autoplay="1"
+    allow="autoplay"
     allowfullscreen
   ></iframe>`;
 

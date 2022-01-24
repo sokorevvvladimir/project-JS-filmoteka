@@ -12,6 +12,7 @@ const PER_PAGE = 9;
 const onHomeButton = () => {
   if (refs.header.id === 'home') {
     refs.inputValue.value = '';
+    renderPopularMovies();
     return;
   }
 
@@ -37,7 +38,6 @@ const onLibraryButton = () => {
     // Сбросить счетчик страниц
     // Показать/спрятать пагинацию
     // Определиться: загружать очередь или просмотренные.
-
     return;
   }
 
