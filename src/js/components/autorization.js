@@ -27,9 +27,9 @@ function onAutorizationClick(e) {
 
 function onExitClick(e) {
   signIn = false;
-  document.location.href = document.getElementById('home');
+  // document.location.href = document.getElementById('home');
   toggleSign(signIn);
-  refs.logOut.removeEventListener('click', onExitClick);
+  // refs.logOut.removeEventListener('click', onExitClick);
 }
 
 function toggleSign(key) {
@@ -51,7 +51,7 @@ function toggleLogSign(e) {
 function onCloseBtnClick(e) {
   signLogin();
   refs.modalAuth.classList.add('is-hidden');
-  refs.closeBtn.removeEventListener('click', onCloseBtnClick);
+  // refs.closeBtn.removeEventListener('click', onCloseBtnClick);
   document.querySelector('html').classList.remove('disable-scroll');
 }
 
