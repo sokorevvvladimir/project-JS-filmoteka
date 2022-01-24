@@ -9,6 +9,11 @@ let player = null;
 
 refs.filmsList.addEventListener('click', onTrailerBtnClick);
 
+refs.closeButton.addEventListener('click', e => {
+  e.preventDefault();
+  closeModal();
+});
+
 async function onTrailerBtnClick(event) {
   const item = event.target.closest('.trailer-button');
 
