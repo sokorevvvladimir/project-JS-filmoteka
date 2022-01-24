@@ -40,3 +40,15 @@
   @include centeringXY();
   z-index: 100;
 }
+
+#player {
+  @include centeringXY();
+
+  @include _phone {
+    max-width: 280px;
+  }
+
+  @include _tablet {
+    max-width: 618px;
+  }
+}
