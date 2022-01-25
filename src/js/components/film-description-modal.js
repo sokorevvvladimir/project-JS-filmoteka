@@ -18,7 +18,7 @@ const modalContent = document.querySelector('.modal-one-film__content');
 const closeButton = document.querySelector('.modal-close-btn');
 
 // Eugen-Ko----
-import { signIn } from '../components/autorization';
+// import { signIn } from '../components/autorization';
 // ------------
 
 Notiflix.Notify.init({ position: 'center-top' });
@@ -80,7 +80,7 @@ async function onCardClick(event) {
 
       // Eugen-Ko-----------
       // Прячем кнопки добавления, если без регистрации
-      if (!signIn) document.querySelector('.modal-buttons').style.visibility = 'hidden';
+      // if (!signIn) document.querySelector('.modal-buttons').style.visibility = 'hidden';
       // -------------
 
       openModal();
