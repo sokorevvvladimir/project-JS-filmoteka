@@ -30,7 +30,7 @@ function onAutorizationClick(e) {
 function onExitClick(e) {
   signIn = false;
   localStorage.removeItem('user');
-  document.location.href = '../index.html';
+  document.location.href = './index.html';
   toggleSign(signIn);
 }
 
