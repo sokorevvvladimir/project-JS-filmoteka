@@ -12,70 +12,69 @@
   height: 100%;
   overflow: hidden;
 }
+
 .modal {
-  position: relative;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  background-repeat: no-repeat;
+  background-size: cover;
 
-  @include _phone {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    overflow: auto;
-    background-image: url('./../images/backgroung-img-modal/phone3.jpg');
-  }
-
-  @include _phone_gap {
-    width: 100vw;
-  }
-
-  @include _tablet {
-    width: 580px;
-    height: 800px;
-    background-image: url('./../images/backgroung-img-modal/tablet.jpg');
-  }
-
-  @include _desktop {
-    width: 840px;
-    height: 600px;
-    background-image: url('./../images/backgroung-img-modal/desktop.jpg');
-  }
   background-color: #fff;
-  padding: 15px;
   transition: transform 500ms linear;
-  padding: 30px;
+  padding: 15px;
   border-radius: 20px;
   display: grid;
   justify-content: center;
+
+  @include _phone {
+    width: 100vw;
+    background-image: url('./../images/background-img-modal/phone3.jpg');
+    background-repeat: repeat;
+    background-size: contain;
+  }
+
+  @include _tablet {
+    @include centeringXY();
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    overflow: auto;
+    width: 618px;
+    background-image: url('./../images/background-img-modal/tablet.jpg');
+  }
+
+  @include _desktop {
+    @include centeringXY();
+    width: 840px;
+    height: 600px;
+    background-image: url('./../images/background-img-modal/desktop.jpg');
+  }
 }
+
 .is-hidden {
   opacity: 0;
   pointer-events: none;
 }
+
 .modal__button {
-  background-color: #fff;
+  position: fixed;
+  z-index: 100;
+  top: 8px;
+  right: 8px;
+  background-color: transparent;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border: none;
   width: 30px;
   height: 30px;
+  display: flex;
   justify-content: center;
   align-items: center;
-  display: flex;
-  position: absolute;
-  top: 8px;
-  right: 8px;
   cursor: pointer;
 }
+
 .modal__icon {
   fill: #000000;
 }
+
 .modal__button:hover .modal__icon,
 .modal__button:focus .modal__icon {
   fill: blue;
@@ -121,6 +120,7 @@
 }
 
 .gallery__item {
+  position: relative;
   @include centeredFlex();
   flex-direction: column;
   max-width: 100%;
@@ -134,12 +134,7 @@
   }
 
   @include _tablet {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    width: 548px;
-    margin-top: 20px;
+    display: block;
     width: calc((100% - 40px) / 3);
   }
 
@@ -148,8 +143,6 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
-    width: 812px;
-    margin-top: 10px;
     width: calc((100% - 20px) / 5);
   }
 }
@@ -162,18 +155,18 @@
   margin-top: 5px;
   flex-direction: column;
 }
+
 .gallery__action {
   color: #000;
   border-radius: 5px;
   padding: 2px;
   font-size: 14px;
-  @media screen and (min-width: 480px) {
-    font-size: 14px;
-  }
+
   @media screen and (min-width: 1020px) {
     font-size: 15px;
   }
 }
+
 .gallery__photo {
   border-radius: 50px;
   height: 100%;
@@ -181,20 +174,24 @@
 
   object-fit: cover;
 }
+
 .gallery__link {
   color: #ff6b01;
-  // margin-top: 7px;
   font-size: 13px;
 }
+
 .gallery__icon {
   fill: #fff;
-}
-.gallery__icon:hover {
-  fill: #ff6b01;
   transition: fill 250ms linear;
-  animation-name: circle;
-  animation-duration: 500ms;
-  animation-timing-function: linear;
+}
+
+.gallery__icon:hover {
+  @include _desktop {
+    fill: #ff6b01;
+    animation-name: circle;
+    animation-duration: 500ms;
+    animation-timing-function: linear;
+  }
 }
 @keyframes circle {
   0% {
@@ -217,24 +214,16 @@
   fill: #fff;
   margin-right: 15px;
   transform: scale(1);
-}
-.icon:hover {
-  transform: scale(1.25);
+
   transition-duration: 200ms;
   transition-timing-function: linear;
 }
-/* go on then, styles go here.. knock yourself out! */
 
-/* go on then, styles go here.. knock yourself out! */
+.icon:hover {
+  transform: scale(1.25);
+}
 
-@import url(https://fonts.googleapis.com/css?family=Roboto);
-/* body {
-  padding: 20px;
-  box-sizing: border-box;
-  font-family: Roboto, Helvetica, Arial, serif;
-  background: url(http://www.hdwallsource.com/img/2014/10/blurred-36379-37207-hd-wallpapers.jpg);
-  background-size: cover;
-} */
+// @import url(https://fonts.googleapis.com/css?family=Roboto);
 
 header img {
   border-radius: 50%;
@@ -259,28 +248,47 @@ aside {
   overflow: hidden;
   box-shadow: 0 0 100px 10px #fff;
   transition: all ease 0.3s;
+
+  @include _phone_and_tablet {
+    border-top: 4px solid #26a69a;
+    border-bottom: 4px solid #00695c;
+    border-radius: 5px;
+    height: 210px;
+    width: 180px;
+    box-shadow: 0 0 70px 10px #fff;
+  }
+
+  @include _tablet {
+    width: 100%;
+  }
 }
 
-aside:hover {
-  position: fixed;
-  border-top: 4px solid #26a69a;
-  border-bottom: 4px solid #00695c;
-  border-radius: 5px;
-  height: 210px;
-  width: 180px;
-  box-shadow: 0 0 70px 10px #fff;
+aside:hover,
+aside:focus {
+  @include _desktop {
+    position: fixed;
+    border-top: 4px solid #26a69a;
+    border-bottom: 4px solid #00695c;
+    border-radius: 5px;
+    height: 210px;
+    width: 180px;
+    box-shadow: 0 0 70px 10px #fff;
+  }
 }
 
-aside:hover header img {
-  animation: profile_image 2000ms linear both;
-  animation-delay: 0.5s;
+aside:hover header img,
+aside:focus header img {
+  @include _desktop {
+    animation: profile_image 2000ms linear both;
+    animation-delay: 0.5s;
+  }
 }
 
 header {
   text-align: center;
 }
 
-header h1 {
+header h4 {
   position: relative;
   text-align: center;
   color: #fff;
@@ -294,7 +302,8 @@ header h1 {
   border-bottom: 1px solid #fff;
 }
 
-aside:hover header h1 {
+aside:hover header h4,
+aside:focus header h4 {
   margin-top: 0px;
   outline: 0 solid #fff;
   border-top: 0px solid #fff;
@@ -326,8 +335,11 @@ header h2 {
   );
 }
 
-aside:hover .profile-bio {
-  opacity: 1;
+aside:hover .profile-bio,
+aside:focus .profile-bio {
+  @include _desktop {
+    opacity: 1;
+  }
 }
 
 .profile-bio p:first-child {
@@ -337,17 +349,26 @@ aside:hover .profile-bio {
 
 .profile-social-links {
   position: relative;
-  margin-top: -370px;
-  margin-left: -250px;
   list-style-type: none;
-  opacity: 0;
-  transition: all ease 0.5s;
+  margin-left: 5px;
+  list-style-type: none;
   transform: scale(1);
+  z-index: 10;
+
+  @include _desktop {
+    margin-top: -370px;
+    margin-left: -250px;
+    opacity: 0;
+    transition: all ease 0.5s;
+  }
 }
 
-aside:hover .profile-social-links {
-  margin-left: 5px;
-  opacity: 1;
+aside:hover .profile-social-links,
+aside:focus .profile-social-links {
+  @include _desktop {
+    margin-left: 5px;
+    opacity: 1;
+  }
 }
 
 .profile-social-links li img {
@@ -440,9 +461,12 @@ aside:hover .profile-social-links {
 }
 /*NAME ANIMATE */
 
-aside:hover header h1 {
-  animation: name_and_job 1500ms linear both;
-  animation-delay: 0.4s;
+aside:hover header h4,
+aside:focus header h4 {
+  @include _desktop {
+    animation: name_and_job 1500ms linear both;
+    animation-delay: 0.4s;
+  }
 }
 
 @keyframes name_and_job {
@@ -505,19 +529,20 @@ aside:hover header h1 {
   }
 }
 
-aside:hover ul li:first-child {
-  animation: social_animation 2000ms ease-in-out both;
-  animation-delay: 0.75s;
+aside:hover ul li:first-child,
+aside:focus ul li:first-child {
+  @include _desktop {
+    animation: social_animation 2000ms ease-in-out both;
+    animation-delay: 0.75s;
+  }
 }
 
-aside:hover ul li:nth-child(2) {
-  animation: social_animation 2000ms ease-in-out both;
-  animation-delay: 1s;
-}
-
-aside:hover ul li:nth-child(3) {
-  animation: social_animation 2000ms ease-in-out both;
-  animation-delay: 1.25s;
+aside:hover ul li:nth-child(2),
+aside:focus ul li:nth-child(2) {
+  @include _desktop {
+    animation: social_animation 2000ms ease-in-out both;
+    animation-delay: 1s;
+  }
 }
 
 @keyframes social_animation {
@@ -577,5 +602,22 @@ aside:hover ul li:nth-child(3) {
   }
   100% {
     transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  }
+}
+
+.profile-card .profile-social-links {
+  @include _phone_and_tablet {
+    position: absolute;
+    top: 20px;
+    left: 5px;
+    z-index: 100;
+  }
+}
+
+.profile-card .profile-social-links li {
+  @include _phone_and_tablet {
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
   }
 }
