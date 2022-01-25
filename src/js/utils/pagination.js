@@ -16,8 +16,8 @@ export default class MoviePagination {
     firstItemClassName: 'tui-first-child',
     lastItemClassName: 'tui-last-child',
     template: {
-      page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-      currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+      page: '<a href="#" aria-label="page" class="tui-page-btn">{{page}}</a>',
+      currentPage: '<strong aria-label="page" class="tui-page-btn tui-is-selected">{{page}}</strong>',
       moveButton: ({ type }) => {
         let template = '';
         const firstPage = 1;
@@ -26,25 +26,25 @@ export default class MoviePagination {
         switch (type) {
           case 'first':
             template =
-              `<a href="#" class="tui-page-btn tui-${type} visually-hidden">` +
+              `<a href="#" aria-label="first"class="tui-page-btn tui-${type} visually-hidden">` +
               `<span class="tui-ico-${type}">${firstPage}</span>` +
               `</a>`;
             break;
           case 'last':
             template =
-              `<a href="#" class="tui-page-btn tui-${type} ${hiddenClass}">` +
+              `<a href="#" aria-label="last" class="tui-page-btn tui-${type} ${hiddenClass}">` +
               `<span class="tui-ico-${type}">${lastPage}</span>` +
               `</a>`;
             break;
           case 'next':
             template =
-              `<a href="#" class="tui-page-btn tui-${type} ${hiddenClass}">` +
+              `<a href="#" aria-label="next" class="tui-page-btn tui-${type} ${hiddenClass}">` +
               `<span class="tui-ico-${type}"></span>` +
               `</a>`;
             break;
           case 'prev':
             template =
-              `<a href="#" class="tui-page-btn tui-${type} visually-hidden">` +
+              `<a href="#" aria-label="prev" class="tui-page-btn tui-${type} visually-hidden">` +
               `<span class="tui-ico-${type}"></span>` +
               `</a>`;
             break;
@@ -62,25 +62,25 @@ export default class MoviePagination {
         switch (type) {
           case 'first':
             template =
-              `<a href = "#" class="tui-page-btn tui-is-disabled tui-${type} visually-hidden">` +
+              `<a href = "#" aria-label="first" class="tui-page-btn tui-is-disabled tui-${type} visually-hidden">` +
               `<span class="tui-ico-${type}">${firstPage}</span>` +
               `</a>`;
             break;
           case 'last':
             template =
-              `<a href="#" class="tui-page-btn tui-is-disabled tui-${type} ${hiddenClass}">` +
+              `<a href="#" aria-label="last" class="tui-page-btn tui-is-disabled tui-${type} ${hiddenClass}">` +
               `<span class="tui-ico-${type}">${lastPage}</span>` +
               `</a>`;
             break;
           case 'next':
             template =
-              `<a href="#" class="tui-page-btn tui-is-disabled tui-${type} ${hiddenClass}">` +
+              `<a href="#" aria-label="next" class="tui-page-btn tui-is-disabled tui-${type} ${hiddenClass}">` +
               `<span class="tui-ico-${type}"></span>` +
               `</a>`;
             break;
           case 'prev':
             template =
-              `<a href="#" class="tui-page-btn tui-is-disabled tui-${type} visually-hidden">` +
+              `<a href="#" aria-label="prev" class="tui-page-btn tui-is-disabled tui-${type} visually-hidden">` +
               `<span class="tui-ico-${type}"></span>` +
               `</a>`;
             break;
@@ -92,7 +92,7 @@ export default class MoviePagination {
         return template;
       },
       moreButton:
-        '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+        '<a href="#" aria-label="more" class="tui-page-btn tui-{{type}}-is-ellip">' +
         '<span class="tui-ico-ellip">...</span>' +
         '</a>',
     },
