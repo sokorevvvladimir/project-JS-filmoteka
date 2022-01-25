@@ -2,7 +2,7 @@
 
 import movieModal from '../templates/film-description-modal.hbs';
 import MovieApiService from '../api/fetch-api';
-import { getImgPath } from '../utils/normalizationObj';
+import { getImgPath } from '../utils/normalization-obj';
 import { refsFunction } from './local-store-btns-refs';
 import Notiflix from 'notiflix';
 import 'notiflix/dist/notiflix-3.2.2.min.css';

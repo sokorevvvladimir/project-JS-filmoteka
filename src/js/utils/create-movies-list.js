@@ -1,6 +1,6 @@
-import { refs } from '../utils/refs.js';
+import { refs } from './refs.js';
 import movieCard from '../templates/movieCard.hbs';
-import { normalizationMovieObj } from '../utils/normalizationObj';
+import { normalizationMovieObj } from './normalization-obj';
 
 export function renderMoviesList(results) {
   const normalObjs = results.map(element => {

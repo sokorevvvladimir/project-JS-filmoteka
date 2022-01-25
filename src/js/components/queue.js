@@ -1,4 +1,4 @@
-import { renderMoviesList } from '../utils/createMoviesList.js';
+import { renderMoviesList } from '../utils/create-movies-list.js';
 import { refs } from '../utils/refs.js';
 import { placeholderSetter } from './films-container';
 import MoviePagination from '../utils/pagination';
