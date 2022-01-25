@@ -1,25 +1,35 @@
-// // Import the functions you need from the SDKs you need
+// import refs from '../utils/refs';
 // import { initializeApp } from 'firebase/app';
-// import { getAnalytics } from 'firebase/analytics';
-// // TODO: Add SDKs for Firebase products that you want to use
 
 // const firebaseConfig = {
-//   apiKey: 'AIzaSyCNe8So_8snBJMxBI4J-YlfvgcCeLwK0Ls',
-//   authDomain: 'team-project-filmoteka-9.firebaseapp.com',
-//   projectId: 'team-project-filmoteka-9',
-//   storageBucket: 'team-project-filmoteka-9.appspot.com',
-//   messagingSenderId: '48519743044',
-//   appId: '1:48519743044:web:215ee1fe35525d1fb7de11',
-//   measurementId: 'G-V617L01QHL',
+//   apiKey: 'AIzaSyAOOAB_dQz8yKtffWbD-npJ5riEOwOX74Q',
+//   authDomain: 'learning-test-firebase.firebaseapp.com',
+//   databaseURL: 'https://learning-test-firebase-default-rtdb.europe-west1.firebasedatabase.app',
+//   projectId: 'learning-test-firebase',
+//   storageBucket: 'learning-test-firebase.appspot.com',
+//   messagingSenderId: '375667965819',
+//   appId: '1:375667965819:web:9c17eb588e69c32ac147de',
 // };
 
-// // Initialize Firebase
 // const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
-// // ------------------------------------------------------
-// import { refs } from '../utils/refs';
 
 // export function firebaseAuth() {
-//   console.log('i`m hire');
-//   console.log(refs);
+//   const formLogin = document.querySelector('.form-login');
+//   formLogin.addEventListener('submit', onLoginSubmit, { once: true });
+//   const formSign = document.querySelector('.form-login');
+//   formSign.addEventListener('submit', onSignSubmit, { once: true });
+// }
+
+// //heandler for form
+
+// function onLoginSubmit(event) {
+//   event.preventDefault();
+//   const email = event.target.querySelector('#email').value;
+//   const password = event.target.querySelector('#password').value;
+
+//   console.log(email, password);
+// }
+
+// function onSignSubmit(event) {
+//   // console.log('imhire');
 // }
