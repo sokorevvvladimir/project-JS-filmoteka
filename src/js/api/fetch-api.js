@@ -35,6 +35,12 @@ export default class MovieApiService {
     return data;
   }
 
+  async fetchTrailer(id) {
+    const response = await fetch(`${BASE_URL}/movie/${id}/videos?api_key=${API_KEY}`);
+    const data = await response.json();
+    return data;
+  }
+
   getMovieId(newId) {
     this.movieId = newId;
   }
@@ -74,7 +80,7 @@ export default class MovieApiService {
     this.searchQuery = newQuery;
   }
 
-  get page(){
+  get page() {
     return this.currentPage;
   }
 

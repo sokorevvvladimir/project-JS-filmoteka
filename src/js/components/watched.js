@@ -1,9 +1,11 @@
 import { loadFromLocalStorage } from '../utils/utils';
-import { renderMoviesList } from '../utils/createMoviesList';
 import { refs } from '../utils/refs';
 import { placeholderSetter } from './films-container';
+import MoviePagination from '../utils/pagination';
+import { spinner } from '../utils/spinner';
 
 const watchedBtn = document.querySelector('.js-library-watched');
+const PER_PAGE = 9;
 
 function markupAdapter(itemListFromLocalStorage) {
   return itemListFromLocalStorage.map(
@@ -18,17 +20,23 @@ function markupAdapter(itemListFromLocalStorage) {
   );
 }
 
-function markup(items) {
+export function markup(items) {
   if (!items) {
+    refs.pagination.innerHTML = '';
     return;
   }
 
   if (items.length === 0) {
+    refs.pagination.innerHTML = '';
     placeholderSetter();
     return;
   }
+
+  const totalItems = items.length;
   refs.filmsList.innerHTML = '';
-  renderMoviesList(markupAdapter(items));
+
+  new MoviePagination('watched', PER_PAGE, totalItems);
+  spinner.off();
 }
 
 watchedBtn.addEventListener('click', () => markup(loadFromLocalStorage('watched')));

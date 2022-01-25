@@ -3,6 +3,8 @@ import 'tui-pagination/dist/tui-pagination.css';
 import MovieApiService from '../api/fetch-api.js';
 import { renderMoviesList } from './createMoviesList.js';
 import { refs } from './refs.js';
+import { startSmoothScroll } from './utils.js';
+import { spinner } from '../utils/spinner';
 
 export default class MoviePagination {
   options = {
@@ -19,38 +21,31 @@ export default class MoviePagination {
       moveButton: ({ type }) => {
         let template = '';
         const firstPage = 1;
-        const lastPage = Math.round(this.options.totalItems / this.options.itemsPerPage);
+        const lastPage = Math.ceil(this.options.totalItems / this.options.itemsPerPage);
+        const hiddenClass = lastPage < 6 ? 'visually-hidden' : '';
         switch (type) {
           case 'first':
             template =
-              `<a href="#" class="tui-page-btn tui-${type}">` +
+              `<a href="#" class="tui-page-btn tui-${type} visually-hidden">` +
               `<span class="tui-ico-${type}">${firstPage}</span>` +
               `</a>`;
             break;
           case 'last':
             template =
-              `<a href="#" class="tui-page-btn tui-${type}">` +
+              `<a href="#" class="tui-page-btn tui-${type} ${hiddenClass}">` +
               `<span class="tui-ico-${type}">${lastPage}</span>` +
               `</a>`;
             break;
           case 'next':
             template =
-              `<a href="#" class="tui-page-btn tui-${type}">` +
-              `<span class="tui-ico-${type}">
-                <svg class="tui-pagination-svg" width="16" height="16">
-                  <use href="/sprite.5ec50489.svg#arrow-right"></use>
-                </svg>
-              </span>` +
+              `<a href="#" class="tui-page-btn tui-${type} ${hiddenClass}">` +
+              `<span class="tui-ico-${type}"></span>` +
               `</a>`;
             break;
           case 'prev':
             template =
-              `<a href="#" class="tui-page-btn tui-${type}">` +
-              `<span class="tui-ico-${type}">
-              <svg class="tui-pagination-svg" width="16" height="16">
-                <use href="/sprite.5ec50489.svg#arrow-left"></use>
-              </svg>
-            </span>` +
+              `<a href="#" class="tui-page-btn tui-${type} visually-hidden">` +
+              `<span class="tui-ico-${type}"></span>` +
               `</a>`;
             break;
           default:
@@ -62,39 +57,31 @@ export default class MoviePagination {
       disabledMoveButton: ({ type }) => {
         let template = '';
         const firstPage = 1;
-        const lastPage = Math.round(this.options.totalItems / this.options.itemsPerPage);
-
+        const lastPage = Math.ceil(this.options.totalItems / this.options.itemsPerPage);
+        const hiddenClass = lastPage < 6 ? 'visually-hidden' : '';
         switch (type) {
           case 'first':
             template =
-              `<a href = "#" class="tui-page-btn tui-is-disabled tui-${type}">` +
+              `<a href = "#" class="tui-page-btn tui-is-disabled tui-${type} visually-hidden">` +
               `<span class="tui-ico-${type}">${firstPage}</span>` +
               `</a>`;
             break;
           case 'last':
             template =
-              `<a href="#" class="tui-page-btn tui-is-disabled tui-${type}">` +
+              `<a href="#" class="tui-page-btn tui-is-disabled tui-${type} ${hiddenClass}">` +
               `<span class="tui-ico-${type}">${lastPage}</span>` +
               `</a>`;
             break;
           case 'next':
             template =
-              `<a href="#" class="tui-page-btn tui-is-disabled tui-${type}">` +
-              `<span class="tui-ico-${type}">
-                <svg class="tui-pagination-svg" width="16" height="16">
-                  <use href="/sprite.5ec50489.svg#arrow-right"></use>
-                </svg>
-              </span>` +
+              `<a href="#" class="tui-page-btn tui-is-disabled tui-${type} ${hiddenClass}">` +
+              `<span class="tui-ico-${type}"></span>` +
               `</a>`;
             break;
           case 'prev':
             template =
-              `<a href="#" class="tui-page-btn tui-is-disabled tui-${type}">` +
-              `<span class="tui-ico-${type}">
-              <svg class="tui-pagination-svg" width="16" height="16">
-                <use href="/sprite.5ec50489.svg#arrow-left"></use>
-              </svg>
-            </span>` +
+              `<a href="#" class="tui-page-btn tui-is-disabled tui-${type} visually-hidden">` +
+              `<span class="tui-ico-${type}"></span>` +
               `</a>`;
             break;
 
@@ -127,15 +114,29 @@ export default class MoviePagination {
 
   async createPagination() {
     const page = this.#pagination.getCurrentPage();
+    spinner.on();
+
     const result = await this.getMovies(page);
 
-    if (!result) return;
+    if (!result) {
+      spinner.off();
+      return;
+    }
+
+    if (this.type === 'watched' || this.type === 'queue') {
+      const arrPerFirstPage = result.slice(0, 9);
+      renderMoviesList(arrPerFirstPage);
+      this.#pagination.on('afterMove', this.onPagination.bind(this));
+      return;
+    }
 
     const { results: movies } = result;
 
     this.#pagination.reset(this.options.totalItems);
 
     refs.filmsList.innerHTML = '';
+    spinner.off();
+
     renderMoviesList(movies);
 
     this.#pagination.on('afterMove', this.onPagination.bind(this));
@@ -143,14 +144,31 @@ export default class MoviePagination {
 
   async onPagination(event) {
     this.paginationSettings(event);
-
+    spinner.on();
     const result = await this.getMovies(event.page);
 
-    if (!result) return;
+    if (!result) {
+      spinner.off();
+      return;
+    }
+
+    if (this.type === 'watched' || this.type === 'queue') {
+      const startItem = (event.page - 1) * 9;
+      const arrPerPage = result.slice(startItem, startItem + 9);
+
+      startSmoothScroll();
+      refs.filmsList.innerHTML = '';
+      spinner.off();
+
+      renderMoviesList(arrPerPage);
+      return;
+    }
 
     const { results: movies } = result;
-
+    startSmoothScroll();
     refs.filmsList.innerHTML = '';
+    spinner.off();
+    // TODO ++++++++++++++++++++++++++++++++++++++++++++++++
     renderMoviesList(movies);
   }
 
@@ -170,9 +188,11 @@ export default class MoviePagination {
         break;
 
       case 'watched':
+        response = JSON.parse(this.movieApiService.getItemFromLS(`watched`));
         break;
 
       case 'queue':
+        response = JSON.parse(this.movieApiService.getItemFromLS(`queue`));
         break;
 
       default:
@@ -186,12 +206,20 @@ export default class MoviePagination {
     const currentPage = event.page;
     const firstPage = document.querySelector('.tui-page-btn.tui-first');
     const lastPage = document.querySelector('.tui-page-btn.tui-last');
-    const lastPageNum = Math.round(this.options.totalItems / this.options.itemsPerPage);
+    const nextPage = document.querySelector('.tui-page-btn.tui-next');
+    const prevPage = document.querySelector('.tui-page-btn.tui-prev');
+    const lastPageNum = Math.ceil(this.options.totalItems / this.options.itemsPerPage);
+
+    if (lastPageNum < 6) {
+      return;
+    }
 
     if (currentPage === 1 || currentPage === 2 || currentPage === 3) {
-      firstPage.classList.add('tui-is-disabled');
+      firstPage.classList.add('visually-hidden');
+      prevPage.classList.add('visually-hidden');
     } else {
-      firstPage.classList.remove('tui-is-disabled');
+      firstPage.classList.remove('visually-hidden');
+      prevPage.classList.remove('visually-hidden');
     }
 
     if (
@@ -199,9 +227,11 @@ export default class MoviePagination {
       currentPage === lastPageNum - 1 ||
       currentPage === lastPageNum
     ) {
-      lastPage.classList.add('tui-is-disabled');
+      lastPage.classList.add('visually-hidden');
+      nextPage.classList.add('visually-hidden');
     } else {
-      lastPage.classList.remove('tui-is-disabled');
+      lastPage.classList.remove('visually-hidden');
+      nextPage.classList.remove('visually-hidden');
     }
   }
 }

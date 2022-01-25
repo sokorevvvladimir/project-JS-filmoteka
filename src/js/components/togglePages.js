@@ -1,20 +1,18 @@
 import { refs } from '../utils/refs';
 import MovieApiService from '../api/fetch-api.js';
-import { renderMoviesList } from '../utils/createMoviesList';
-// Будет нужно добавить
-// Импорт класса или экземпляра
-// Для "популярные фильмы" для Хоум
-// Для "лайбрари" для лайбрари пользователя
+import { placeholderSetter } from './films-container';
 import MoviePagination from '../utils/pagination';
+import { spinner } from '../utils/spinner';
+import { renderPopularMovies } from './home';
 
 const movieApiService = new MovieApiService();
+const PER_PAGE = 9;
 
 //---------------------------------------------------
 const onHomeButton = () => {
   if (refs.header.id === 'home') {
     refs.inputValue.value = '';
-    // Сбросить счетчик страниц
-    // Загрузить популярные фильми
+    renderPopularMovies();
     return;
   }
 
@@ -25,12 +23,10 @@ const onHomeButton = () => {
   toggleLibraryTab();
   toggleHomeTab();
 
-  // Какие-то действия с блоком пагинации
-  // Сбросить счетчик страниц
-  // Загрузить популярные фильмы
+  refs.watchedBtn.classList.remove('is-active');
+  refs.queueBtn.classList.remove('is-active');
 
-  refs.filmsList.innerHTML = '';
-  new MoviePagination('popular', 20); // здесь потом указать метод из класса.
+  renderPopularMovies();
 
   // refs.watchedBtn.removeEventListener('click', onWatchedBtnClick);
   // refs.queueBtn.removeEventListener('click', onQueueBtnClick);
@@ -42,7 +38,6 @@ const onLibraryButton = () => {
     // Сбросить счетчик страниц
     // Показать/спрятать пагинацию
     // Определиться: загружать очередь или просмотренные.
-
     return;
   }
 
@@ -86,12 +81,19 @@ const toggleActiveLink = () => {
   refs.activeLink.lastElementChild.classList.toggle('active');
 };
 
-function createLibraryList(key) {
+export function createLibraryList(key) {
   const ListLS = JSON.parse(movieApiService.getItemFromLS(`${key}`));
+
   if (ListLS === null || ListLS.length === 0) {
+    refs.pagination.innerHTML = '';
+    placeholderSetter();
     return;
   }
-  renderMoviesList(ListLS);
+
+  const totalItems = ListLS.length;
+
+  new MoviePagination('watched', PER_PAGE, totalItems);
+  spinner.off();
 }
 
 // //---- Переключение листов в библиотеке ------------------------------

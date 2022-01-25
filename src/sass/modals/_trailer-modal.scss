@@ -1,0 +1,54 @@
+.trailer__backdrop {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+
+  transition: visibility 0.3s linear, opacity 0.3s linear;
+
+  &--hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+.trailer__close-btn {
+  cursor: pointer;
+  position: absolute;
+  border: none;
+  background: none;
+  padding: 0;
+  top: 18px;
+  right: 18px;
+  z-index: 105;
+  fill: getColor(accent);
+}
+
+.trailer__player {
+  z-index: 100;
+}
+
+.spinner-modal {
+  position: absolute;
+  @include centeringXY();
+  z-index: 100;
+}
+
+#player {
+  @include centeringXY();
+
+  @include _phone {
+    max-width: 280px;
+  }
+
+  @include _tablet {
+    max-width: 618px;
+  }
+}

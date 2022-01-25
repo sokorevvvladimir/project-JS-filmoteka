@@ -1,0 +1,48 @@
+<div class="backdrop is-hidden" data-modal>
+  <div class="modal-auth">
+
+    <button class="close-btn" type="button" aria-label="Search films..." data-modal-close>
+      <svg width="30" height="30">
+        <use href="./images/sprite.svg#close"></use>
+      </svg>
+    </button>
+
+    <!-- Форма под логин -->
+    <form class="form-login active" id="login">
+      <h2 class="form__title">Log in</h2>
+      <label class="form__label" for="email">Email
+        <input class="form__input" id="email" type="email" name="email" placeholder="Enter e-mail...." />
+      </label>
+      <label class="form__label" for="password">Password
+        <input class="form__input" id="password" type="password" name="password" placeholder="Enter password...." />
+      </label>
+      <div class="form__btn">
+        <button class="btn__submit" type="submit">LOG IN</button>
+      </div>
+      <div class="form__link">
+        <a class="new-user" href="#signup">Create new account</a>
+      </div>
+    </form>
+
+    <!-- Форма для регистрации -->
+    <form class="form-sign" id="sign">
+      <h2 class="form__title">Sign up</h2>
+      <label class="form__label" for="email">Email
+        <input class="form__input" id="email1" type="email" name="email" placeholder="Enter e-mail...." />
+      </label>
+      <label class="form__label" for="password">Password
+        <input class="form__input pass1" id="pass1" type="password" name="password" placeholder="Enter password...." />
+      </label>
+      <label class="form__label" for="password">
+        <input class="form__input pass2" id="pass2" type="password" name="password" placeholder="Repeat password...." />
+      </label>
+      <div class="form__btn">
+        <button class="btn__submit" type="submit">SIGN UP</button>
+      </div>
+      <div class="form__link">
+        <a class="log-user" href="#signup">Login</a>
+      </div>
+    </form>
+
+  </div>
+</div>
