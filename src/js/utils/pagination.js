@@ -1,7 +1,7 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 import MovieApiService from '../api/fetch-api.js';
-import { renderMoviesList } from './createMoviesList.js';
+import { renderMoviesList } from './create-movies-list.js';
 import { refs } from './refs.js';
 import { startSmoothScroll } from './utils.js';
 import { spinner } from '../utils/spinner';
@@ -17,7 +17,8 @@ export default class MoviePagination {
     lastItemClassName: 'tui-last-child',
     template: {
       page: '<a href="#" aria-label="page" class="tui-page-btn">{{page}}</a>',
-      currentPage: '<strong aria-label="page" class="tui-page-btn tui-is-selected">{{page}}</strong>',
+      currentPage:
+        '<strong aria-label="page" class="tui-page-btn tui-is-selected">{{page}}</strong>',
       moveButton: ({ type }) => {
         let template = '';
         const firstPage = 1;

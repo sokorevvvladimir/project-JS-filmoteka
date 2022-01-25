@@ -1,4 +1,4 @@
-// import { User } from '../utils/userClass';
+// import { User } from '../utils/user-class';
 // import {onCloseBtnClick} from './autorization'
 
 // import Notiflix from 'notiflix';
