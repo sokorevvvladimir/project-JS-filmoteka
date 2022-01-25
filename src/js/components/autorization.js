@@ -1,5 +1,5 @@
 import { refs } from '../utils/refs';
-// import { firebaseAuth } from './firebase';
+import { firebaseAuth } from './firebase';
 
 export let signIn = false;
 
