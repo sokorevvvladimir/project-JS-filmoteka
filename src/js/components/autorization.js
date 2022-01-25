@@ -1,71 +1,72 @@
-import { refs } from '../utils/refs';
-import { firebaseAuth } from './firebase';
+// import { refs } from '../utils/refs';
+// import { firebaseAuth, user } from './firebase';
 
-export let signIn = false;
+// export let signIn = false;
 
-toggleSign(signIn);
-refs.signInUp.addEventListener('click', onAutorizationClick);
-refs.logOut.addEventListener('click', onExitClick);
+// localStorage.removeItem('user');
 
-function onAutorizationClick(e) {
-  signIn = true;
-  toggleSign(signIn);
-  // Убрали скрол
-  document.querySelector('html').classList.add('disable-scroll');
+// toggleSign(signIn);
+// refs.signInUp.addEventListener('click', onAutorizationClick);
+// refs.logOut.addEventListener('click', onExitClick);
 
-  // --- Отработка закрытия окна по Esc и клику по дропу ----
-  refs.closeBtn.addEventListener('click', onCloseBtnClick);
-  window.addEventListener('keydown', onCloseEsc);
-  refs.onDrop.addEventListener('click', onCloseBackdrop);
-  // --------------------------------------------------------
+// function onAutorizationClick(e) {
+//   // signIn = true;
+//   toggleSign(true);
+//   // Убрали скрол
+//   document.querySelector('html').classList.add('disable-scroll');
 
-  refs.createNewUser.addEventListener('click', toggleLogSign);
-  refs.logUser.addEventListener('click', toggleLogSign);
+//   // --- Отработка закрытия окна по Esc и клику по дропу ----
+//   refs.closeBtn.addEventListener('click', onCloseBtnClick);
+//   window.addEventListener('keydown', onCloseEsc);
+//   // refs.onDrop.addEventListener('click', onCloseBackdrop);
+//   // --------------------------------------------------------
 
-  // firebaseAuth();
-}
+//   refs.createNewUser.addEventListener('click', toggleLogSign);
+//   refs.logUser.addEventListener('click', toggleLogSign);
 
-function onExitClick(e) {
-  signIn = false;
-  document.location.href = '../index.html';
-  toggleSign(signIn);
-  // refs.logOut.removeEventListener('click', onExitClick);
-}
+//   firebaseAuth();
+// }
 
-function toggleSign(key) {
-  if (key) {
-    refs.modalAuth.classList.remove('is-hidden');
-  } else {
-    refs.libraryButton.hidden = true;
-    refs.signInUp.hidden = false;
-    refs.logOut.style.visibility = 'hidden';
-    refs.modalAuth.classList.add('is-hidden');
-  }
-}
+// function onExitClick(e) {
+//   signIn = false;
+//   localStorage.removeItem('user');
+//   document.location.href = './index.html';
+//   toggleSign(signIn);
+// }
 
-function toggleLogSign(e) {
-  refs.formLogin.classList.toggle('active');
-  refs.formSign.classList.toggle('active');
-}
+// function toggleSign(key) {
+//   if (key) {
+//     refs.modalAuth.classList.remove('is-hidden');
+//   } else {
+//     refs.libraryButton.hidden = true;
+//     refs.signInUp.hidden = false;
+//     refs.logOut.style.visibility = 'hidden';
+//     refs.modalAuth.classList.add('is-hidden');
+//   }
+// }
 
-function onCloseBtnClick(e) {
-  signLogin();
-  refs.modalAuth.classList.add('is-hidden');
-  // refs.closeBtn.removeEventListener('click', onCloseBtnClick);
-  document.querySelector('html').classList.remove('disable-scroll');
-}
+// function toggleLogSign(e) {
+//   refs.formLogin.classList.toggle('active');
+//   refs.formSign.classList.toggle('active');
+// }
 
-function onCloseEsc(e) {
-  if (e.key !== 'Escape') return;
-  onCloseBtnClick(e);
-}
+// export function onCloseBtnClick(e) {
+//   if (user.isLogin) signLogin();
+//   refs.modalAuth.classList.add('is-hidden');
+//   document.querySelector('html').classList.remove('disable-scroll');
+// }
 
-function onCloseBackdrop(e) {
-  if (e.target === e.currentTarget) onCloseBtnClick(e);
-}
+// function onCloseEsc(e) {
+//   if (e.key !== 'Escape') return;
+//   onCloseBtnClick(e);
+// }
 
-function signLogin() {
-  refs.libraryButton.hidden = false;
-  refs.signInUp.hidden = true;
-  refs.logOut.style.visibility = 'visible';
-}
+// // function onCloseBackdrop(e) {
+// //   if (e.target === e.currentTarget) onCloseBtnClick(e);
+// // }
+
+// function signLogin() {
+//   refs.libraryButton.hidden = false;
+//   refs.signInUp.hidden = true;
+//   refs.logOut.style.visibility = 'visible';
+// }

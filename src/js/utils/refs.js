@@ -14,18 +14,18 @@ export const refs = {
   pagination: document.querySelector('#tui-pagination-container'),
 
   // Авторизация -------------------------------------
-  signInUp: document.querySelector('[data-page="signinup"]'),
-  logOut: document.querySelector('.logout'),
+  // signInUp: document.querySelector('[data-page="signinup"]'),
+  // logOut: document.querySelector('.logout'),
 
-  modalAuth: document.querySelector('[data-modal]'),
-  closeBtn: document.querySelector('.close-btn'),
-  onDrop: document.querySelector('[data-modal]'),
+  // modalAuth: document.querySelector('[data-modal]'),
+  // closeBtn: document.querySelector('.close-btn'),
+  // onDrop: document.querySelector('[data-modal]'),
 
-  formLogin: document.querySelector('.form-login'),
-  formSign: document.querySelector('.form-sign'),
+  // formLogin: document.querySelector('.form-login'),
+  // formSign: document.querySelector('.form-sign'),
 
-  createNewUser: document.querySelector('.new-user'),
-  logUser: document.querySelector('.log-user'),
+  // createNewUser: document.querySelector('.new-user'),
+  // logUser: document.querySelector('.log-user'),
 
   //Trailer Modal
   trailerBtn: document.querySelector('.trailer-button'),
