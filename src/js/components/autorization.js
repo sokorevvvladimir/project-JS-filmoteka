@@ -1,35 +1,37 @@
 import { refs } from '../utils/refs';
-import { firebaseAuth } from './firebase';
+import { firebaseAuth, user } from './firebase';
 
 export let signIn = false;
+
+localStorage.removeItem('user');
 
 toggleSign(signIn);
 refs.signInUp.addEventListener('click', onAutorizationClick);
 refs.logOut.addEventListener('click', onExitClick);
 
 function onAutorizationClick(e) {
-  signIn = true;
-  toggleSign(signIn);
+  // signIn = true;
+  toggleSign(true);
   // Убрали скрол
   document.querySelector('html').classList.add('disable-scroll');
 
   // --- Отработка закрытия окна по Esc и клику по дропу ----
   refs.closeBtn.addEventListener('click', onCloseBtnClick);
   window.addEventListener('keydown', onCloseEsc);
-  refs.onDrop.addEventListener('click', onCloseBackdrop);
+  // refs.onDrop.addEventListener('click', onCloseBackdrop);
   // --------------------------------------------------------
 
   refs.createNewUser.addEventListener('click', toggleLogSign);
   refs.logUser.addEventListener('click', toggleLogSign);
 
-  // firebaseAuth();
+  firebaseAuth();
 }
 
 function onExitClick(e) {
   signIn = false;
+  localStorage.removeItem('user');
   document.location.href = '../index.html';
   toggleSign(signIn);
-  // refs.logOut.removeEventListener('click', onExitClick);
 }
 
 function toggleSign(key) {
@@ -48,10 +50,9 @@ function toggleLogSign(e) {
   refs.formSign.classList.toggle('active');
 }
 
-function onCloseBtnClick(e) {
-  signLogin();
+export function onCloseBtnClick(e) {
+  if (user.isLogin) signLogin();
   refs.modalAuth.classList.add('is-hidden');
-  // refs.closeBtn.removeEventListener('click', onCloseBtnClick);
   document.querySelector('html').classList.remove('disable-scroll');
 }
 
@@ -60,9 +61,9 @@ function onCloseEsc(e) {
   onCloseBtnClick(e);
 }
 
-function onCloseBackdrop(e) {
-  if (e.target === e.currentTarget) onCloseBtnClick(e);
-}
+// function onCloseBackdrop(e) {
+//   if (e.target === e.currentTarget) onCloseBtnClick(e);
+// }
 
 function signLogin() {
   refs.libraryButton.hidden = false;

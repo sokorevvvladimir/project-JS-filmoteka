@@ -1,19 +1,22 @@
 export class User {
   constructor() {
-    this.id = '';
     this.mail = '';
-    this.pass = '';
+    this.idToken = '';
+    this.localId = '';
+    this.isLogin = false;
   }
 
-  userLogin(id, mail, pass) {
-    this.id = id;
+  userLogin(mail, idToken, localId) {
     this.mail = mail;
-    this.pass = pass;
+    this.idToken = idToken;
+    this.localId = localId;
+    this.isLogin = true;
   }
 
-  userLogOut(id, mail, pass) {
-    this.id = '';
+  userLogOut() {
     this.mail = '';
-    this.pass = '';
+    this.idToken = '';
+    this.localId = '';
+    this.isLogin = false;
   }
 }
