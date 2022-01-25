@@ -1,19 +1,22 @@
-export class User {
-  constructor() {
-    this.id = '';
-    this.mail = '';
-    this.pass = '';
-  }
+// export class User {
+//   constructor() {
+//     this.mail = '';
+//     this.idToken = '';
+//     this.localId = '';
+//     this.isLogin = false;
+//   }
 
-  userLogin(id, mail, pass) {
-    this.id = id;
-    this.mail = mail;
-    this.pass = pass;
-  }
+//   userLogin(mail, idToken, localId) {
+//     this.mail = mail;
+//     this.idToken = idToken;
+//     this.localId = localId;
+//     this.isLogin = true;
+//   }
 
-  userLogOut(id, mail, pass) {
-    this.id = '';
-    this.mail = '';
-    this.pass = '';
-  }
-}
+//   userLogOut() {
+//     this.mail = '';
+//     this.idToken = '';
+//     this.localId = '';
+//     this.isLogin = false;
+//   }
+// }
