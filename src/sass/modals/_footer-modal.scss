@@ -7,7 +7,9 @@
   background-color: rgba(0, 0, 0, 0.2);
   transition: opacity 500ms linear;
   z-index: 5;
+  overflow: auto;
 }
+
 .stop-scrolling {
   height: 100%;
   overflow: hidden;
