@@ -30,7 +30,7 @@ async function onTrailerBtnClick(event) {
   }
 }
 
-function openModal(id) {
+export function openModal(id) {
   refs.trailerWindow.innerHTML = `<iframe
     id="player"
     width="640"
@@ -66,7 +66,7 @@ function closeModal() {
   refs.html.classList.remove('disable-scroll');
 }
 
-async function getTrailer(id) {
+export async function getTrailer(id) {
   const response = await movieApiService.fetchTrailer(id);
   const videoId = response.results[0].key;
   return videoId;

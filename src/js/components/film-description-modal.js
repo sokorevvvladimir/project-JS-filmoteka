@@ -10,6 +10,7 @@ import { onQueue } from './queue';
 import { markup as onWatched } from './watched';
 import { loadFromLocalStorage } from '../utils/utils';
 import { refs } from '../utils/refs';
+import { openModal as openModalTrailer, getTrailer } from './trailer';
 
 const modalDialog = document.querySelector('.modal-one-film');
 const html = document.querySelector('html');
@@ -83,6 +84,18 @@ async function onCardClick(event) {
       // -------------
 
       openModal();
+
+      const trailerBtnModal = document.querySelector('.trailer-button-modal');
+      trailerBtnModal.addEventListener('click', onTrailerBtnModalClick);
+
+      async function onTrailerBtnModalClick(e) {
+        try {
+          const trailerId = await getTrailer(id);
+          openModalTrailer(trailerId);
+        } catch (error) {
+          Notiflix.Notify.failure('Sorry, trailer not found 😢');
+        }
+      }
 
       // при появлении модалки появляются кнопки, получаю ссылки на них ниже//
       const refs = refsFunction();
