@@ -9,7 +9,6 @@ import 'notiflix/dist/notiflix-3.2.2.min.css';
 import { onQueue } from './queue';
 import { markup as onWatched } from './watched';
 import { loadFromLocalStorage } from '../utils/utils';
-import { getTrailer } from './trailer';
 import { refs } from '../utils/refs';
 
 const modalDialog = document.querySelector('.modal-one-film');
@@ -157,7 +156,7 @@ async function onCardClick(event) {
 
       // ниже основная функция по управлению кликом по двум кнопкам //
       async function onBtnClickHandle(e) {
-        const movie = await movieApiService.fetchById().then(data => data);
+        const movie = res;
         const watchedBtnHeader = document.querySelector('.js-library-watched');
         const queueBtnHeader = document.querySelector('.js-library-queue');
 
