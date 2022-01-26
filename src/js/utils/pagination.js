@@ -1,11 +1,11 @@
 import Pagination from 'tui-pagination';
+import Notiflix from 'notiflix';
 import 'tui-pagination/dist/tui-pagination.css';
 import MovieApiService from '../api/fetch-api.js';
 import { renderMoviesList } from './create-movies-list.js';
 import { refs } from './refs.js';
 import { startSmoothScroll } from './utils.js';
 import { spinner } from '../utils/spinner';
-
 export default class MoviePagination {
   options = {
     totalItems: 1000,
@@ -169,7 +169,6 @@ export default class MoviePagination {
     startSmoothScroll();
     refs.filmsList.innerHTML = '';
     spinner.off();
-    // TODO ++++++++++++++++++++++++++++++++++++++++++++++++
     renderMoviesList(movies);
   }
 
@@ -180,7 +179,24 @@ export default class MoviePagination {
 
     switch (this.type) {
       case 'popular':
-        response = await this.movieApiService.fetchPopular();
+        try {
+          spinner.on();
+          response = await this.movieApiService.fetchPopular();
+          spinner.off();
+
+          if (!response?.results) {
+            throw new Error(error);
+          }
+
+          const { total_results: totalItems } = response;
+          this.options.totalItems = totalItems < 1980 ? totalItems : 1980;
+        } catch (error) {
+          Notiflix.Notify.failure(
+            'Sorry, the server is temporarily unavailable. Please try again later.',
+          );
+          spinner.off();
+          refs.pagination.innerHTML = '';
+        }
         break;
 
       case 'by-search':
